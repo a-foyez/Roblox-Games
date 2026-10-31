@@ -7,3 +7,7 @@
 4. In Studio (execute_luau, Edit): delete any old Workspace.Monster, build a Model "Monster" of anchored Parts from that data (Ball shape for spheres), offset to an open spot like (-5, 0, -20), set PrimaryPart to the body, parent to workspace.
 5. screen_capture looking at the monster to verify; ask the user to save the place (Ctrl+S).
 6. Commit assets/monster.blend and assets/monster.fbx (not the .blend1).
+
+## Re-check the monster AI
+1. start_stop_play true; in the Server datamodel run execute_luau that records Workspace.Monster pivot and the player's Humanoid.Health, waits ~10 s while tracking #Workspace.Fireballs children, and returns distance moved, health before/after, max fireballs.
+2. get_console_output must show no errors; then start_stop_play false.

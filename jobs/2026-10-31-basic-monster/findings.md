@@ -10,5 +10,8 @@ LEAD (may have changed, re-check before relying on it). Rewrite or drop facts th
 - F4 SETTLED: Workspace.BasicMap exists and Baseplate sits in ServerStorage. Source: execute_luau 2026-10-31 19:27 (session a7e2e4ce)
 - F5 SETTLED: Workspace.Monster (Model, 11 anchored Parts, PrimaryPart Body) stands at (-5,0,-20) facing +Z; 11 studs tall. Source: execute_luau + screen_capture 2026-10-31 19:29
 
+- F6 SETTLED: ServerScriptService.MonsterAI (Script, --!strict, server only) moves Workspace.Monster by PivotTo each Heartbeat: wanders random points in X/Z -44..44, chases the nearest living player within 60 studs to 20 studs away, throws an anchored Neon fireball every 2.5 s (60 studs/s, raycast hit, 20 damage, 3 s life) into Workspace.Fireballs (folder made at runtime). Source: playtest 2026-10-31 19:31 (moved 38 studs, health 45->35, no console errors)
+
 ## Decisions
 - D1: Bring Blender models into Studio by reading object transforms in Blender and creating matching anchored Parts with execute_luau; also export an FBX for manual File > Import 3D. Why: the Studio MCP has no local-file import. Rejected: Open Cloud upload (needs an API key the agent must not enter).
+- D2: Monster stays anchored Parts moved with PivotTo, fireballs stepped by the script with raycasts. Why: smallest server-only version, no physics ownership or remotes to secure. Rejected: Humanoid rig with welds (more parts to get right), physics-driven fireballs (gravity drop, unreliable Touched). Known limit: monster slides through blocks/platform (shortcut comment in script).

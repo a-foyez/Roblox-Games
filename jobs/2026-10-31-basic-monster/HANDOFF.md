@@ -13,7 +13,7 @@ None stated for this job.
 Source: user message, 2026-10-31 19:22
 
 ## Status
-Not started on the model. Blocked in the old chat: the Blender and Roblox_Studio MCP servers dropped and would not come back in that session (see findings: F1).
+Done: monster built in Blender, exported to assets/monster.fbx + .blend, and placed in Studio as Workspace.Monster (see findings: F5). Place save is up to the user (Ctrl+S).
 
 ## Route so far
 1. Earlier job (same session): basic map built in Blender and recreated in Studio as Parts (see findings: F2, F3, D1).
@@ -27,7 +27,7 @@ Confirm the Blender and Roblox Studio MCP tools load (ToolSearch "blender", list
 2. jobs/2026-10-31-basic-monster/methods.md
 
 ## Leads to re-check
-- F4: Workspace.BasicMap and the parked Baseplate in ServerStorage still exist in the open place.
+None (F4 re-checked and settled).
 
 ## Results to reuse
 - assets/basic_map.blend and assets/basic_map.fbx (committed in 01c2ebf).
@@ -48,8 +48,8 @@ None
 ## Studio/Blender state
 - Place saved in Studio: unknown; the user was told to press Ctrl+S after the map was added.
 - Rojo in sync: not used
-- .blend files: assets/basic_map.blend saved, assets/basic_map.fbx exported. No monster files yet.
-- Only in Studio (not in this folder): Workspace.BasicMap; Baseplate moved to ServerStorage.
+- .blend files: assets/basic_map.blend, assets/monster.blend saved; basic_map.fbx, monster.fbx exported.
+- Only in Studio (not in this folder): Workspace.BasicMap, Workspace.Monster; Baseplate moved to ServerStorage.
 
 ## Queue
 None
@@ -57,3 +57,4 @@ None
 ## Chain so far
 - Started by session 207767db-91c6-4b71-a7dc-9ab3284b869a at 2026-10-31 19:26
 - Hand-off #1 saved 2026-10-31 19:27 by session 207767db-91c6-4b71-a7dc-9ab3284b869a
+- Resumed by session a7e2e4ce-be1c-4fc5-8132-3930fec63934 at 2026-10-31 19:27

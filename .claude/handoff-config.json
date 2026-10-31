@@ -1,0 +1,13 @@
+{
+  "_comment": "Read by scripts/chat-size-check.js. contextWindow is for Opus 5.5 (200K). Checkpoints are fractions of it; the last must stay below autoCompactAt, where Claude Code starts auto-compacting.",
+  "contextWindow": 200000,
+  "autoCompactAt": 0.9,
+  "checkpoints": [
+    { "at": 0.5, "note": "Hand off at the best stop." },
+    { "at": 0.6, "note": "Hand off at the first good stop." },
+    { "at": 0.7, "note": "Hand off at the end of the current step." },
+    { "at": 0.8, "note": "Stop now: reach the nearest clean stop and hand off." }
+  ],
+  "mainNote": "Follow the Hand off steps in .claude/skills/handoff/SKILL.md. If the user said \"stay in this chat\", keep working until the next checkpoint.",
+  "agentNote": "You are a subagent: finish your current item, then return a report starting \"AGENT HAND-OFF (PARTIAL):\" with what is done, what is left, and where results are written."
+}

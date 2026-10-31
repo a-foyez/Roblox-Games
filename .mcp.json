@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "Roblox_Studio": {
+      "type": "stdio",
+      "command": "cmd.exe",
+      "args": ["/c", "cd /d %LOCALAPPDATA%\\Roblox && .\\mcp.bat"],
+      "env": {}
+    },
+    "Blender": {
+      "type": "stdio",
+      "command": "cmd.exe",
+      "args": ["/c", "%LOCALAPPDATA%\\blender-mcp\\venv\\Scripts\\blender-mcp.exe"],
+      "env": {}
+    }
+  }
+}

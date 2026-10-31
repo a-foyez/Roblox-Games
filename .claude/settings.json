@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(//**/.env)",
+      "Read(//**/.env.*)",
+      "Read(~/AppData/Local/Google/Chrome/User Data/**)",
+      "Read(~/AppData/Local/Microsoft/Edge/User Data/**)",
+      "Read(~/AppData/Local/BraveSoftware/**)",
+      "Read(~/AppData/Roaming/Mozilla/Firefox/**)",
+      "Read(~/Library/Application Support/Google/Chrome/**)",
+      "Read(~/Library/Application Support/Firefox/**)",
+      "Read(~/Library/Safari/**)",
+      "Read(~/.config/google-chrome/**)",
+      "Read(~/.config/chromium/**)",
+      "Read(~/.mozilla/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit|MultiEdit|NotebookEdit|Glob|Grep|Bash|PowerShell",
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/scripts/stay-in-project.js\"", "timeout": 10 }]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/scripts/chat-size-check.js\"", "timeout": 10 }]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/scripts/chat-size-check.js\"", "timeout": 10 }]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/scripts/session-start.js\"", "timeout": 10 }]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [{ "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/scripts/session-start.js\"", "timeout": 10 }]
+      }
+    ]
+  }
+}

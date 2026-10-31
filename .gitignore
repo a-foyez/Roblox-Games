@@ -1,0 +1,4 @@
+# Per-session hook state (checkpoint notes shown, compaction triggers) and test scratch files
+.claude/handoff-state/
+# Personal Claude Code settings
+.claude/settings.local.json

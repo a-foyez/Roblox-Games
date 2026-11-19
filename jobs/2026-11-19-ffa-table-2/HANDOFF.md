@@ -15,7 +15,7 @@ None given. Carried over from jobs/2026-11-19-table-lobby/: Do not build the sup
 Source: user message (pasted), 2026-11-19 ~22:30
 
 ## Status
-The overhead health bar fix (F8) failed in the user's multi-player run (F9). Cause not found yet; two candidates are in F10. Everything else is done and tested (F7).
+Everything is built. The health bar fix (F8) most likely works: the failed run used an old server (F10). Needs one fresh Clients and Servers run to confirm, then Done.
 
 ## Route so far
 1. Part 1 (jobs/2026-11-19-ffa-table/): Table3, 2-4 player TableManager/MatchInstance/TableClient, grass, hidden spawn, death animation, spectator mode (F1-F6).
@@ -25,23 +25,21 @@ The overhead health bar fix (F8) failed in the user's multi-player run (F9). Cau
 5. Code re-checked and a solo dummy test run: solo cannot show the bar (F9). Candidates: F10.
 
 ## Next action
-Ask the user which bar still shows: the bar over a knocked-out body seen by other players, or their own top-right health bar while knocked out (or both). Then apply the matching fix from F10, run the solo checks, save, and ask for one more Clients and Servers run.
+Ask the user for one fresh Clients and Servers run (stop any running test first so the server reloads v13). No bar over knocked-out bodies -> set Status to Done. Bar still shows -> use the fix ideas in F9/F10.
 
 ## Read first
 1. jobs/2026-11-19-ffa-table-2/findings.md
 2. jobs/2026-11-19-ffa-table-2/methods.md
 
 ## Leads to re-check
-- F10: which bar the user means (ask them; it cannot be checked solo).
-- F8: AlwaysOff is still set in MatchInstance line 68 (script_read).
+- F8: confirm in a fresh multi-player run (user).
 
 ## Results to reuse
 - Studio: Workspace.Tables.Table3, Workspace.Arenas.Arena1.Spawns.Spawn3/Spawn4, ServerScriptService.TableManager/MatchInstance, StarterPlayerScripts.TableClient/SpectateClient, Workspace.Baseplate, Workspace.SpawnLocation.
 - Earlier system notes: jobs/2026-11-19-table-lobby/findings.md.
 
 ## Waiting on me
-- Which bar still shows (F10 a or b).
-- A Clients-and-Servers run to confirm the fix (MCP play is solo only).
+- A fresh Clients-and-Servers run to confirm F8.
 
 ## Don't redo
 - F1-F7: built and tested. Read scripts with script_read instead of rewriting.

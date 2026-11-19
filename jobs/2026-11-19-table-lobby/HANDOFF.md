@@ -20,7 +20,7 @@ Do not build the superpower/nerf draft UI yet
 Source: user message (pasted), 2026-11-19 ~22:30
 
 ## Status
-Server side written and place saved (v8). Client scripts (host UI + E-key dash) not written. Nothing playtested yet.
+All four items built, place saved (v9). Solo playtest passed (F4, F5); user ran the 2-player test 2026-11-19 23:01 and reported it in order (F8). Host stand-up hand-over confirmed by the user (F7). Job closed 2026-11-19 23:04.
 
 ## Route so far
 1. Found the place was a bare baseplate; no AbilityService existed, so it was created new (F1).
@@ -28,14 +28,14 @@ Server side written and place saved (v8). Client scripts (host UI + E-key dash) 
 3. Wrote AbilityService, MatchInstance, TableManager (F3, D1-D5).
 
 ## Next action
-Write StarterPlayer.StarterPlayerScripts.TableClient (LocalScript, --!strict): build the host ScreenGui in code and the E-key dash, exactly as described in methods.md "Client script spec". Then playtest (methods.md "Solo playtest").
+None. Job closed.
 
 ## Read first
 1. jobs/2026-11-19-table-lobby/findings.md
 2. jobs/2026-11-19-table-lobby/methods.md
 
 ## Leads to re-check
-- F4: server scripts have never run; check for console errors on first Play.
+None
 
 ## Results to reuse
 - Studio place "Choose a Power, GET NERFED!" (studio id from list_roblox_studios): Workspace.Tables.Table1/Table2, Workspace.Arenas.Arena1 (Floor, Wall x4, Spawns.Spawn1/Spawn2), ReplicatedStorage.Remotes.HostAction/Ability, ServerScriptService.AbilityService/MatchInstance/TableManager.
@@ -66,3 +66,5 @@ None
 - Hand-off #1 saved 2026-11-19 22:47 by session a9fdb504-1f02-477d-b3aa-f186305073f1
 - Resumed by session 52d4762b-afa3-4ef1-8084-ea98b9b2261e at 2026-11-19 22:49
 - Hand-off #2 saved 2026-11-19 22:53 by session 52d4762b-afa3-4ef1-8084-ea98b9b2261e
+- Resumed by session 808080b7-b61c-436c-bbdc-d15f0ac0506c at 2026-11-19 23:01
+- Follow-up work continued in jobs/2026-11-19-ffa-table/

@@ -14,7 +14,8 @@ Current state only, under 8 KB. SETTLED = verified; LEAD = re-check before relyi
 
 - F5 SETTLED: StarterPlayer.StarterPlayerScripts.TableClient (LocalScript, --!strict) written per methods.md spec, place saved v9. Solo playtest: frame visible only for host, texts "Rounds to win: 3" / "Round time: 60s" / "Start Match"; RoundsToWin 5 updates the label; server FireClient(Ability,"Dash") moved the character ~10 studs in 0.3 s; no console errors. Buttons were exercised by firing HostAction directly, not by clicking. Source: execute_luau in Client/Server, 2026-11-19 22:52.
 - F6 SETTLED: Leaving a seat (SeatWeld destroyed) fires Occupant -> SeatedCount 0, HostUserId 0. Source: playtest 2026-11-19 22:52.
-- F7 LEAD: Once (right before Studio dropped off the MCP) the server showed HostSeat.Occupant nil but SeatedCount 1 and the old host still set, after server-side Humanoid.Sit=false + Jump. Did not reproduce. Re-check in the 2-player test: stand up from a seat, verify SeatedCount/HostUserId follow.
+- F7 SETTLED (user report 2026-11-19 23:04: host standing up passes the host panel to the seated guest; the one-off stuck state did not show up): Once (right before Studio dropped off the MCP) the server showed HostSeat.Occupant nil but SeatedCount 1 and the old host still set, after server-side Humanoid.Sit=false + Jump. Did not reproduce. Re-check in the 2-player test: stand up from a seat, verify SeatedCount/HostUserId follow.
+- F8 SETTLED (user report): 2-player Clients-and-Servers test of the full loop (seat, host panel, Start, arena, fight, return) is in order. Source: user message, 2026-11-19 23:01.
 
 ## Decisions
 - D1: Client UI reads table attributes instead of a server->client state remote. Why: replication is free, one fewer remote to secure. Rejected: a TableState RemoteEvent.

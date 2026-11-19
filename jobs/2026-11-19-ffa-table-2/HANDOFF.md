@@ -15,7 +15,7 @@ None given. Carried over from jobs/2026-11-19-table-lobby/: Do not build the sup
 Source: user message (pasted), 2026-11-19 ~22:30
 
 ## Status
-Everything is built. The health bar fix (F8) most likely works: the failed run used an old server (F10). Needs one fresh Clients and Servers run to confirm, then Done.
+Done. All features built and confirmed by the user, including the hidden overhead health bar (F8).
 
 ## Route so far
 1. Part 1 (jobs/2026-11-19-ffa-table/): Table3, 2-4 player TableManager/MatchInstance/TableClient, grass, hidden spawn, death animation, spectator mode (F1-F6).
@@ -25,21 +25,21 @@ Everything is built. The health bar fix (F8) most likely works: the failed run u
 5. Code re-checked and a solo dummy test run: solo cannot show the bar (F9). Candidates: F10.
 
 ## Next action
-Ask the user for one fresh Clients and Servers run (stop any running test first so the server reloads v13). No bar over knocked-out bodies -> set Status to Done. Bar still shows -> use the fix ideas in F9/F10.
+None. Job done. Optional, not asked for: hide the knocked-out player's own top-right health bar.
 
 ## Read first
 1. jobs/2026-11-19-ffa-table-2/findings.md
 2. jobs/2026-11-19-ffa-table-2/methods.md
 
 ## Leads to re-check
-- F8: confirm in a fresh multi-player run (user).
+None
 
 ## Results to reuse
 - Studio: Workspace.Tables.Table3, Workspace.Arenas.Arena1.Spawns.Spawn3/Spawn4, ServerScriptService.TableManager/MatchInstance, StarterPlayerScripts.TableClient/SpectateClient, Workspace.Baseplate, Workspace.SpawnLocation.
 - Earlier system notes: jobs/2026-11-19-table-lobby/findings.md.
 
 ## Waiting on me
-- A fresh Clients-and-Servers run to confirm F8.
+None
 
 ## Don't redo
 - F1-F7: built and tested. Read scripts with script_read instead of rewriting.

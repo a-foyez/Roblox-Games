@@ -11,3 +11,4 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-19 23:44 — Hand-off #2 started (context checkpoint 50%)
 - 2026-11-19 23:45 — Hand-off #2 saved
 - 2026-11-19 23:50 — User: failed run likely used an old server; F8 back to needs-confirming (F10)
+- 2026-11-19 23:55 — User confirmed no bar over knocked-out bodies in a fresh run (F8). Job done.

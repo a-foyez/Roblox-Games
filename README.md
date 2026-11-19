@@ -1,6 +1,8 @@
 # TestGame
 
-A Roblox experience built in Roblox Studio.
+"Choose a Power, GET NERFED!": a PvP Roblox game. Each player takes turns picking a superpower, the
+other players vote on a nerf for it (Super Speed... but running sets you on fire), and then everyone fights
+with swords in the arena. Last one standing wins. Game scripts live in the Studio place of the same name.
 
 ## Requirements
 

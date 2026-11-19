@@ -4,7 +4,9 @@ Guidance for Claude Code when working in this repository.
 
 ## Project
 
-**TestGame** is a Roblox experience. The place itself lives in Roblox Studio (no Rojo yet); this folder
+**TestGame** holds "Choose a Power, GET NERFED!", a PvP Roblox game: players take turns picking a
+superpower, the others vote it a nerf, then everyone sword-fights in the arena. The place lives in its own Studio
+place of that name (not the old TestGame place) with no Rojo yet; this folder
 holds the Claude Code setup, job notes and helper scripts. Claude edits the place through the Roblox Studio
 MCP and makes models through the Blender MCP; both need their app open (setup: `docs/mcp-setup.md`).
 Prefer the MCP tools to inspect and edit the live place rather than guessing at its structure.

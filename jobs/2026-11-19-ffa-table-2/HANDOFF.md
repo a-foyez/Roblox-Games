@@ -15,33 +15,37 @@ None given. Carried over from jobs/2026-11-19-table-lobby/: Do not build the sup
 Source: user message (pasted), 2026-11-19 ~22:30
 
 ## Status
-All features built and passed the user's 3-player test (F7). Last fix (hide 1 HP health bar, F8) passed solo and is saved (v13); the user has not seen it in a multi-player run yet.
+The overhead health bar fix (F8) failed in the user's multi-player run (F9). Cause not found yet; two candidates are in F10. Everything else is done and tested (F7).
 
 ## Route so far
 1. Part 1 (jobs/2026-11-19-ffa-table/): Table3, 2-4 player TableManager/MatchInstance/TableClient, grass, hidden spawn, death animation, spectator mode (F1-F6).
 2. Death pose drop tuned to 2.1, flush with Arena1.Floor (F5).
 3. User's 3-player test passed (F7).
-4. Overhead health bar hidden on knock-out (F8).
+4. Overhead health bar hidden on knock-out (F8); user says the bar still shows (F9).
+5. Code re-checked and a solo dummy test run: solo cannot show the bar (F9). Candidates: F10.
 
 ## Next action
-Ask the user to run one more Clients and Servers test (methods.md "Multi-player test") and confirm no health bar shows over knocked-out bodies. If fine, the job is done: set Status to Done.
+Ask the user which bar still shows: the bar over a knocked-out body seen by other players, or their own top-right health bar while knocked out (or both). Then apply the matching fix from F10, run the solo checks, save, and ask for one more Clients and Servers run.
 
 ## Read first
 1. jobs/2026-11-19-ffa-table-2/findings.md
 2. jobs/2026-11-19-ffa-table-2/methods.md
 
 ## Leads to re-check
-None
+- F10: which bar the user means (ask them; it cannot be checked solo).
+- F8: AlwaysOff is still set in MatchInstance line 68 (script_read).
 
 ## Results to reuse
 - Studio: Workspace.Tables.Table3, Workspace.Arenas.Arena1.Spawns.Spawn3/Spawn4, ServerScriptService.TableManager/MatchInstance, StarterPlayerScripts.TableClient/SpectateClient, Workspace.Baseplate, Workspace.SpawnLocation.
 - Earlier system notes: jobs/2026-11-19-table-lobby/findings.md.
 
 ## Waiting on me
-- A Clients-and-Servers run to confirm F8 (MCP play is solo only).
+- Which bar still shows (F10 a or b).
+- A Clients-and-Servers run to confirm the fix (MCP play is solo only).
 
 ## Don't redo
-- F1-F8: all built and tested. Read scripts with execute_luau (Source) instead of rewriting.
+- F1-F7: built and tested. Read scripts with script_read instead of rewriting.
+- Solo dummy bar test (F9): solo play shows no overhead bar, so it proves nothing.
 
 ## Gotchas
 - MCP play is solo only; a real match and spectating need a Clients-and-Servers run by the user.
@@ -50,7 +54,7 @@ None
 - The player's own top-right health bar still shows 1 HP while knocked out; only the overhead bar is hidden (user only asked about the body on the floor).
 
 ## Studio/Blender state
-- Place saved in Studio: yes, Roblox version 13, 2026-11-19 23:33 (Edit mode, no playtest running).
+- Place saved in Studio: yes, Roblox version 13 (no changes since). Edit mode, playtest stopped (the test dummy was play-only and is gone).
 - Rojo in sync: not used
 - .blend files: none for this job.
 - Only in Studio (not in this folder): everything listed in Results to reuse.
@@ -61,3 +65,5 @@ None
 ## Chain so far
 - Started by session 75757495-6f14-43e6-87a3-a7844a9a4502 at 2026-11-19 23:34 (continues jobs/2026-11-19-ffa-table/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-19 23:35 by session 75757495-6f14-43e6-87a3-a7844a9a4502
+- Resumed by session 0eb94565-c48c-40d4-8869-902cdc35c417 at 2026-11-19 23:36
+- Hand-off #2 saved 2026-11-19 23:45 by session 0eb94565-c48c-40d4-8869-902cdc35c417

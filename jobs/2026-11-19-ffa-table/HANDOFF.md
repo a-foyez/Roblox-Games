@@ -15,7 +15,7 @@ None given. Carried over from jobs/2026-11-19-table-lobby/: Do not build the sup
 Source: user message (pasted), 2026-11-19 ~22:30
 
 ## Status
-Everything built and saved (place v11). Solo tests passed (F3, F5, F6). A real 3-4 player match, which also checks spectating, has not been run (needs the user).
+Everything built and saved (place v12). Solo tests passed (F3, F5, F6). A real 3-4 player match, which also checks spectating, has not been run (needs the user).
 
 ## Route so far
 1. Built Table3 (4 seats) and arena Spawn3/Spawn4 (F1).
@@ -32,7 +32,7 @@ Ask the user to run Test > Clients and Servers with 3 or 4 players on Table3 (me
 2. jobs/2026-11-19-ffa-table/methods.md
 
 ## Leads to re-check
-- F5: root drop changed 2.5 -> 2.2 after the test; check the body no longer sinks into the floor (methods.md "Death animation check").
+None (F5 re-checked 23:24, drop now 2.1, flush with floor).
 
 ## Results to reuse
 - Studio: Workspace.Tables.Table3, Workspace.Arenas.Arena1.Spawns.Spawn3/Spawn4, ServerScriptService.TableManager/MatchInstance, StarterPlayerScripts.TableClient/SpectateClient, Workspace.Baseplate, Workspace.SpawnLocation.
@@ -50,7 +50,7 @@ Ask the user to run Test > Clients and Servers with 3 or 4 players on Table3 (me
 - The project hook blocks writes outside this folder, including the scratchpad; no Python on this machine (use node).
 
 ## Studio/Blender state
-- Place saved in Studio: yes, Roblox version 11, 2026-11-19 23:14 (Edit mode, no playtest running). The 2.5 -> 2.2 edit was made before the save.
+- Place saved in Studio: yes, Roblox version 12, 2026-11-19 23:25 (Edit mode, no playtest running).
 - Rojo in sync: not used
 - .blend files: none for this job.
 - Only in Studio (not in this folder): everything listed in Results to reuse.
@@ -63,3 +63,4 @@ None
 - Hand-off #1 saved 2026-11-19 23:10 by session 1f5a3716-acfb-40c2-b389-76d1d77c51c9
 - Resumed by session fe0e179a-88f2-4592-9549-4a07b8f5c9cd at 2026-11-19 23:12
 - Hand-off #2 saved 2026-11-19 23:16 by session fe0e179a-88f2-4592-9549-4a07b8f5c9cd
+- Resumed by session 75757495-6f14-43e6-87a3-a7844a9a4502 at 2026-11-19 23:22

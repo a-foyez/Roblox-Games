@@ -7,3 +7,4 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-19 21:22 — Solo smoke test passed (F3); place saved v5
 - 2026-11-19 21:25 — Hand-off #1 started
 - 2026-11-19 21:27 — Hand-off #1 saved
+- 2026-11-19 22:24 — User asked to start basic: removed Arena, PowerDefs, GameLoop, DraftUI from the place; saved v6. Job closed.

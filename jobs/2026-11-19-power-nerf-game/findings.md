@@ -3,7 +3,7 @@
 Current state only, under 8 KB. SETTLED = verified; LEAD = re-check before relying on it.
 
 ## Facts
-- F1 SETTLED: Two Studio places are open. The game is built in "Choose a Power, GET NERFED!" (placeId 132554684595689, Team Create), NOT the old TestGame place (87322131800218). Source: list_roblox_studios, 2026-11-19.
+- F1 SETTLED: Two Studio places are open. The game is built in "Choose a Power, GET NERFED!" (placeId 132554684595689, Team Create). Source: list_roblox_studios, 2026-11-19.
 - F2 SETTLED: Built in that place: Workspace.Arena (100x100 floor centred at 0,0,250; 40-stud see-through walls; 4 pillars; 8 invisible "Spawn" parts), ServerScriptService.PowerDefs (ModuleScript), ServerScriptService.GameLoop (Script), StarterPlayerScripts.DraftUI (LocalScript). GameLoop creates ReplicatedStorage.DraftRemote at runtime. Source: execute_luau + multi_edit, 2026-11-19.
 - F3 SETTLED: Solo playtest: lobby countdown -> 3 power cards shown -> picks accepted -> nerf auto-picked (no voters) -> fighter teleported to arena with powers+nerfs applied (attributes DamageMult/Cooldown/Lifesteal/Thorns set, WalkSpeed reduced, Highlight added), sword in Backpack, ForceField removed, no console errors. Source: playtest 2026-11-19 ~21:20.
 - F4 LEAD: Not tested yet: sword hits on another player (needs 2-player test: Test > Clients and Servers), slash animation, sword grip look, each individual nerf's behaviour, Big Target ScaleTo with R15, round reset after a win.

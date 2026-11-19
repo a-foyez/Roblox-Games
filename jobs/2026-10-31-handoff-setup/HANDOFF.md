@@ -56,7 +56,7 @@ Node install, the docs research (F4, F5), and the test suite. They are done and 
 - Place saved in Studio: not touched by this job.
 - Rojo in sync: Rojo not used.
 - .blend files: none.
-- Only in Studio (not in this folder): the whole TestGame place.
+- Only in Studio (not in this folder): the whole Studio place.
 
 ## Queue
 None

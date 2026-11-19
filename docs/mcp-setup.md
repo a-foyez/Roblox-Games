@@ -6,7 +6,7 @@ Both servers are configured in [.mcp.json](../.mcp.json).
 
 The `Roblox_Studio` MCP server launches Roblox's bundled `StudioMCP.exe` via `%LOCALAPPDATA%\Roblox\mcp.bat`.
 
-- Roblox Studio must be open with the TestGame place loaded for the MCP tools to work.
+- Roblox Studio must be open with the "Choose a Power, GET NERFED!" place loaded for the MCP tools to work.
 - Prefer the MCP tools to inspect and edit the live place (instances, scripts, properties) rather than guessing at its structure.
 - If the tools are missing or fail, check that Studio is running and that the MCP server is enabled in Studio (Assistant/MCP settings).
 

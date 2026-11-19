@@ -1,4 +1,4 @@
-# TestGame
+# Choose a Power, GET NERFED!
 
 "Choose a Power, GET NERFED!": a PvP Roblox game. Each player takes turns picking a superpower, the
 other players vote on a nerf for it (Super Speed... but running sets you on fire), and then everyone fights
@@ -11,7 +11,7 @@ with swords in the arena. Last one standing wins. Game scripts live in the Studi
 
 ## Getting started
 
-1. Open the TestGame place in Roblox Studio.
+1. Open the "Choose a Power, GET NERFED!" place in Roblox Studio.
 2. Press **Play** (F5) to test locally.
 
 ## Working with Claude Code

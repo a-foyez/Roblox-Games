@@ -18,6 +18,8 @@ None stated for this job.
 Source: user message, 2026-11-19 21:08
 
 ## Status
+CLOSED 2026-11-19: user wants to start basic; everything below was removed from the place (saved v6). Do not resume.
+
 Core game built and solo-tested (draft, powers, nerfs, arena, sword). Not yet tested with 2+ players.
 
 ## Route so far
@@ -44,7 +46,7 @@ None
 - Arena, PowerDefs, GameLoop, DraftUI are written and pass the solo smoke test (F3).
 
 ## Gotchas
-- Two Studio instances are open; always target studio "Choose a Power, GET NERFED!" (F1), not TestGame.
+- Always target studio "Choose a Power, GET NERFED!" (F1).
 - The server can't drive the player's Humanoid.Jump or ApplyImpulse reliably (D4).
 - Scripts exist only in Studio (no Rojo), not in this folder.
 - search_game_tree without a path dumps every service and eats context; always pass a path.

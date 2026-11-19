@@ -2,3 +2,5 @@
 .claude/handoff-state/
 # Personal Claude Code settings
 .claude/settings.local.json
+# Blender auto-backups made on each save
+*.blend[0-9]*

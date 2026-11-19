@@ -15,7 +15,7 @@ None given. Carried over from jobs/2026-11-19-table-lobby/: Do not build the sup
 Source: user message (pasted), 2026-11-19 ~22:30
 
 ## Status
-Everything built and saved (place v12). Solo tests passed (F3, F5, F6). A real 3-4 player match, which also checks spectating, has not been run (needs the user).
+Closed at hand-off #3, continued in jobs/2026-11-19-ffa-table-2/
 
 ## Route so far
 1. Built Table3 (4 seats) and arena Spawn3/Spawn4 (F1).
@@ -64,3 +64,4 @@ None
 - Resumed by session fe0e179a-88f2-4592-9549-4a07b8f5c9cd at 2026-11-19 23:12
 - Hand-off #2 saved 2026-11-19 23:16 by session fe0e179a-88f2-4592-9549-4a07b8f5c9cd
 - Resumed by session 75757495-6f14-43e6-87a3-a7844a9a4502 at 2026-11-19 23:22
+- Closed, continued in jobs/2026-11-19-ffa-table-2/

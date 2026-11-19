@@ -1,0 +1,25 @@
+# Findings: 1v1v1v1 table (2-4 players), part 2
+
+Current state only, under 8 KB. SETTLED = verified; LEAD = re-check before relying on it.
+
+## Facts
+- F1 SETTLED: Workspace.Tables.Table3 at (0,0,-45): 7x7 Top, Leg, Seats HostSeat (z-5.5), GuestSeat (z+5.5), GuestSeat2 (x-5.5), GuestSeat3 (x+5.5), all facing the centre; BillboardGui "1v1v1v1 (2-4 players)" on Top. Arena1.Spawns gained Spawn3 (-25,1.5,300) and Spawn4 (25,1.5,300) facing the centre. Source: execute_luau, 2026-11-19 23:06.
+- F2 SETTLED: Script changes:
+  - TableManager: a table is any Model with HostSeat + at least one more Seat (HostSeat listed first). Start needs >= 2 seated (was == 2). Players list = host first, then other occupants; all reseated after the series.
+  - MatchInstance: new(players, settings, arena) for 2-4 players (old signature new(p1, p2, ...) is gone). Free-for-all: each round ends when one player is left; a lethal hit leaves the victim at 1 HP, marks them out and removes their Sword. Sword hits the nearest standing foe in range/in front. Timeout: highest health among those standing wins, tie for top = no point. Run returns the first to RoundsToWin, the last player present, or nil.
+  - TableClient: Start enabled when SeatedCount >= 2.
+  Source: multi_edit / execute_luau Source write, 2026-11-19 23:07.
+- F3 SETTLED: Solo playtest 23:08: sitting in Table3.GuestSeat2 -> SeatedCount 1, that player became host; host panel visible with Start dimmed; MatchInstance.new({p}):Run() returns p at once; no console errors. Source: execute_luau Server/Client.
+- F4 SETTLED: Follow-up requests (user, 2026-11-19 23:12) done, place saved v11: Baseplate Material Grass, Color (75,151,75), grid Texture deleted. Workspace.SpawnLocation Transparency 1, CanCollide/CanQuery/CanTouch false, Decal Transparency 1 (still the lobby spawn). Source: execute_luau, 23:13.
+- F5 SETTLED: Death animation in MatchInstance._knockOut: if the victim's body is still standing, WalkSpeed/JumpPower/JumpHeight 0, AutoRotate off, PlatformStand on, root Anchored, 0.6 s Bounce tween to lying on its back (root lowered 2.1). Solo test: root anchored, UpVector (0,0,-1), no console errors. Re-check 23:24: lowest body part bottom 0.99 vs Arena1.Floor top 1.00 (2.2 had sunk 0.11, so changed to 2.1), place saved v12. Source: execute_luau Server, 23:24.
+- F6 SETTLED (built; multi-player untested): Spectator mode. MatchInstance sets Player attribute Fighting = true after equipping each round, false in _knockOut, nil for all after cleanup. New StarterPlayerScripts.SpectateClient (LocalScript): when own Fighting == false and 2+ players have Fighting == true, shows a bottom "Spectating PlayerName" bar with < > buttons and sets CameraSubject to that fighter's Humanoid; otherwise hides it and points the camera at your own Humanoid. Solo test: bar hidden, camera on own Humanoid. Source: multi_edit, 23:13-23:14.
+
+- F7 SETTLED: User ran Clients and Servers with 3 players (23:30): knocked-out players fall and stay on the floor, spectate bar appears, < > switch fighters, bar goes at round end, winner shown, all reseated; a 1v1 on a 2-seat table works; no error output. Source: user message, 2026-11-19 23:30.
+- F8 SETTLED (solo): _knockOut sets Humanoid.HealthDisplayType = AlwaysOff so the 1 HP overhead bar is hidden on knocked-out bodies; the next LoadCharacter gives DisplayWhenDamaged again. Solo test: DisplayWhenDamaged -> AlwaysOff -> after reload DisplayWhenDamaged, no console errors; saved v13. Not yet seen by the user in a multi-player run. Source: execute_luau Server, 23:33.
+
+## Decisions
+- D1: Knocked-out players stay in the arena with 1 HP and no sword until the round ends. Why: smallest change, reuses the "nobody really dies" rule (table-lobby D4). Rejected: sending them back to the lobby mid-round (they'd need re-teleporting each round anyway).
+- D2: One sword hit picks the nearest valid foe instead of hitting all in range. Why: keeps damage per swing the same as 1v1. Rejected: area hits.
+- D3: Table detection by "HostSeat + any other Seats" instead of fixed seat names. Why: 1v1 tables still match unchanged; new tables need no code change.
+- D4: Death animation = tween the anchored root to lying flat (body stays until round end). Why: no animation asset needed, keeps D1 (1 HP, no real death). Rejected: real death (Health 0), since auto-respawn would drop them in the lobby mid-round.
+- D5: Spectate state via a replicated Player attribute, no new RemoteEvent. Why: only one arena runs at a time (TableManager shortcut), so "anyone with Fighting = true" is the right list. Upgrade when arenas are cloned per match: also tag the match.

@@ -16,3 +16,6 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 
 - 2026-11-19 23:22 — Resumed by session 75757495-6f14-43e6-87a3-a7844a9a4502
 - 2026-11-19 23:25 — F5 re-checked: body sank 0.11 with 2.2, changed to 2.1, now flush (0.99 vs 1.00). Saved v12.
+- 2026-11-19 23:30 — User ran 3-player Clients-and-Servers test: falls, spectate bar, < >, round end, reseat, 1v1 table all fine, no errors. Disliked the 1 HP overhead health bar on knocked-out bodies.
+- 2026-11-19 23:33 — HealthDisplayType AlwaysOff set in _knockOut; solo tested; saved v13
+- 2026-11-19 23:34 — Hand-off #3 would be next: closed, continued in jobs/2026-11-19-ffa-table-2/

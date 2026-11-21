@@ -7,3 +7,5 @@
 - 2026-11-21 13:21 — Punch reworked into a straight jab, air streaks and Hit flinch added; solo check passed; place saved v28
 - 2026-11-21 13:21 — Hand-off #2 started
 - 2026-11-21 13:21 — Hand-off #2 saved
+- 2026-11-21 13:31 — Resumed by session bde24557-4723-4ae1-9a57-88b19cb5c580. Before resuming, user said the new animation is "much better" but the air lines were too far from the punch; airLines origin moved from 2 to 1.2 studs ahead, forward scatter 0-1 to 0-0.5; user: "looks good for now"
+- 2026-11-21 13:33 — Two-player test passed (user: "All looks good"). Job done

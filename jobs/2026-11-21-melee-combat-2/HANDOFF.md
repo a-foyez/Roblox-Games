@@ -15,7 +15,7 @@ None stated.
 Source: same message
 
 ## Status
-Punch reworked into a straight jab with air streaks and a Hit flinch on the victim (F6-F8, D3); dodge unchanged (F4). Solo check passed. Waiting on the user's two-player check.
+Punch reworked into a straight jab with air streaks and a Hit flinch on the victim (F6-F8, D3); dodge unchanged (F4). Solo check passed. Air lines moved closer (F7). Two-player check passed: user said "All looks good" (2026-11-21 13:33). DONE.
 
 ## Route so far
 1. Part 1 (jobs/2026-11-21-melee-combat/): sword removed, punch + server hit detection built and two-player tested.
@@ -25,7 +25,7 @@ Punch reworked into a straight jab with air streaks and a Hit flinch on the vict
 5. Air streaks added (F7); Hit flinch sent from the server on MeleeRemote (F8, D3).
 
 ## Next action
-Ask the user to run "Two-player melee test" in methods.md and say how the new punch, air lines, flinch and dodge feel; tune POSES angles, LINE_INFO / line count in airLines, and DODGE_SPEED / DODGE_TIME in MeleeController from their answer.
+None: job done. Future tuning knobs: POSES angles, LINE_INFO / line count / origin in airLines, DODGE_SPEED / DODGE_TIME in MeleeController.
 
 ## Read first
 1. jobs/2026-11-21-melee-combat-2/findings.md
@@ -41,7 +41,7 @@ None
 - ServerScriptService.MatchInstance: _listenMelee (now fires "Hit" per victim), _hit (unchanged)
 
 ## Waiting on me
-Two-player check of the new punch, air lines, flinch and dodge. Optional: own punch animation ID in MeleeController ANIMATION_IDS (air lines would then not show, F7).
+None required. Optional: own punch animation ID in MeleeController ANIMATION_IDS (air lines would then not show, F7).
 
 ## Don't redo
 Sword removal, server hit detection and validation, SideSwipe removal, dodge build, jab rework, air lines, Hit flinch, solo checks (F2, F4, F6-F8).
@@ -54,7 +54,7 @@ Sword removal, server hit detection and validation, SideSwipe removal, dodge bui
 - No python on this machine; use node for scripted file edits. The stay-in-project hook misreads long inline `node -e` scripts; use the Write/Edit tools instead.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, 2026-11-21 13:21 (version 28, Team Create)
+- Place saved in Studio: v28 at 2026-11-21 13:21; the 13:31 air-line change (MeleeController) may be unsaved; user was asked to press Ctrl+S
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): all scripts above
@@ -67,3 +67,4 @@ None
 - Hand-off #1 saved 2026-11-21 13:22 by session a89d7746-35ea-4341-a4d6-4e57a1346576
 - Resumed by session fa6d46d4-356c-4457-b4ba-cc3197debbef at 2026-11-21 13:18
 - Hand-off #2 saved 2026-11-21 13:21 by session fa6d46d4-356c-4457-b4ba-cc3197debbef
+- Resumed by session bde24557-4723-4ae1-9a57-88b19cb5c580 at 2026-11-21 13:31

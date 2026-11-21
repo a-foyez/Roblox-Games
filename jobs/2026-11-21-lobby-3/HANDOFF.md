@@ -14,7 +14,7 @@ None stated by the user. Project rules: tables must keep working with TableManag
 Source: user message, 2026-11-21 13:30; CLAUDE.md
 
 ## Status
-Latest request done (F16): rocks swapped for the Stylized Rocks pack, cliff rebuilt from Mountain Rocks clusters plus big boulders, 90 Light Grass clumps added, sky replaced with Simple Sunset Sky. Saved version 38. User hasn't looked at it yet.
+Closed 2026-11-21 15:28: user approved the lobby ("Looks good, close job"). Saved version 38 is final (F16).
 
 ## Route so far
 1. jobs/2026-11-21-lobby/: lobby, wall, sunset, scenery built (F1-F9, D1-D4).
@@ -22,7 +22,7 @@ Latest request done (F16): rocks swapped for the Stylized Rocks pack, cliff rebu
 3. This job: tree tilt fixed (F15); new rocks, cliff, grass and sky (F16).
 
 ## Next action
-Ask the user to look in Studio/playtest and say whether the new cliff, rocks, grass and sky look right (grass reads golden in the sunset light; cliff clusters may want tuning). Fix in scripts/build-lobby.luau and re-run (methods.md "Rebuild the lobby"). If done, close the job.
+None. Job closed. Ideas for a future job: custom Blender fountain, ambient sound.
 
 ## Read first
 1. jobs/2026-11-21-lobby-3/findings.md F16, F17
@@ -36,7 +36,7 @@ None
 - In Studio: ServerStorage.LobbyAssets (BlockyTreePack, SakuraTree, SunsetSky, MountainRocks, StylizedRocks, LightGrass); Workspace.Lobby.
 
 ## Waiting on me
-User to look at the new rocks/cliff/grass/sky. Still-open suggestions: custom Blender fountain, ambient sound.
+None
 
 ## Don't redo
 Inserting the four new assets; F16 generator changes; tilt fix (F15); saving version 38.
@@ -65,3 +65,5 @@ None
 - Hand-off #1 saved 2026-11-21 15:04 by session b8ba44d7-f7a7-4b22-978a-dfd51a1fab34
 - Resumed by session b97a95d5-e816-421a-b986-651ee09424b4 at 2026-11-21 15:10 (new user request, F16)
 - Hand-off #2 saved 2026-11-21 15:25 by session b97a95d5-e816-421a-b986-651ee09424b4
+- Resumed by session a166b50b-522e-47b2-a61b-3512f7b64207 at 2026-11-21 15:27
+- Closed at 2026-11-21 15:28 by session a166b50b-522e-47b2-a61b-3512f7b64207 (user approved)

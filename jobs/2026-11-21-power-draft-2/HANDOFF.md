@@ -13,7 +13,7 @@ keep the core game the same
 Source: user message, 2026-11-21 10:40
 
 ## Status
-All code built and solo-tested clean (F9); one bug fixed (F10). Place saved as version 18. Only the 2+ player test is left (methods.md step 9).
+DONE 2026-11-21. The user's multi-player test passed (F11). Final summary is in progress.md. Powers and nerfs are placeholders; to replace them, edit ReplicatedStorage.AbilityRegistry (D7) and AbilityService.Actions for active powers.
 
 ## Route so far
 1. Read the live scripts; arena lock and per-round reset already exist (see findings: F2, F3).
@@ -29,14 +29,14 @@ methods.md "Build order" step 9: ask the user to run Test > Clients and Servers 
 2. jobs/2026-11-21-power-draft-2/methods.md
 
 ## Leads to re-check
-- F6/F8 multi-player parts not yet checked: draft pick/vote/reveal flow, Knockback on a foe, BlindDash overlay, Telegraphed, Fragile. Check with the user's Clients-and-Servers run.
+None. Draft flow confirmed by the user (F11); individual placeholder powers/nerfs are not checked, because they will be replaced.
 
 ## Results to reuse
 - Live scripts (read with script_read before editing): ServerScriptService.TableManager, MatchInstance, AbilityService, Draft; ReplicatedStorage.AbilityRegistry, Remotes.Draft; StarterPlayerScripts.TableClient, DraftClient, SpectateClient.
 - Earlier notes and archives: jobs/2026-11-21-power-draft/ (closed), HANDOFF-1.md here.
 
 ## Waiting on me
-The user's 2-3 player Clients-and-Servers test (not yet asked; ask first thing).
+None (job done).
 
 ## Don't redo
 - Design review (D1-D9), Build order steps 1-8 (F6, F8, F9, F10). Don't rebuild the arena lock or a manual stat-reset routine (D2).
@@ -63,3 +63,4 @@ None
 - Hand-off #1 saved 2026-11-21 11:07 by session 743a315c-a047-4676-beab-a7b309989eab
 - Resumed by session 48ea92e9-076b-4502-bdc9-495a57aefe96 at 2026-11-21 11:10
 - Hand-off #2 saved 2026-11-21 11:23 by session 48ea92e9-076b-4502-bdc9-495a57aefe96
+- Resumed by session 776f954e-574e-424e-9e66-215171e70fd7 at 2026-11-21 11:17

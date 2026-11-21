@@ -8,3 +8,20 @@
 - 2026-11-21 11:20 — Step 8 done: solo playtest clean (F9); Juggernaut ScaleTo speed bug fixed (F10); place saved v18
 - 2026-11-21 11:22 — Hand-off #2 started (50% checkpoint)
 - 2026-11-21 11:23 — Hand-off #2 saved
+
+- 2026-11-21 11:17 — Resumed by session 776f954e; Studio open in Edit, place saved (v18). Multi-player leads need the user's Clients-and-Servers run; asked.
+
+- 2026-11-21 — User's multi-player test passed (F11). JOB DONE.
+
+## Final summary (Done when)
+Created in Studio:
+- ReplicatedStorage.Remotes.Draft (RemoteEvent): draft messages between server and clients.
+- ReplicatedStorage.AbilityRegistry (ModuleScript): list of powers, each with its 3 nerfs. Placeholder content; replace here.
+- ServerScriptService.Draft (ModuleScript): turn-based draft (pick 1 of 3, others vote the nerf, reveal), 2 rounds per player.
+- StarterPlayerScripts.DraftClient (LocalScript): draft screen, loadout HUD line, Q/E keys, Blink/Knockback on the client.
+Modified in Studio:
+- ServerScriptService.AbilityService: uses the registry; Equip/Unequip/Describe; key-based ability remote.
+- ServerScriptService.TableManager: runs Draft.Run before the match; cancels if fewer than 2 players.
+- ServerScriptService.MatchInstance: equips each player's drafted loadout instead of the test ability.
+- StarterPlayerScripts.TableClient: old E/Dash test code removed.
+Manual Studio setup: none. Place saved (version 18).

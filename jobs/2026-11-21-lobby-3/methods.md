@@ -10,3 +10,7 @@
 1. Studio MCP insert_asset 7298117174 (name BlockyTreePack) and 16014247305 (name SakuraTree), parentPath game.ServerStorage.
 2. Check both for LuaSourceContainer descendants and delete any.
 3. Move both into a Folder ServerStorage.LobbyAssets.
+
+## Re-add the lobby-3 assets (only if missing from ServerStorage.LobbyAssets)
+1. Studio MCP insert_asset with parentPath game.ServerStorage.LobbyAssets: 82796424171704 (name SunsetSky), 5558477241 (MountainRocks), 138867455854218 (StylizedRocks), 2846635652 (LightGrass).
+2. Check each for LuaSourceContainer descendants and delete any.

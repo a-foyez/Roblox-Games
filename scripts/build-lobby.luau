@@ -177,7 +177,9 @@ cyl(fGarden, "Floor", sakuraCenter + Vector3.new(0, 0.15, 0), GARDEN_RADIUS, 0.3
 fLamps = fGarden -- lamp() parents into this
 for _, a in { -25, 25 } do lamp(sakuraCenter + polar(180 + a, GARDEN_RADIUS - 1, 0.3)) end -- either side of the entrance
 local assets = game:GetService("ServerStorage"):FindFirstChild("LobbyAssets")
-assert(assets and assets:FindFirstChild("SakuraTree") and assets:FindFirstChild("BlockyTreePack"), "ServerStorage.LobbyAssets needs SakuraTree and BlockyTreePack (see jobs/2026-11-21-lobby/methods.md)")
+for _, n in { "SakuraTree", "BlockyTreePack", "StylizedRocks", "MountainRocks", "LightGrass", "SunsetSky" } do
+	assert(assets and assets:FindFirstChild(n), "ServerStorage.LobbyAssets needs " .. n .. " (see jobs/2026-11-21-lobby-3/methods.md)")
+end
 -- Free models get placed by bounding box: scale, turn, then lift so the lowest point sits on the ground.
 local function place(source: Model, pos: Vector3, scale: number, yaw: number, parent: Instance): Model
 	local m = source:Clone()
@@ -251,16 +253,39 @@ local function tree(pos: Vector3, minScale: number, maxScale: number): Model
 	m.Name = "Tree"
 	return m
 end
-local function rock(pos: Vector3)
-	local size = Vector3.new(rng:NextNumber(2, 5), rng:NextNumber(1.5, 3), rng:NextNumber(2, 5))
-	local grey = rng:NextInteger(95, 140)
-	local cf = CFrame.new(pos + Vector3.new(0, size.Y * 0.25, 0)) * CFrame.Angles(rng:NextNumber(-0.3, 0.3), rng:NextNumber(0, math.pi * 2), rng:NextNumber(-0.3, 0.3))
-	part(fRocks, "Rock", size, cf, Enum.Material.Slate, Color3.fromRGB(grey, grey, grey + 5))
+-- Stylized Rocks pack: each mesh wrapped in its own Model so place() can scale and ground it.
+local rockPack = (assets :: any).StylizedRocks["Free Pack - Rocks Stylized"]
+local function rockKind(name: string): Model
+	local m = Instance.new("Model")
+	local p = rockPack[name]:Clone()
+	p.Parent = m
+	m.WorldPivot = CFrame.new(p.Position)
+	return m
+end
+local SMALL_ROCKS = { rockKind("SM_Rocks_01"), rockKind("SM_Rocks_02"), rockKind("SM_Rocks_06"), rockKind("SM_Rocks_07") }
+local MID_ROCKS = { rockKind("SM_Rocks_05"), rockKind("SM_Rocks_08") } -- ~10 tall at scale 1
+local BIG_ROCKS = { rockKind("SM_Rocks_03"), rockKind("SM_Rocks_04"), rockKind("SM_Rocks_09") } -- 9-17 tall at scale 1
+local function rock(pos: Vector3, size: number?)
+	local s = size or 1
+	local kinds, scale = SMALL_ROCKS, rng:NextNumber(0.5, 1.0)
+	if rng:NextNumber() < 0.25 then kinds, scale = MID_ROCKS, rng:NextNumber(0.3, 0.45) end
+	local m = place(kinds[rng:NextInteger(1, #kinds)], pos - Vector3.new(0, 0.3, 0), scale * s, rng:NextNumber(0, math.pi * 2), fRocks) -- sunk a little so they don't sit on the grass
+	m.Name = "Rock"
 end
 scatter(12, 32, 50, 5, function(p) tree(p, 0.6, 0.8) end) -- inner ring between the paths, kept small
 scatter(45, 68, 115, 4, function(p) tree(p, 0.9, 1.3) end) -- outer woods around the lobby
 task.wait()
 scatter(28, 32, 110, 1, rock)
+task.wait()
+-- Light Grass clumps on the lawns. No collision or raycast hits, so they never block players or tree drops.
+local fGrass = folder("Grass")
+local grassClump = (assets :: any).LightGrass["Group Of Grass"].Grass
+scatter(90, 31, 118, 1, function(p)
+	local m = place(grassClump, p, rng:NextNumber(0.5, 0.85), rng:NextNumber(0, math.pi * 2), fGrass)
+	for _, d in m:GetDescendants() do
+		if d:IsA("BasePart") then d.CanCollide, d.CanQuery, d.CanTouch, d.CastShadow = false, false, false, false end
+	end
+end)
 task.wait()
 
 -- Invisible boundary: a tall see-through ring just past the outer woods ------------------------------
@@ -281,20 +306,25 @@ for i = 1, 14 do -- grassy hills: big balls sunk into the ground, skipping the c
 	local pos = polar(rng:NextNumber(-60, 160), rng:NextNumber(130 + d / 2, 230 - d / 2), -d * rng:NextNumber(0.25, 0.35))
 	ball(fScenery, "Hill", pos, d, Enum.Material.Grass, HILL[rng:NextInteger(1, #HILL)])
 end
--- Rocky cliff face on the far side (190-310 degrees), stacked tilted slabs, trees along the top.
+-- Cliff on the far side (190-310 degrees): Mountain Rocks clusters in a front and a taller back row,
+-- big stylized boulders at the foot, trees along the top. Out of reach, so no collision (raycasts still hit).
 fTrees, fRocks = fScenery, fScenery -- tree() and rock() parent into these from here on
 local CLIFF_R = 175
+local mountain = (assets :: any).MountainRocks.Rocks -- ~30 wide, 24 tall at scale 1
 local cliffTrees: { Vector3 } = {}
-for a = 190, 310, 4 do
-	local h = rng:NextNumber(35, 55)
-	local r = CLIFF_R + rng:NextNumber(-5, 5)
-	for layer = 0, 2 do
-		local grey = rng:NextInteger(100, 135)
-		local size = Vector3.new(rng:NextNumber(14, 20), h * (1 - layer * 0.25), rng:NextNumber(14, 20))
-		local cf = CFrame.new(polar(a, r + layer * 10, size.Y / 2 - 2)) * CFrame.Angles(rng:NextNumber(-0.08, 0.08), rng:NextNumber(0, math.pi * 2), rng:NextNumber(-0.08, 0.08))
-		part(fScenery, "Cliff", size, cf, Enum.Material.Slate, Color3.fromRGB(grey, grey - 5, grey - 12))
+local function cliffPiece(source: Model, pos: Vector3, scale: number)
+	local m = place(source, pos, scale, rng:NextNumber(0, math.pi * 2), fScenery)
+	m.Name = "Cliff"
+	for _, d in m:GetDescendants() do
+		if d:IsA("BasePart") then d.CanCollide = false end
 	end
-	if a % 12 == 2 then table.insert(cliffTrees, polar(a, r + 6, 0)) end
+end
+for a = 190, 310, 12 do
+	local r = CLIFF_R + rng:NextNumber(-6, 6)
+	cliffPiece(mountain, polar(a, r, -4), rng:NextNumber(1.7, 2.2)) -- front row
+	cliffPiece(mountain, polar(a + 6, r + 24, -4), rng:NextNumber(2.3, 2.7)) -- back row, fills the gaps
+	cliffPiece(BIG_ROCKS[rng:NextInteger(1, #BIG_ROCKS)], polar(a + 6, r - 20, -1), rng:NextNumber(1.1, 1.6)) -- boulder at the foot
+	table.insert(cliffTrees, polar(a + rng:NextNumber(-3, 3), r + 10, 0))
 end
 -- Cliff-top trees go on after all slabs exist, dropped onto whatever rock is under them (slabs vary in height and tilt).
 lobby.Parent = workspace -- raycasts only see parts in the world
@@ -308,7 +338,7 @@ end
 task.wait()
 -- Extra trees and rocks between the wall and the hills/cliff.
 scatter(55, 128, 165, 0, function(p) tree(p, 1.0, 1.4) end)
-scatter(30, 128, 200, 0, rock)
+scatter(30, 128, 200, 0, function(p) rock(p, 2) end)
 
 -- Sunset lighting so the lamps stand out ------------------------------------------------------------
 local Lighting = game:GetService("Lighting")
@@ -318,6 +348,12 @@ Lighting.ColorShift_Top = Color3.fromRGB(255, 170, 110)
 local atmo = Lighting:FindFirstChildOfClass("Atmosphere") or Instance.new("Atmosphere", Lighting)
 atmo.Density, atmo.Haze, atmo.Glare = 0.38, 1.8, 0.6
 atmo.Color, atmo.Decay = Color3.fromRGB(255, 180, 140), Color3.fromRGB(120, 80, 110)
+for _, s in Lighting:GetChildren() do
+	if s:IsA("Sky") then s:Destroy() end
+end
+local sky = (assets :: any).SunsetSky:Clone()
+sky.Name = "Sky"
+sky.Parent = Lighting
 
 lobby.Parent = workspace
 print("Lobby built:", #lobby:GetDescendants(), "instances,", #tablesFolder:GetChildren(), "tables")

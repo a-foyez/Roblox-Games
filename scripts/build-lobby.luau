@@ -166,11 +166,52 @@ for i, entry in layout do
 end
 task.wait()
 
--- Nature: trees and rocks on the grass, kept off the plaza, paths and table pads ------------------
+-- Sakura garden: a path from the spawn gap (0 degrees) out to a clearing with one cherry tree -------
+local SAKURA_R, GARDEN_RADIUS = 96, 15
+local sakuraCenter = polar(0, SAKURA_R, 0)
+local fGarden = folder("SakuraGarden")
+local gardenPathLen = SAKURA_R - GARDEN_RADIUS - PLAZA_RADIUS + 2
+part(fGarden, "Path", Vector3.new(6, 0.22, gardenPathLen), CFrame.lookAt(polar(0, PLAZA_RADIUS - 1 + gardenPathLen / 2, 0.11), Vector3.new(0, 0.11, 0)), Enum.Material.Cobblestone, PATH)
+cyl(fGarden, "Edge", sakuraCenter + Vector3.new(0, 0.125, 0), GARDEN_RADIUS + 1.2, 0.25, Enum.Material.Slate, DARK_STONE)
+cyl(fGarden, "Floor", sakuraCenter + Vector3.new(0, 0.15, 0), GARDEN_RADIUS, 0.3, Enum.Material.Cobblestone, STONE)
+fLamps = fGarden -- lamp() parents into this
+for _, a in { -25, 25 } do lamp(sakuraCenter + polar(180 + a, GARDEN_RADIUS - 1, 0.3)) end -- either side of the entrance
+local assets = game:GetService("ServerStorage"):FindFirstChild("LobbyAssets")
+assert(assets and assets:FindFirstChild("SakuraTree") and assets:FindFirstChild("BlockyTreePack"), "ServerStorage.LobbyAssets needs SakuraTree and BlockyTreePack (see jobs/2026-11-21-lobby/methods.md)")
+-- Free models get placed by bounding box: scale, turn, then lift so the lowest point sits on the ground.
+local function place(source: Model, pos: Vector3, scale: number, yaw: number, parent: Instance): Model
+	local m = source:Clone()
+	m:ScaleTo(m:GetScale() * scale)
+	m:PivotTo(CFrame.new(pos) * CFrame.Angles(0, yaw, 0))
+	local cf, size = m:GetBoundingBox()
+	m:PivotTo(m:GetPivot() + Vector3.new(0, pos.Y - (cf.Position.Y - size.Y / 2), 0))
+	for _, d in m:GetDescendants() do
+		if d:IsA("BasePart") then d.Anchored = true end
+	end
+	m.Parent = parent
+	return m
+end
+local sakura = place((assets :: any).SakuraTree, sakuraCenter + Vector3.new(0, 0.3, 0), 0.45, math.rad(rng:NextNumber(0, 360)), fGarden)
+-- Petals drifting down from the canopy.
+local cloudCf, cloudSize = sakura:GetBoundingBox()
+local petalCloud = part(fGarden, "PetalCloud", Vector3.new(cloudSize.X * 0.8, 1, cloudSize.Z * 0.8), CFrame.new(cloudCf.Position + Vector3.new(0, cloudSize.Y * 0.3, 0)), Enum.Material.SmoothPlastic, Color3.new())
+petalCloud.Transparency, petalCloud.CanCollide, petalCloud.CanQuery, petalCloud.CastShadow = 1, false, false, false
+local petals = Instance.new("ParticleEmitter")
+petals.Color = ColorSequence.new(Color3.fromRGB(255, 190, 215), Color3.fromRGB(255, 225, 235))
+petals.Size, petals.Transparency = NumberSequence.new(0.35), NumberSequence.new(0, 1)
+petals.Lifetime, petals.Rate, petals.Speed = NumberRange.new(5, 7), 12, NumberRange.new(0.5, 1.5)
+petals.Acceleration, petals.RotSpeed, petals.Rotation = Vector3.new(0.6, -2, 0.3), NumberRange.new(-90, 90), NumberRange.new(0, 360)
+petals.Shape, petals.EmissionDirection = Enum.ParticleEmitterShape.Box, Enum.NormalId.Bottom
+petals.Parent = petalCloud
+task.wait()
+
+-- Nature: trees and rocks on the grass, kept off the plaza, paths, table pads and the sakura garden --
 local pathAngles = { 30, 90, 150, 210, 270, 330 }
 local function clear(pos: Vector3, margin: number): boolean
 	local flat = Vector3.new(pos.X, 0, pos.Z)
 	if flat.Magnitude < PLAZA_RADIUS + 2 + margin then return false end
+	if (flat - sakuraCenter).Magnitude < GARDEN_RADIUS + 8 + margin then return false end -- sakura clearing
+	if flat.X > 0 and flat.X < SAKURA_R and math.abs(flat.Z) < 4 + margin then return false end -- sakura path
 	for _, a in pathAngles do
 		local dir = polar(a, 1, 0)
 		local along = flat:Dot(dir)
@@ -180,7 +221,7 @@ local function clear(pos: Vector3, margin: number): boolean
 	end
 	return true
 end
-assert(not clear(Vector3.zero, 0) and not clear(polar(30, 40, 0), 0) and clear(polar(0, 45, 0), 0), "clear() self-check")
+assert(not clear(Vector3.zero, 0) and not clear(polar(30, 40, 0), 0) and clear(polar(15, 45, 0), 0) and not clear(polar(0, 60, 0), 0) and not clear(sakuraCenter, 0), "clear() self-check")
 
 local function scatter(count: number, minR: number, maxR: number, margin: number, make: (Vector3) -> ())
 	local placed, tries = 0, 0
@@ -194,18 +235,11 @@ local function scatter(count: number, minR: number, maxR: number, margin: number
 	end
 end
 
-local LEAVES = { Color3.fromRGB(60, 130, 60), Color3.fromRGB(80, 150, 70), Color3.fromRGB(50, 110, 55) }
-local function tree(pos: Vector3)
-	local m = Instance.new("Model")
-	m.Name = "Tree"
-	local h = rng:NextNumber(8, 12)
-	cyl(m, "Trunk", pos + Vector3.new(0, h / 2, 0), rng:NextNumber(0.7, 1.1), h, Enum.Material.Wood, Color3.fromRGB(105, 70, 45))
-	for _ = 1, 3 do
-		local offset = Vector3.new(rng:NextNumber(-2, 2), rng:NextNumber(-0.5, 2), rng:NextNumber(-2, 2))
-		local leaf = ball(m, "Leaves", pos + Vector3.new(0, h, 0) + offset, rng:NextNumber(6, 9), Enum.Material.Grass, LEAVES[rng:NextInteger(1, #LEAVES)])
-		leaf.CanCollide = false -- players walk through foliage instead of snagging on it
-	end
-	m.Parent = fTrees
+-- Blocky Tree Pack: pick a kind (pines most often), random size and turn.
+local pack = (assets :: any).BlockyTreePack
+local KINDS = { pack["Pine Tree"], pack["Pine Tree"], pack["Pine Tree"], pack["Big Tree"], pack["Big Tree"], pack["Mini Tree"], pack["Bush"] }
+local function tree(pos: Vector3, minScale: number, maxScale: number)
+	place(KINDS[rng:NextInteger(1, #KINDS)], pos, rng:NextNumber(minScale, maxScale), rng:NextNumber(0, math.pi * 2), fTrees).Name = "Tree"
 end
 local function rock(pos: Vector3)
 	local size = Vector3.new(rng:NextNumber(2, 5), rng:NextNumber(1.5, 3), rng:NextNumber(2, 5))
@@ -213,8 +247,8 @@ local function rock(pos: Vector3)
 	local cf = CFrame.new(pos + Vector3.new(0, size.Y * 0.25, 0)) * CFrame.Angles(rng:NextNumber(-0.3, 0.3), rng:NextNumber(0, math.pi * 2), rng:NextNumber(-0.3, 0.3))
 	part(fRocks, "Rock", size, cf, Enum.Material.Slate, Color3.fromRGB(grey, grey, grey + 5))
 end
-scatter(12, 32, 50, 5, tree) -- inner ring between the paths
-scatter(45, 68, 115, 4, tree) -- outer woods around the lobby
+scatter(12, 32, 50, 5, function(p) tree(p, 0.6, 0.8) end) -- inner ring between the paths, kept small
+scatter(45, 68, 115, 4, function(p) tree(p, 0.9, 1.3) end) -- outer woods around the lobby
 task.wait()
 scatter(28, 32, 110, 1, rock)
 task.wait()
@@ -238,6 +272,7 @@ for i = 1, 14 do -- grassy hills: big balls sunk into the ground, skipping the c
 	ball(fScenery, "Hill", pos, d, Enum.Material.Grass, HILL[rng:NextInteger(1, #HILL)])
 end
 -- Rocky cliff face on the far side (190-310 degrees), stacked tilted slabs, trees along the top.
+fTrees, fRocks = fScenery, fScenery -- tree() and rock() parent into these from here on
 local CLIFF_R = 175
 for a = 190, 310, 4 do
 	local h = rng:NextNumber(35, 55)
@@ -248,19 +283,11 @@ for a = 190, 310, 4 do
 		local cf = CFrame.new(polar(a, r + layer * 10, size.Y / 2 - 2)) * CFrame.Angles(rng:NextNumber(-0.08, 0.08), rng:NextNumber(0, math.pi * 2), rng:NextNumber(-0.08, 0.08))
 		part(fScenery, "Cliff", size, cf, Enum.Material.Slate, Color3.fromRGB(grey, grey - 5, grey - 12))
 	end
-	if a % 12 == 2 then
-		local m = Instance.new("Model")
-		m.Name = "CliffTree"
-		local base = polar(a, r + 6, h - 2)
-		cyl(m, "Trunk", base + Vector3.new(0, 4, 0), 0.9, 8, Enum.Material.Wood, Color3.fromRGB(105, 70, 45))
-		ball(m, "Leaves", base + Vector3.new(0, 10, 0), rng:NextNumber(8, 11), Enum.Material.Grass, LEAVES[rng:NextInteger(1, #LEAVES)])
-		m.Parent = fScenery
-	end
+	if a % 12 == 2 then tree(polar(a, r + 6, h - 2), 1.3, 1.7) end
 end
 task.wait()
 -- Extra trees and rocks between the wall and the hills/cliff.
-fTrees, fRocks = fScenery, fScenery -- tree() and rock() parent into these
-scatter(55, 128, 165, 0, tree)
+scatter(55, 128, 165, 0, function(p) tree(p, 1.2, 1.7) end)
 scatter(30, 128, 200, 0, rock)
 
 -- Sunset lighting so the lamps stand out ------------------------------------------------------------

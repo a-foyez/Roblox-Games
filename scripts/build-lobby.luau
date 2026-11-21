@@ -217,6 +217,60 @@ scatter(12, 32, 50, 5, tree) -- inner ring between the paths
 scatter(45, 68, 115, 4, tree) -- outer woods around the lobby
 task.wait()
 scatter(28, 32, 110, 1, rock)
+task.wait()
+
+-- Invisible boundary: a tall see-through ring just past the outer woods ------------------------------
+local WALL_RADIUS = 122
+local fBoundary = folder("Boundary")
+for i = 1, 48 do
+	local a = i / 48 * math.pi * 2
+	local pos = Vector3.new(math.cos(a) * WALL_RADIUS, 100, math.sin(a) * WALL_RADIUS)
+	local w = part(fBoundary, "Wall", Vector3.new(2 * math.pi * WALL_RADIUS / 48 * 1.1, 200, 2), CFrame.lookAt(pos, Vector3.new(0, 100, 0)), Enum.Material.SmoothPlastic, Color3.new())
+	w.Transparency, w.CastShadow = 1, false
+end
+
+-- Scenery beyond the wall (looks only, players can't reach it). Kept inside r=235: arena slot 0 would sit at z=300.
+local fScenery = folder("Scenery")
+local HILL = { Color3.fromRGB(75, 130, 60), Color3.fromRGB(90, 140, 65), Color3.fromRGB(70, 120, 58) }
+for i = 1, 14 do -- grassy hills: big balls sunk into the ground, skipping the cliff side
+	local d = rng:NextNumber(50, 80)
+	local pos = polar(rng:NextNumber(-60, 160), rng:NextNumber(130 + d / 2, 230 - d / 2), -d * rng:NextNumber(0.25, 0.35))
+	ball(fScenery, "Hill", pos, d, Enum.Material.Grass, HILL[rng:NextInteger(1, #HILL)])
+end
+-- Rocky cliff face on the far side (190-310 degrees), stacked tilted slabs, trees along the top.
+local CLIFF_R = 175
+for a = 190, 310, 4 do
+	local h = rng:NextNumber(35, 55)
+	local r = CLIFF_R + rng:NextNumber(-5, 5)
+	for layer = 0, 2 do
+		local grey = rng:NextInteger(100, 135)
+		local size = Vector3.new(rng:NextNumber(14, 20), h * (1 - layer * 0.25), rng:NextNumber(14, 20))
+		local cf = CFrame.new(polar(a, r + layer * 10, size.Y / 2 - 2)) * CFrame.Angles(rng:NextNumber(-0.08, 0.08), rng:NextNumber(0, math.pi * 2), rng:NextNumber(-0.08, 0.08))
+		part(fScenery, "Cliff", size, cf, Enum.Material.Slate, Color3.fromRGB(grey, grey - 5, grey - 12))
+	end
+	if a % 12 == 2 then
+		local m = Instance.new("Model")
+		m.Name = "CliffTree"
+		local base = polar(a, r + 6, h - 2)
+		cyl(m, "Trunk", base + Vector3.new(0, 4, 0), 0.9, 8, Enum.Material.Wood, Color3.fromRGB(105, 70, 45))
+		ball(m, "Leaves", base + Vector3.new(0, 10, 0), rng:NextNumber(8, 11), Enum.Material.Grass, LEAVES[rng:NextInteger(1, #LEAVES)])
+		m.Parent = fScenery
+	end
+end
+task.wait()
+-- Extra trees and rocks between the wall and the hills/cliff.
+fTrees, fRocks = fScenery, fScenery -- tree() and rock() parent into these
+scatter(55, 128, 165, 0, tree)
+scatter(30, 128, 200, 0, rock)
+
+-- Sunset lighting so the lamps stand out ------------------------------------------------------------
+local Lighting = game:GetService("Lighting")
+Lighting.ClockTime, Lighting.Brightness = 17.6, 1.6 -- 18.1 was already night with stars
+Lighting.Ambient, Lighting.OutdoorAmbient = Color3.fromRGB(70, 55, 60), Color3.fromRGB(120, 95, 100)
+Lighting.ColorShift_Top = Color3.fromRGB(255, 170, 110)
+local atmo = Lighting:FindFirstChildOfClass("Atmosphere") or Instance.new("Atmosphere", Lighting)
+atmo.Density, atmo.Haze, atmo.Glare = 0.38, 1.8, 0.6
+atmo.Color, atmo.Decay = Color3.fromRGB(255, 180, 140), Color3.fromRGB(120, 80, 110)
 
 lobby.Parent = workspace
 print("Lobby built:", #lobby:GetDescendants(), "instances,", #tablesFolder:GetChildren(), "tables")

@@ -13,44 +13,44 @@ keep the core game the same
 Source: user message, 2026-11-21 10:40
 
 ## Status
-All code built (server F6, client F8) and saved as place version 17. Nothing playtested yet.
+All code built and solo-tested clean (F9); one bug fixed (F10). Place saved as version 18. Only the 2+ player test is left (methods.md step 9).
 
 ## Route so far
 1. Read the live scripts; arena lock and per-round reset already exist (see findings: F2, F3).
 2. Compared Gemini's plan with the user's flow and settled the design (D1-D9).
-3. Built methods.md Build order steps 1-6, the server side (F6, F7).
-4. Built step 7: DraftClient, and removed the old E/Dash code from TableClient (F8).
+3. Built the server side (F6) and the client DraftClient (F8).
+4. Solo playtest: everything compiles, powers and nerfs apply, cooldown and bad-arg checks hold (F9). Fixed the Juggernaut ScaleTo speed bug (F10).
 
 ## Next action
-Follow jobs/2026-11-21-power-draft-2/methods.md "Build order" step 8: start_stop_play solo, get_console_output, fix any compile/runtime errors in the scripts from F6/F8; then step 9.
+methods.md "Build order" step 9: ask the user to run Test > Clients and Servers with 2 and then 3 players, play one full draft + match, and report what they see (draft screens, votes, reveal, loadouts, Q/E in the arena). Fix what they report, then write the summary of files and Studio setup (Done when).
 
 ## Read first
 1. jobs/2026-11-21-power-draft-2/findings.md
 2. jobs/2026-11-21-power-draft-2/methods.md
 
 ## Leads to re-check
-- F6: server scripts compile and Draft/AbilityService behave as described. Check with a Play run + get_console_output.
-- F8: DraftClient compiles and shows no errors at start. Same Play run (Client datamodel output).
+- F6/F8 multi-player parts not yet checked: draft pick/vote/reveal flow, Knockback on a foe, BlindDash overlay, Telegraphed, Fragile. Check with the user's Clients-and-Servers run.
 
 ## Results to reuse
 - Live scripts (read with script_read before editing): ServerScriptService.TableManager, MatchInstance, AbilityService, Draft; ReplicatedStorage.AbilityRegistry, Remotes.Draft; StarterPlayerScripts.TableClient, DraftClient, SpectateClient.
-- Earlier notes and archives: jobs/2026-11-21-power-draft/ (closed).
+- Earlier notes and archives: jobs/2026-11-21-power-draft/ (closed), HANDOFF-1.md here.
 
 ## Waiting on me
-None
+The user's 2-3 player Clients-and-Servers test (not yet asked; ask first thing).
 
 ## Don't redo
-- Script reading and design review (F1-F5, D1-D9); Build order steps 1-7 (F6, F8). Don't rebuild the arena lock or a manual stat-reset routine (D2).
+- Design review (D1-D9), Build order steps 1-8 (F6, F8, F9, F10). Don't rebuild the arena lock or a manual stat-reset routine (D2).
 
 ## Gotchas
 - Studio id changes per session: get it with list_roblox_studios; target "Choose a Power, GET NERFED!".
 - MCP play is solo only; multi-player needs the user's Clients-and-Servers run.
 - Scripts exist only in Studio (no Rojo).
 - Server can't drive the client's character physics (velocity/impulse); client applies movement (D6).
-- No Python on this PC. The stay-in-project hook can misread quoted text in Bash commands as paths; use Edit/Write for note changes.
+- Never `:Wait()` on a remote event inside execute_luau: it hangs until the MCP times out.
+- No Python on this PC. Use Edit/Write for note changes.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, Roblox version 17 (Team Create save), includes DraftClient and the TableClient edit.
+- Place saved in Studio: yes, Roblox version 17 → now version 18 (Team Create save), includes the Juggernaut fix.
 - Rojo in sync: not used
 - .blend files: none for this job.
 - Only in Studio (not in this folder): all scripts listed in Results to reuse.
@@ -61,3 +61,5 @@ None
 ## Chain so far
 - Started by session 743a315c-a047-4676-beab-a7b309989eab at 2026-11-21 11:06 (continues jobs/2026-11-21-power-draft/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-21 11:07 by session 743a315c-a047-4676-beab-a7b309989eab
+- Resumed by session 48ea92e9-076b-4502-bdc9-495a57aefe96 at 2026-11-21 11:10
+- Hand-off #2 saved 2026-11-21 11:23 by session 48ea92e9-076b-4502-bdc9-495a57aefe96

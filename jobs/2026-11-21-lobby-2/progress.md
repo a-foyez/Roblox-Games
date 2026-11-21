@@ -10,3 +10,6 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-21 14:55 — Fixed (F13, F14), re-ran generator, 0 floating trees, saved version 35.
 - 2026-11-21 14:56 — Hand-off #2 started
 - 2026-11-21 14:57 — Hand-off #2 saved
+- 2026-11-21 15:00 — Resumed; F12 re-checked by server-side bounds check: settled.
+- 2026-11-21 15:04 — Hand-off #3 started; tilted-tree fix done (F15), saved version 36. Closing job at hand-off #3.
+- 2026-11-21 15:04 — Closed, continued in jobs/2026-11-21-lobby-3/

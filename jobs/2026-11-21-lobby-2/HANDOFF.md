@@ -14,7 +14,7 @@ None stated by the user. Project rules: tables must keep working with TableManag
 Source: user message, 2026-11-21 13:30; CLAUDE.md
 
 ## Status
-User's fix request done: no floating trees, Big Trees shrunk, sakura trunk centred (F13, F14), saved version 35. User hasn't checked it in a playtest yet. F12 (big trees crowding the sakura path) is probably eased by the shrink but not re-checked on its own.
+Closed at hand-off #3, continued in jobs/2026-11-21-lobby-3/
 
 ## Route so far
 1. Previous job jobs/2026-11-21-lobby/: lobby, wall, sunset, scenery built (findings F1-F9, D1-D4).
@@ -30,7 +30,7 @@ Ask the user to playtest and walk the lobby and sakura path. If big trees still 
 2. scripts/build-lobby.luau lines 194-260 (sakura, clear(), tree()) and 280-306 (cliff trees)
 
 ## Leads to re-check
-- F12 LEAD: big trees crowd the sakura path/garden. Re-check by screenshot from (60,12,0) looking at (96,6,0).
+- None (F12 settled 2026-11-21 15:00).
 
 ## Results to reuse
 - scripts/build-lobby.luau: re-runnable generator, ends with a floating-tree self-check only in the MCP run (not in the file).
@@ -65,3 +65,5 @@ None
 - Hand-off #1 saved 2026-11-21 14:31 by session 5572c085-5e24-4168-bc8a-5db78cd52fe0
 - Resumed by session f3b7c98a-8af9-4f0b-b8c7-788e93ce1a66 at 2026-11-21 14:40
 - Hand-off #2 saved 2026-11-21 14:57 by session f3b7c98a-8af9-4f0b-b8c7-788e93ce1a66
+- Resumed by session b8ba44d7-f7a7-4b22-978a-dfd51a1fab34 at 2026-11-21 14:59
+- Closed, continued in jobs/2026-11-21-lobby-3/

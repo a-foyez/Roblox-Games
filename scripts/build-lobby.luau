@@ -181,6 +181,10 @@ assert(assets and assets:FindFirstChild("SakuraTree") and assets:FindFirstChild(
 -- Free models get placed by bounding box: scale, turn, then lift so the lowest point sits on the ground.
 local function place(source: Model, pos: Vector3, scale: number, yaw: number, parent: Instance): Model
 	local m = source:Clone()
+	-- Some pack models ship with a tilted pivot over upright parts; straightening the pivot later tilted the trees. Level it, keep its turn.
+	m.PrimaryPart = nil
+	local _, pivotYaw = m.WorldPivot:ToOrientation()
+	m.WorldPivot = CFrame.new(m.WorldPivot.Position) * CFrame.Angles(0, pivotYaw, 0)
 	m:ScaleTo(m:GetScale() * scale)
 	m:PivotTo(CFrame.new(pos) * CFrame.Angles(0, yaw, 0))
 	local cf, size = m:GetBoundingBox()

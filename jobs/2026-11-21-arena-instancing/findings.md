@@ -7,7 +7,8 @@
 - F4 SETTLED: Spectating had no match scope: SpectateClient watched any player with Fighting == true, so it would cross matches once two run at once. Source: script_read SpectateClient.
 - F5 SETTLED: Built (Studio, saved v19): Arena1 moved to ServerStorage.ArenaTemplates.Arena1; Workspace.Arenas is now an empty container for clones. TableManager: lock removed, `takeSlot()` (lowest free slot, self-checked), clone named `Arena_` + slot number pivoted to template pivot + (2000,0,0)*slot, Destroy() + slot freed right after the pcall'd match.Run (covers win, timeout, leavers and errors). MatchInstance: RequestStreamAroundAsync before PivotTo; sets player attribute `Arena` with Fighting, clears both in _cleanup. SpectateClient: only fighters whose `Arena` equals mine.
 - F6 SETTLED: Solo server test: clone at slot 1, MatchInstance._combat placed the player at (2000,4.5,275), Arena attr = "Arena_1", cleared after _cleanup, 0 clones left after Destroy. No console errors. Source: execute_luau Server, 2026-11-21 ~11:55.
-- F7 LEAD: Two concurrent matches + cross-match spectating not tested yet (MCP play is solo only).
+- F7 SETTLED: Two concurrent matches + scoped spectating passed the user's Clients-and-Servers test. Source: user reply "Test passed", 2026-11-21 ~12:10.
+- F8 SETTLED: Leak gap fixed: _cleanup ran only after a round finished, so a round that errored left sword connections and Fighting/Arena attributes behind. TableManager now pcalls match:_cleanup() when match.Run fails. Server test with a forced error: connection disconnected, attributes nil, 0 arenas left. Place saved v20. Source: execute_luau Server, 2026-11-21 12:14.
 
 ## Decisions
 - D1: Reuse lowest free slot, slot 0 = the template's original spot. Why: positions stay bounded and a lone match plays exactly where it used to. Rejected: Gemini's ever-growing match_index * 2000 at Y 10000 (unbounded coordinates, no gain).

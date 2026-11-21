@@ -5,3 +5,6 @@
 - 2026-11-21 12:55 — Solo test passed after switching swing to AnimationConstraint Transform
 - 2026-11-21 13:00 — Hand-off #1 started
 - 2026-11-21 13:00 — Hand-off #1 saved
+- 2026-11-21 13:00 — Resumed by session 346ca24d; Studio open, melee scripts present (script_grep MeleeRequest). Waiting on user two-player test.
+- 2026-11-21 13:06 — Two-player test passed (user). User redirected: swipe = dodge dash, punch more exaggerated. Hand-off #2 started (50% checkpoint, before any edits)
+- 2026-11-21 13:08 — Hand-off #2 saved

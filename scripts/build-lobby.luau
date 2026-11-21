@@ -192,6 +192,8 @@ local function place(source: Model, pos: Vector3, scale: number, yaw: number, pa
 	return m
 end
 local sakura = place((assets :: any).SakuraTree, sakuraCenter + Vector3.new(0, 0.3, 0), 0.45, math.rad(rng:NextNumber(0, 360)), fGarden)
+-- The mesh's trunk isn't at its bounding-box centre; slide it (measured by screenshot at scale 0.45) so the trunk sits mid-garden.
+sakura:PivotTo(sakura:GetPivot() * CFrame.new(-1.52, 0, 3.33))
 -- Petals drifting down from the canopy.
 local cloudCf, cloudSize = sakura:GetBoundingBox()
 local petalCloud = part(fGarden, "PetalCloud", Vector3.new(cloudSize.X * 0.8, 1, cloudSize.Z * 0.8), CFrame.new(cloudCf.Position + Vector3.new(0, cloudSize.Y * 0.3, 0)), Enum.Material.SmoothPlastic, Color3.new())
@@ -238,8 +240,12 @@ end
 -- Blocky Tree Pack: pick a kind (pines most often), random size and turn.
 local pack = (assets :: any).BlockyTreePack
 local KINDS = { pack["Pine Tree"], pack["Pine Tree"], pack["Pine Tree"], pack["Big Tree"], pack["Big Tree"], pack["Mini Tree"], pack["Bush"] }
-local function tree(pos: Vector3, minScale: number, maxScale: number)
-	place(KINDS[rng:NextInteger(1, #KINDS)], pos, rng:NextNumber(minScale, maxScale), rng:NextNumber(0, math.pi * 2), fTrees).Name = "Tree"
+local function tree(pos: Vector3, minScale: number, maxScale: number): Model
+	local kind = KINDS[rng:NextInteger(1, #KINDS)]
+	local scale = rng:NextNumber(minScale, maxScale) * (if kind.Name == "Big Tree" then 0.65 else 1) -- Big Tree is 25 tall at scale 1; it towered over everything
+	local m = place(kind, pos, scale, rng:NextNumber(0, math.pi * 2), fTrees)
+	m.Name = "Tree"
+	return m
 end
 local function rock(pos: Vector3)
 	local size = Vector3.new(rng:NextNumber(2, 5), rng:NextNumber(1.5, 3), rng:NextNumber(2, 5))
@@ -274,6 +280,7 @@ end
 -- Rocky cliff face on the far side (190-310 degrees), stacked tilted slabs, trees along the top.
 fTrees, fRocks = fScenery, fScenery -- tree() and rock() parent into these from here on
 local CLIFF_R = 175
+local cliffTrees: { Vector3 } = {}
 for a = 190, 310, 4 do
 	local h = rng:NextNumber(35, 55)
 	local r = CLIFF_R + rng:NextNumber(-5, 5)
@@ -283,11 +290,20 @@ for a = 190, 310, 4 do
 		local cf = CFrame.new(polar(a, r + layer * 10, size.Y / 2 - 2)) * CFrame.Angles(rng:NextNumber(-0.08, 0.08), rng:NextNumber(0, math.pi * 2), rng:NextNumber(-0.08, 0.08))
 		part(fScenery, "Cliff", size, cf, Enum.Material.Slate, Color3.fromRGB(grey, grey - 5, grey - 12))
 	end
-	if a % 12 == 2 then tree(polar(a, r + 6, h - 2), 1.3, 1.7) end
+	if a % 12 == 2 then table.insert(cliffTrees, polar(a, r + 6, 0)) end
+end
+-- Cliff-top trees go on after all slabs exist, dropped onto whatever rock is under them (slabs vary in height and tilt).
+lobby.Parent = workspace -- raycasts only see parts in the world
+local rockOnly = RaycastParams.new()
+rockOnly.FilterType = Enum.RaycastFilterType.Include
+rockOnly.FilterDescendantsInstances = { fScenery }
+for _, p in cliffTrees do
+	local hit = workspace:Raycast(p + Vector3.new(0, 200, 0), Vector3.new(0, -250, 0), rockOnly)
+	if hit then tree(hit.Position, 1.0, 1.3) end
 end
 task.wait()
 -- Extra trees and rocks between the wall and the hills/cliff.
-scatter(55, 128, 165, 0, function(p) tree(p, 1.2, 1.7) end)
+scatter(55, 128, 165, 0, function(p) tree(p, 1.0, 1.4) end)
 scatter(30, 128, 200, 0, rock)
 
 -- Sunset lighting so the lamps stand out ------------------------------------------------------------

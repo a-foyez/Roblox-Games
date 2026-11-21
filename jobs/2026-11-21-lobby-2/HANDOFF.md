@@ -14,44 +14,45 @@ None stated by the user. Project rules: tables must keep working with TableManag
 Source: user message, 2026-11-21 13:30; CLAUDE.md
 
 ## Status
-Tree request mostly done: blocky trees everywhere and a sakura garden, built and saved (version 34). One fix open: big trees crowd the sakura path/garden (F12). User hasn't seen it yet.
+User's fix request done: no floating trees, Big Trees shrunk, sakura trunk centred (F13, F14), saved version 35. User hasn't checked it in a playtest yet. F12 (big trees crowding the sakura path) is probably eased by the shrink but not re-checked on its own.
 
 ## Route so far
-1. Previous job jobs/2026-11-21-lobby/: lobby, wall, sunset, scenery built; user playtested OK (see findings: F1-F9, D1-D4).
-2. Inserted the Blocky Tree Pack and sakura, checked for scripts, stored in ServerStorage.LobbyAssets (see findings: F10).
-3. Generator now clones pack trees and builds the sakura garden; run and saved (see findings: F11, D5).
-4. Screenshot shows big trees crowding the garden path (see findings: F12).
+1. Previous job jobs/2026-11-21-lobby/: lobby, wall, sunset, scenery built (findings F1-F9, D1-D4).
+2. Blocky Tree Pack and sakura inserted and used by the generator (F10, F11, D5).
+3. Big trees crowded the garden path (F12, lead).
+4. User reported big/floating trees and off-centre sakura; fixed and re-run (F13, F14, D6).
 
 ## Next action
-Fix F12 in scripts/build-lobby.luau: in clear(), widen the sakura clearing (e.g. GARDEN_RADIUS + 14 + margin) and the sakura path strip (abs(Z) < 9 + margin); maybe drop "Big Tree" from KINDS for the inner ring. Re-run the generator (paste the whole file into execute_luau), screenshot from (40,40,30) looking at (96,8,0) and from the plaza, save, then tell the user and ask them to walk the sakura path in a playtest.
+Ask the user to playtest and walk the lobby and sakura path. If big trees still crowd the path (F12), widen clear() margins in scripts/build-lobby.luau (sakura clearing GARDEN_RADIUS + 8 + margin, path strip abs(Z) < 4 + margin), re-run, screenshot from (60,12,0) looking at (96,6,0), save.
 
 ## Read first
-1. jobs/2026-11-21-lobby-2/findings.md
-2. scripts/build-lobby.luau lines 169-260 (garden, clear(), tree())
+1. jobs/2026-11-21-lobby-2/findings.md (F12-F14, D6)
+2. scripts/build-lobby.luau lines 194-260 (sakura, clear(), tree()) and 280-306 (cliff trees)
 
 ## Leads to re-check
-- F12 LEAD: big trees crowd the sakura path/garden. Re-check by screenshot after the fix.
+- F12 LEAD: big trees crowd the sakura path/garden. Re-check by screenshot from (60,12,0) looking at (96,6,0).
 
 ## Results to reuse
-- scripts/build-lobby.luau: re-runnable generator (Tables, Lobby incl. SakuraGarden, Boundary, Scenery, Lighting). Needs ServerStorage.LobbyAssets.
-- In Studio: ServerStorage.LobbyAssets (BlockyTreePack, SakuraTree); Workspace.Lobby.SakuraGarden.
+- scripts/build-lobby.luau: re-runnable generator, ends with a floating-tree self-check only in the MCP run (not in the file).
+- In Studio: ServerStorage.LobbyAssets (BlockyTreePack, SakuraTree); Workspace.Lobby.
 
 ## Waiting on me
-The user hasn't seen the new trees yet. Still-open suggestions: custom Blender fountain, ambient sound. Low-Poly-Tree link unused (D5): ask the user if they wanted it somewhere.
+User to playtest the fix. Still-open suggestions: custom Blender fountain, ambient sound. Low-Poly-Tree link unused (D5).
 
 ## Don't redo
-Inserting and script-checking the tree models; the tree() rewrite and sakura garden; saving version 34.
+Floating-tree fix, Big Tree scale, sakura offset (F14); saving version 35.
 
 ## Gotchas
 - TableManager and TableClient read workspace.Tables at startup, so tables must stay in Workspace.Tables.
 - execute_luau can't read local files: paste the whole generator as the code.
-- The stay-in-project hook blocks shell commands containing "../.." or Get-Date (it sees a node path); use absolute paths and Edit.
+- Raycasts need the lobby parented to workspace; the generator now parents it before the cliff-tree raycasts.
+- The sakura offset (-1.52, 0, 3.33) only holds at scale 0.45 (D6).
+- The stay-in-project hook blocks shell commands containing "../.." or Get-Date; use bash `date`.
 - screen_capture can time out right after a heavy run; retry once.
 - Keep scenery inside r=235: arena slot 0 would sit at (0,10,300).
-- ClockTime 18.1 is already night; 17.6 is the sunset.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, 2026-11-21 14:28 (version 34)
+- Place saved in Studio: yes, 2026-11-21 14:55 (version 35)
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): ServerStorage.LobbyAssets (re-add steps in methods.md) and the built instances (regenerate from scripts/build-lobby.luau).
@@ -62,3 +63,5 @@ None
 ## Chain so far
 - Started by session 5572c085-5e24-4168-bc8a-5db78cd52fe0 at 2026-11-21 14:30 (continues jobs/2026-11-21-lobby/)
 - Hand-off #1 saved 2026-11-21 14:31 by session 5572c085-5e24-4168-bc8a-5db78cd52fe0
+- Resumed by session f3b7c98a-8af9-4f0b-b8c7-788e93ce1a66 at 2026-11-21 14:40
+- Hand-off #2 saved 2026-11-21 14:57 by session f3b7c98a-8af9-4f0b-b8c7-788e93ce1a66

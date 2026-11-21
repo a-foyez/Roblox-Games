@@ -1,4 +1,4 @@
-# Hand-off: Bare-handed melee (punch + side dodge)
+﻿# Hand-off: Bare-handed melee (punch + side dodge)
 
 ## Goal
 this is a gemini prompt. take it as a vague guide but implement as best you see fit. the main goal is to add punching + nice animation, and side swiping
@@ -14,7 +14,7 @@ None stated.
 Source: same message
 
 ## Status
-Punch + attack-swipe built and passed the two-player test (F7). User then redirected (F8): the swipe should be a quick left/right dodge, and the punch should look more exaggerated. No edits made for that yet.
+Closed at hand-off #3, continued in jobs/2026-11-21-melee-combat-2/
 
 ## Route so far
 1. Removed the sword; melee lives in MatchInstance (F1, D1).
@@ -67,3 +67,5 @@ None
 - Hand-off #1 saved 2026-11-21 13:00 by session c798ef70-c85b-46e4-9757-2a1de43d2180
 - Resumed by session 346ca24d-b97d-49a8-8f6b-dd8cd8cf7df7 at 2026-11-21 13:00
 - Hand-off #2 saved 2026-11-21 13:08 by session 346ca24d-b97d-49a8-8f6b-dd8cd8cf7df7
+- Resumed by session a89d7746-35ea-4341-a4d6-4e57a1346576 at 2026-11-21 13:07
+- Closed, continued in jobs/2026-11-21-melee-combat-2/

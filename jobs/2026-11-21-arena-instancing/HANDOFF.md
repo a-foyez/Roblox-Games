@@ -22,7 +22,7 @@ Done 2026-11-21 12:15. Multi-player test passed (F7), error-path leak fixed (F8)
 4. User two-match test passed (F7). Error-path cleanup fix (F8), saved v20.
 
 ## Next action
-None, job closed. Open question for the user: D3.
+None, job closed.
 
 ## Read first
 1. jobs/2026-11-21-arena-instancing/findings.md
@@ -35,7 +35,7 @@ None
 - Studio: ServerStorage.ArenaTemplates.Arena1, Workspace.Arenas (empty), ServerScriptService.TableManager/MatchInstance/Draft, StarterPlayerScripts.SpectateClient.
 
 ## Waiting on me
-- D3: whether they want lobby players to spectate other tables' matches.
+None
 
 ## Don't redo
 - F5 build and F6 solo test.

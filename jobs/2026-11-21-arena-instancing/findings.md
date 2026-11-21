@@ -13,4 +13,4 @@
 ## Decisions
 - D1: Reuse lowest free slot, slot 0 = the template's original spot. Why: positions stay bounded and a lone match plays exactly where it used to. Rejected: Gemini's ever-growing match_index * 2000 at Y 10000 (unbounded coordinates, no gain).
 - D2: Spectator scoping via a player attribute `Arena`. Why: one line on each side, client already reads player attributes. Rejected: a remote telling the client which arena (more code, same result).
-- D3: Skipped lobby-table spectating of other matches: it doesn't exist in the game; only knocked-out players spectate. Ask the user if they want it.
+- D3: Skipped lobby-table spectating of other matches: it doesn't exist in the game; only knocked-out players spectate. User chose to leave it out (2026-11-21, "No, leave it").

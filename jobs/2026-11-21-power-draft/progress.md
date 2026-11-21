@@ -8,3 +8,5 @@
 - 2026-11-21 11:02 — Built server side (methods Build order 1-6): Remotes.Draft, ReplicatedStorage.AbilityRegistry, AbilityService rewrite, ServerScriptService.Draft, TableManager + MatchInstance wiring. Place saved (version 16). Not playtested yet.
 - 2026-11-21 11:02 — Hand-off #2 started (60% checkpoint)
 - 2026-11-21 11:02 — Hand-off #2 saved
+- 2026-11-21 11:06 — Resumed by session 743a315c-a047-4676-beab-a7b309989eab; built DraftClient (step 7), place saved v17
+- 2026-11-21 11:06 — Hand-off #3 started (50% checkpoint): closed, continued in jobs/2026-11-21-power-draft-2/

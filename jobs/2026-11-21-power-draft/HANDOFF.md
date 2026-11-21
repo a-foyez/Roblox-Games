@@ -1,4 +1,4 @@
-# Hand-off: Power & nerf draft
+﻿# Hand-off: Power & nerf draft
 
 ## Goal
 This is a model promt from Gemini detailing the next step for the game. Before implementing it make sure the approach is the best but keep the core game the same. It should follow Player chooses superpower out of three options -> Remaining vote on nerf for that specific superpower, get 3 superpower specific nerfs -> Nerf revealed to player, move on to next draft. maybe two superpower drafts per person for now
@@ -13,7 +13,7 @@ keep the core game the same
 Source: user message, 2026-11-21 10:40
 
 ## Status
-Server side built and saved (place version 16, F6). Client DraftClient not built. Nothing playtested.
+Closed at hand-off #3, continued in jobs/2026-11-21-power-draft-2/
 
 ## Route so far
 1. Read the live scripts; arena lock and per-round reset already exist (see findings: F2, F3).
@@ -59,3 +59,5 @@ None
 - Hand-off #1 saved 2026-11-21 10:58 by session ce5c1bdf-23e1-48c7-855b-7f783ba6b0c0
 - Resumed by session 9acdc898-1ae2-4ef8-8710-0016e8edb5bb at 2026-11-21 10:58
 - Hand-off #2 saved 2026-11-21 11:02 by session 9acdc898-1ae2-4ef8-8710-0016e8edb5bb
+- Resumed by session 743a315c-a047-4676-beab-a7b309989eab at 2026-11-21 11:03
+- Closed, continued in jobs/2026-11-21-power-draft-2/

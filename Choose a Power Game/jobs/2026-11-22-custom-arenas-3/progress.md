@@ -9,3 +9,6 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 14:40 — Added ServerScriptService.ArenaZones; Arena_Highrise moved into ArenaTemplates; placeholders parked in ServerStorage._PlaceholderHold; spawn + fall test passed (F12); saved v47
 - 2026-11-22 14:40 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 14:41 — Hand-off #2 saved
+- 2026-11-22 14:44 — Resumed by session 0d634374-08b3-4b78-921a-4f312066fd6b; F12 re-checked, still true
+- 2026-11-22 14:45 — SlipZone push added to ArenaZones, 13 highrise SlipZones tagged; H05/H13 pass, H12 (crane mast) fails; saved v49
+- 2026-11-22 14:45 — Hand-off #3 started; closed, continued in jobs/2026-11-22-custom-arenas-4/

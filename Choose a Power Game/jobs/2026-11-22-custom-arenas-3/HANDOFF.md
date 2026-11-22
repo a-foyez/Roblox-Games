@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise is done and playable: in ArenaTemplates, KillZone script live, solo spawn + fall test passed (F12). Placeholders parked in ServerStorage._PlaceholderHold (not deleted). Farm, colosseum, moon-base, beach untouched. SlipZones undecided. Place saved v47.
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-4/
 
 ## Route so far
 1. Located the 5 maps (F1); Blender bridge works (F2).
@@ -74,3 +74,5 @@ None
 - Hand-off #1 saved 2026-11-22 14:37 by session 77bb61bc-88c5-4636-bac7-5c7047c0ae64
 - Resumed by session 03ca2f93-5d1f-41d7-aca3-c03cf0cce9e6 at 2026-11-22 14:39
 - Hand-off #2 saved 2026-11-22 14:41 by session 03ca2f93-5d1f-41d7-aca3-c03cf0cce9e6
+- Resumed by session 0d634374-08b3-4b78-921a-4f312066fd6b at 2026-11-22 14:42
+- Closed, continued in jobs/2026-11-22-custom-arenas-4/

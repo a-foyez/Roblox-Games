@@ -16,7 +16,8 @@ None given.
 Source: same message
 
 ## Status
-Highrise and Farm DONE. Slip blocks removed from both (F17). The farm's outer invisible wall (Barrier_*) was restored after the user corrected me (F18); highrise never had one. Vote screen hides empty cards (F17). Colosseum, moon-base and beach not imported yet. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v53. User request 15:15: continue the import, removing ONLY slip blocks.
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-7/
+(Last state before close:) Highrise and Farm DONE. Slip blocks removed from both (F17). The farm's outer invisible wall (Barrier_*) was restored after the user corrected me (F18); highrise never had one. Vote screen hides empty cards (F17). Colosseum, moon-base and beach not imported yet. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v53. User request 15:15: continue the import, removing ONLY slip blocks.
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -78,3 +79,5 @@ None
 - Hand-off #1 saved 2026-11-22 15:09 by session 84e92db9-995b-44d2-a86a-565617365ab1
 - Resumed by session 60f1d0e0-ee28-4853-8900-41033ad0a5b5 at 2026-11-22 15:12
 - Hand-off #2 saved 2026-11-22 15:21 by session 60f1d0e0-ee28-4853-8900-41033ad0a5b5
+- Resumed by session 49190fe5-095d-4b89-9102-b5e6eb0811df at 2026-11-22 15:22
+- Closed, continued in jobs/2026-11-22-custom-arenas-7/

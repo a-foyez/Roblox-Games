@@ -8,3 +8,5 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 15:20 — Resumed by session 60f1d0e0-ee28-4853-8900-41033ad0a5b5. Farm Barrier_F01..F06 restored as invisible walls (F18); highrise had none. Saved v53.
 - 2026-11-22 15:19 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 15:21 — Hand-off #2 saved
+- 2026-11-22 15:22 — Resumed by session 49190fe5-095d-4b89-9102-b5e6eb0811df. Colosseum inventoried and exported to assets/arenas/export/colosseum.glb (not uploaded).
+- 2026-11-22 15:21 — Hand-off #3 started (50% checkpoint); closing, continued in jobs/2026-11-22-custom-arenas-7/

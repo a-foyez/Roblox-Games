@@ -13,7 +13,7 @@
 
 ## Fix an imported map (after insert_asset into ServerStorage)
 1. Move every MeshPart to a new Model `Arena_<Name>`; Anchored = true; Color = Color3.fromHex(name:match("_(%x%x%x%x%x%x)$")); destroy the imported package model.
-2. Background parts (highrise: name starts "City"; farm: "Deco_"): CanCollide/CanTouch/CanQuery false, CollisionFidelity Box. Destroy every SlipZone_* and Barrier_* part (user wants none, F17).
+2. Background parts (highrise: name starts "City"; farm: "Deco_"): CanCollide/CanTouch/CanQuery false, CollisionFidelity Box. Move every SlipZone_* part out of the map (into ServerStorage._RemovedMapBlocks; F17). KEEP Barrier_* parts: Transparency 1, CanCollide true, CanTouch false, CastShadow false (outer invisible wall, F18).
 3. Parent to workspace briefly; scan floor parts on a grid with a 5x6x5 probe (GetPartsInPart, Include filter = map) plus a down raycast that must hit the floor; pick 4 spread spots (farm: the free spot farthest from the floor centre in each quadrant, within 80 studs; a hit only blocks if CanCollide); parent back to ServerStorage.
 4. Add Folder Spawns with Spawn1..4 (4x1x4, top = floor +1, Transparency 1, CanCollide/CanTouch/CanQuery false) and a KillZone part (tag "KillZone", Transparency 1, CanCollide false) below the lowest playable part.
 5. (No SlipZones any more: skip.)

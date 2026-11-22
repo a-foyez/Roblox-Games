@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise and Farm DONE, now with no slip blocks or barrier walls (F17). Vote screen hides empty cards (F17). Colosseum, moon-base and beach untouched. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v52.
+Highrise and Farm DONE. Slip blocks removed from both (F17). The farm's outer invisible wall (Barrier_*) was restored after the user corrected me (F18); highrise never had one. Vote screen hides empty cards (F17). Colosseum, moon-base and beach not imported yet. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v53. User request 15:15: continue the import, removing ONLY slip blocks.
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -24,9 +24,11 @@ Highrise and Farm DONE, now with no slip blocks or barrier walls (F17). Vote scr
 3. Inventoried all maps (F8); user answers in (D3).
 4. Highrise finished (F10-F14, D5, D6). Farm finished (F15, F16, D7).
 5. User asked to remove all SlipZones and the white Barrier walls, and reported missing vote names: done (F17). This replaces D3(c), D5 and D7.
+6. User said Barrier_* walls should stay: farm walls restored as invisible solid walls (F18). Methods "Fix an imported map" step 2 updated.
+7. Opened colosseum.blend in live Blender; the inventory script failed only because bpy.context.window is None from the bridge (nothing changed).
 
 ## Next action
-Colosseum: open assets/arenas/colosseum.blend (methods "Open a map"), list its scenes first (F15) and set the active scene to "Colosseum". Inventory meshes (67.4k polys, F8: check for background layers to mark or trim), then "Export and upload" (displayName Arena_Colosseum), "Fix an imported map" (now drops SlipZone_*/Barrier_* parts), "Test a map solo". Then moon-base and beach, one per chat. When all 5 maps are in ArenaTemplates, delete ServerStorage._PlaceholderHold and save.
+Colosseum: colosseum.blend is already open in live Blender (re-open if not, methods "Open a map"). List its scenes first (F15) and set the active scene to "Colosseum". After open_mainfile, bpy.context.window is None, so use `bpy.context.window_manager.windows[0].scene = bpy.data.scenes["Colosseum"]` (or run the scene switch in a separate call). Note the Barrier_* parts and their bounds. Inventory meshes (67.4k polys, F8: check for background layers to mark or trim), then "Export and upload" (displayName Arena_Colosseum), "Fix an imported map" (drop SlipZone_* parts only; keep Barrier_* as invisible solid walls, F18), "Test a map solo". Then moon-base and beach, one per chat. When all 5 maps are in ArenaTemplates, delete ServerStorage._PlaceholderHold and save.
 
 ## Read first
 1. jobs/2026-11-22-custom-arenas-6/findings.md
@@ -36,17 +38,17 @@ Colosseum: open assets/arenas/colosseum.blend (methods "Open a map"), list its s
 None
 
 ## Results to reuse
-- ArenaTemplates holds Arena_Highrise (asset 118252970461216) and Arena_Farm (asset 117768832918480), both without SlipZones/Barriers.
+- ArenaTemplates holds Arena_Highrise (asset 118252970461216) and Arena_Farm (asset 117768832918480), both without SlipZones. Arena_Farm has its 6 Barrier_* walls back (invisible, solid, F18).
 - ServerScriptService.ArenaZones handles every KillZone-tagged part, no per-map code (F12). Its SlipZone code is now unused (harmless).
 - assets/arenas/export/highrise.glb and farm.glb.
 - methods.md: Open a map, Export and upload, Fix an imported map, Test a map solo (scripts were run inline: rewrite them from the steps).
 
 ## Waiting on me
-- Optional: user may delete ServerStorage._RemovedMapBlocks (the 25 removed blocks) once sure they're not wanted back.
+- Optional: user may delete ServerStorage._RemovedMapBlocks (now the 19 SlipZones only) once sure they're not wanted back.
 
 ## Don't redo
 - The map vote registry already loops ArenaTemplates:GetChildren() (F3); DraftClient already hides empty vote cards (F17).
-- Everything on highrise and farm (F10-F17).
+- Everything on highrise and farm (F10-F18). Highrise has 0 SlipZones left and never had a wall (checked 15:16).
 - Asking the user about upload, permissions or the highrise trim (D3).
 
 ## Gotchas
@@ -63,10 +65,10 @@ None
 - The checkpoint arrives early: keep each chat to one map.
 
 ## Studio/Blender state
-- Place saved in Studio: yes (v52, Team Create), play stopped
+- Place saved in Studio: yes (v53, Team Create), play stopped
 - Rojo in sync: not used
-- .blend files: farm.blend open in live Blender (unmodified). highrise.blend saved earlier. Others unmodified. highrise.glb and farm.glb exported.
-- Only in Studio (not in this folder): all scripts incl. ArenaZones and DraftClient, ArenaTemplates.Arena_Highrise and Arena_Farm, ServerStorage._PlaceholderHold (Arena_Classic/Lava/Sky), ServerStorage._RemovedMapBlocks (25 parts)
+- .blend files: colosseum.blend open in live Blender (unmodified). farm.blend unmodified. highrise.blend saved earlier. Others unmodified. highrise.glb and farm.glb exported.
+- Only in Studio (not in this folder): all scripts incl. ArenaZones and DraftClient, ArenaTemplates.Arena_Highrise and Arena_Farm, ServerStorage._PlaceholderHold (Arena_Classic/Lava/Sky), ServerStorage._RemovedMapBlocks (19 SlipZone parts)
 
 ## Queue
 None
@@ -74,3 +76,5 @@ None
 ## Chain so far
 - Started by session 84e92db9-995b-44d2-a86a-565617365ab1 at 2026-11-22 15:07 (continues jobs/2026-11-22-custom-arenas-5/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-22 15:09 by session 84e92db9-995b-44d2-a86a-565617365ab1
+- Resumed by session 60f1d0e0-ee28-4853-8900-41033ad0a5b5 at 2026-11-22 15:12
+- Hand-off #2 saved 2026-11-22 15:21 by session 60f1d0e0-ee28-4853-8900-41033ad0a5b5

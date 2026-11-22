@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Workflow step 1 (offset) done and saved (F6). Steps 2-4 not started; design settled (D3, D4).
+All 4 workflow steps done and saved (v44, F8). Waiting on the user: 2-player test and approval to close.
 
 ## Route so far
 1. Read TableManager, MatchInstance, Draft, DraftClient and the ServerStorage tree (see findings: F1-F5).
@@ -24,7 +24,7 @@ Workflow step 1 (offset) done and saved (F6). Steps 2-4 not started; design sett
 3. Offset fix done in TableManager (F6, D2).
 
 ## Next action
-Build the placeholder maps (D3: rename Arena1 -> Arena_Classic, clone Arena_Lava and Arena_Sky, each with Spawns/Spawn1..4), then `Draft.MapVote` + the two DraftClient branches + the TableManager call (D4). Then a solo playtest for errors, save, and write the step 4 summary for the user.
+User runs a 2-player test (Test tab, Clients and Servers). On approval, close the job.
 
 ## Read first
 1. jobs/2026-11-22-map-voting/findings.md (D3, D4, F6, F7)
@@ -38,7 +38,7 @@ Build the placeholder maps (D3: rename Arena1 -> Arena_Classic, clone Arena_Lava
 - Studio: ServerScriptService.TableManager (offset done), Draft (add MapVote here), StarterPlayerScripts.DraftClient (add the map branches), ServerStorage.ArenaTemplates.Arena1.
 
 ## Waiting on me
-None
+2-player table test and approval to close.
 
 ## Don't redo
 - Exploration of the match flow (F1-F5, F7).
@@ -53,7 +53,7 @@ None
 - The next hand-off would be #3: close this job and continue in a new folder (handoff skill step 3).
 
 ## Studio/Blender state
-- Place saved in Studio: yes, v43 (TeamCreate) after the offset edit
+- Place saved in Studio: yes, v44 (TeamCreate) after maps + MapVote
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): all scripts and ArenaTemplates.
@@ -66,3 +66,4 @@ None
 - Hand-off #1 saved 2026-11-22 13:32 by session c4fdd47f-b057-4566-876a-03c6b84bb2dd
 - Resumed by session 0f410153-5870-4671-add1-f0f5a30d93e5 at 2026-11-22 13:34
 - Hand-off #2 saved 2026-11-22 13:37 by session 0f410153-5870-4671-add1-f0f5a30d93e5
+- Resumed by session 6e73c617-24b7-4f43-8afd-aa0eb8710508 at 2026-11-22 13:55

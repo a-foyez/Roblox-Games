@@ -10,3 +10,5 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 13:35 — Workflow step 1 done: TableManager offset is now `arenaOffset(slot)` = Vector3.new(0, 10000, slot * 50000); compiles (loadstring); place saved v43. Not playtested.
 - 2026-11-22 13:35 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 13:37 — Hand-off #2 saved
+- 2026-11-22 13:56 — Resumed; F2 re-checked; placeholder maps built.
+- 2026-11-22 13:58 — MapVote + client + TableManager done, solo-tested, saved v44. Step 4 summary given; waiting on user test.

@@ -12,3 +12,5 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 16:06 — Cargo-ship inspected, exported, upload sent.
 - 2026-11-22 16:07 — Hand-off #2 started
 - 2026-11-22 16:07 — Hand-off #2 saved
+- 2026-11-22 16:07 — Resumed by session 9187c830-f94f-4451-afc7-029ba2b70d99; cargo-ship asset 87138548471776 ready (F7)
+- 2026-11-22 16:09 — Cargo-ship inserted, fixed, solo test passed, saved v59 (F8). Job done.

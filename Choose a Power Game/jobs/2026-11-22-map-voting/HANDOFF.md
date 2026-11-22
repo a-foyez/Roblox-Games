@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-All 4 workflow steps done and saved (v44, F8). Waiting on the user: 2-player test and approval to close.
+Closed 2026-11-22: user tested (2-player) and approved.
 
 ## Route so far
 1. Read TableManager, MatchInstance, Draft, DraftClient and the ServerStorage tree (see findings: F1-F5).
@@ -24,7 +24,7 @@ All 4 workflow steps done and saved (v44, F8). Waiting on the user: 2-player tes
 3. Offset fix done in TableManager (F6, D2).
 
 ## Next action
-User runs a 2-player test (Test tab, Clients and Servers). On approval, close the job.
+None (job closed).
 
 ## Read first
 1. jobs/2026-11-22-map-voting/findings.md (D3, D4, F6, F7)
@@ -38,7 +38,7 @@ User runs a 2-player test (Test tab, Clients and Servers). On approval, close th
 - Studio: ServerScriptService.TableManager (offset done), Draft (add MapVote here), StarterPlayerScripts.DraftClient (add the map branches), ServerStorage.ArenaTemplates.Arena1.
 
 ## Waiting on me
-2-player table test and approval to close.
+None
 
 ## Don't redo
 - Exploration of the match flow (F1-F5, F7).

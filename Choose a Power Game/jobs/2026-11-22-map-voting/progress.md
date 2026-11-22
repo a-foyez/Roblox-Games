@@ -12,3 +12,4 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 13:37 — Hand-off #2 saved
 - 2026-11-22 13:56 — Resumed; F2 re-checked; placeholder maps built.
 - 2026-11-22 13:58 — MapVote + client + TableManager done, solo-tested, saved v44. Step 4 summary given; waiting on user test.
+- 2026-11-22 14:05 — User tested and approved; job closed.

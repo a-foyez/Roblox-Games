@@ -16,17 +16,17 @@ None given.
 Source: same message
 
 ## Status
-Highrise and Farm DONE. Colosseum inventoried and exported to colosseum.glb, NOT uploaded yet (F19). Moon-base and beach are not started. Placeholders are still parked in ServerStorage._PlaceholderHold. Place saved v53 (nothing changed in Studio this chat). User request 15:15: continue the import, removing ONLY slip blocks.
+Highrise and Farm DONE. Colosseum uploaded as asset 95952731137542 (F20), NOT inserted or fixed yet; statue to be solid (D9). Moon-base and beach are not started. Placeholders are still parked in ServerStorage._PlaceholderHold. Place saved v53 (nothing changed in Studio this chat). User request 15:15: continue the import, removing ONLY slip blocks.
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
 2. Vote/spawn contract known (F3); KillZone only zeroes Health (F4, D4); each map needs its own KillZone (F9).
 3. Highrise finished (F10-F14, D2, D6). Farm finished (F15, F16).
 4. All SlipZones removed; vote screen hides empty cards (F17, D8). Barrier_* walls are kept as invisible solid walls (F18).
-5. Colosseum: scene set, inventoried, exported (F19).
+5. Colosseum: scene set, inventoried, exported (F19), uploaded as asset 95952731137542 (F20). Statue = solid (D9).
 
 ## Next action
-Colosseum upload: methods "Export and upload" steps 3-4 with path C:\Users\Abdul\OneDrive\Documents\RobloxProjects\Choose a Power Game\assets\arenas\export\colosseum.glb and displayName Arena_Colosseum. Then insert_asset into ServerStorage and "Fix an imported map": background = Deco_* (decide on Deco_Statue, F19); drop the 4 SlipZone_C*; keep the 16 Barrier_* as invisible walls; spawns on the Sand floor inside the wall ring, away from the Plinth/Drum/Broken props; KillZone under the floor. Then "Test a map solo" and save. After that, moon-base and beach, one per chat. When all 5 maps are in ArenaTemplates, delete ServerStorage._PlaceholderHold and save.
+insert_asset 95952731137542 (assetName Arena_Colosseum) into ServerStorage and "Fix an imported map": background = Deco_* except Deco_Statue, which stays solid (Queue 1); drop the 4 SlipZone_C*; keep the 16 Barrier_* as invisible walls; spawns on the Sand floor inside the wall ring, away from the Plinth/Drum/Broken props; KillZone under the floor. Then "Test a map solo" and save. After that, moon-base and beach, one per chat. When all 5 maps are in ArenaTemplates, delete ServerStorage._PlaceholderHold and save.
 
 ## Read first
 1. jobs/2026-11-22-custom-arenas-7/findings.md
@@ -47,7 +47,7 @@ None
 ## Don't redo
 - The map vote registry already loops ArenaTemplates:GetChildren() (F3); DraftClient already hides empty vote cards (F17).
 - Everything on highrise and farm (F10-F18).
-- The colosseum inventory and export (F19). No trim is needed.
+- The colosseum inventory, export and upload (F19, F20). No trim is needed. Asking about the statue (D9).
 - Asking the user about upload, permissions or the highrise trim (D3).
 
 ## Gotchas
@@ -65,14 +65,16 @@ None
 - The checkpoint arrives early: keep each chat to one map.
 
 ## Studio/Blender state
-- Place saved in Studio: yes (v53, Team Create), play stopped, nothing changed this chat
+- Place saved in Studio: yes (v53, Team Create), play stopped, nothing changed in Studio by sessions 49190fe5 or c82de25e (only a cloud asset upload)
 - Rojo in sync: not used
 - .blend files: colosseum.blend open in live Blender, active scene Colosseum, unmodified (not saved, no need). Others unmodified. highrise.glb, farm.glb, colosseum.glb exported.
 - Only in Studio (not in this folder): all scripts incl. ArenaZones and DraftClient, ArenaTemplates.Arena_Highrise and Arena_Farm, ServerStorage._PlaceholderHold (Arena_Classic/Lava/Sky), ServerStorage._RemovedMapBlocks (19 SlipZone parts)
 
 ## Queue
-None
+1. Make the colosseum Deco_Statue solid: CanCollide true, CollisionFidelity PreciseConvexDecomposition, so players bump into it instead of walking through. Source: user message "make it solid", session c82de25e, 2026-11-22.
 
 ## Chain so far
 - Started by session 49190fe5-095d-4b89-9102-b5e6eb0811df at 2026-11-22 15:21 (continues jobs/2026-11-22-custom-arenas-6/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-22 15:22 by session 49190fe5-095d-4b89-9102-b5e6eb0811df
+- Resumed by session c82de25e-1586-4926-952d-917af41f168e at 2026-11-22 15:24
+- Hand-off #2 saved 2026-11-22 15:27 by session c82de25e-1586-4926-952d-917af41f168e

@@ -16,7 +16,9 @@ None given.
 Source: same message
 
 ## Status
-Highrise and Farm DONE. Colosseum uploaded as asset 95952731137542 (F20), NOT inserted or fixed yet; statue to be solid (D9). Moon-base and beach are not started. Placeholders are still parked in ServerStorage._PlaceholderHold. Place saved v53 (nothing changed in Studio this chat). User request 15:15: continue the import, removing ONLY slip blocks.
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-8/
+
+(Earlier status:) Highrise and Farm DONE. Colosseum uploaded as asset 95952731137542 (F20), NOT inserted or fixed yet; statue to be solid (D9). Moon-base and beach are not started. Placeholders are still parked in ServerStorage._PlaceholderHold. Place saved v53 (nothing changed in Studio this chat). User request 15:15: continue the import, removing ONLY slip blocks.
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -78,3 +80,5 @@ None
 - Hand-off #1 saved 2026-11-22 15:22 by session 49190fe5-095d-4b89-9102-b5e6eb0811df
 - Resumed by session c82de25e-1586-4926-952d-917af41f168e at 2026-11-22 15:24
 - Hand-off #2 saved 2026-11-22 15:27 by session c82de25e-1586-4926-952d-917af41f168e
+- Resumed by session 6aec579b-b814-401d-b096-686ede6a182c at 2026-11-22 15:33
+- Closed, continued in jobs/2026-11-22-custom-arenas-8/

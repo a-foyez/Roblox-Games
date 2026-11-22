@@ -9,3 +9,6 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 14:50 — H12 untagged, all 13 highrise SlipZones tested (F14), saved v50
 - 2026-11-22 14:52 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 14:54 — Hand-off #2 saved
+- 2026-11-22 14:51 — Resumed by session b3c04190; F15 settled (farm.blend has 4 scenes; Farm scene needs no trim)
+- 2026-11-22 14:52 — Farm scene exported to assets/arenas/export/farm.glb (3.7 MB)
+- 2026-11-22 14:53 — Hand-off #3 started (50% checkpoint): closed, continued in jobs/2026-11-22-custom-arenas-5/

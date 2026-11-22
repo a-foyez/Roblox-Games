@@ -1,4 +1,4 @@
-# Hand-off: Custom Blender arenas (part 4)
+﻿# Hand-off: Custom Blender arenas (part 4)
 
 ## Goal
 the main goal is to implement the maps attached to the roblox game as playable arenas. remove the placeholder ones. and specifically for the skyscraper map apparently theres too many background buildings so lower it to a optimal level.
@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise DONE: in ArenaTemplates, spawns + KillZone + 12 working SlipZones, H12 untagged (F12-F14, D6). Farm opened in Blender only (read, not modified); its contents look odd (F15). Colosseum, moon-base, beach untouched. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v50.
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-5/
 
 ## Route so far
 1. Located the 5 maps (F1); Blender bridge works (F2).
@@ -78,3 +78,5 @@ None
 - Hand-off #1 saved 2026-11-22 14:46 by session 0d634374-08b3-4b78-921a-4f312066fd6b
 - Resumed by session 3e0effb5-92cf-43c7-a22f-b969b8844a27 at 2026-11-22 14:47
 - Hand-off #2 saved 2026-11-22 14:54 by session 3e0effb5-92cf-43c7-a22f-b969b8844a27
+- Resumed by session b3c04190-b20e-4167-8d44-b618888592fb at 2026-11-22 14:51
+- Closed, continued in jobs/2026-11-22-custom-arenas-5/

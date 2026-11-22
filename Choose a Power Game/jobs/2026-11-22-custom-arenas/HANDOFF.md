@@ -16,37 +16,42 @@ None given.
 Source: same message
 
 ## Status
-Files copied in (F1). Nothing edited in Blender or Studio. Blocked: Blender bridge not reachable (F2).
+All 5 maps inventoried read-only (F6, F8). Nothing edited in Blender or Studio. Blocked on user answers for the upload (F5) and SlipZones (F7).
 
 ## Route so far
-1. Located the 5 maps in assets/arenas (see findings: F1).
-2. Tried Blender CLI and the live bridge; both failed (F2).
-3. Checked the existing vote/spawn code from the map-voting job (F3, F4); chose the approach (D1).
+1. Located the 5 maps in assets/arenas (F1).
+2. Blender bridge now works (F2).
+3. Checked vote/spawn code (F3) and fall handling: none exists (F4); chose static spawns + KillZone (D1).
+4. Inventoried highrise (F6) and proposed the trim (D2); found the other 4 files share moon-base leftovers (F8).
+5. Read the rbx-import-asset skill: upload needs permissions and consent (F5).
 
 ## Next action
-Ask the user to open Blender with the MCP bridge started, then open assets/arenas/highrise.blend via execute_blender_code (bpy.ops.wm.open_mainfile) and list mesh objects with poly counts and bounds to find the background buildings.
+Ask the user, in one message: (a) OK to upload each map as a permanent Model asset on their Roblox account; (b) grant asset:read + asset:write and approve an upload folder (suggest assets/arenas/export) in Studio Assistant Settings > MCP Permissions; (c) what SlipZones should do (F7); (d) OK for the highrise trim in D2. Meanwhile check F8 collections per file.
 
 ## Read first
 1. jobs/2026-11-22-custom-arenas/findings.md
 2. jobs/2026-11-22-custom-arenas/methods.md
 
 ## Leads to re-check
-- F2: is the Blender bridge up now (execute_blender_code `result={"ok":1}`)?
-- F4: MatchInstance has no fall/void handling (script_grep "FallenPartsDestroyHeight|Touched|Health = 0" in MatchInstance).
-- F5: Open Cloud mesh upload works (load rbx-import-asset skill).
+- F8: list collections + hide_viewport/exclude per file (farm, colosseum, moon-base, beach) to find which objects belong to each map.
+- F5: probe open_cloud_invoke GET /cloud/v2/universes/10777903992 with scopes asset:read, asset:write.
+- F4 follow-up: read MatchInstance to see how a death/elimination is detected (KillZone must trigger it, e.g. Humanoid.Health = 0).
 
 ## Results to reuse
 - assets/arenas/{farm,colosseum,highrise,moon-base,beach}.blend (user copies; originals in Downloads/Arenas_blender).
+- Inventory numbers and bounds in findings F6, F8 (no need to re-list highrise).
 
 ## Waiting on me
-- User: open Blender, enable the MCP add-on bridge (Preferences > Add-ons > MCP > Start MCP Bridge Server).
+- User: answers (a)-(d) in Next action.
 
 ## Don't redo
 - Map vote registry: already loops ArenaTemplates:GetChildren() (F3); no code change needed.
+- Blender bridge check (F2).
 
 ## Gotchas
 - stay-in-project hook blocks every path outside the project, including Downloads (and a bare `\` in find commands).
-- `blender` is not on PATH, so the *_for_cli Blender tools fail; use the live bridge.
+- No python on PATH; edit files with Write/Edit, not python scripts.
+- Blender opened with C:\Users\Abdul\Downloads\farm.blend; this session switched it to the project copies (beach.blend open now, unmodified).
 - Studio id this session: a8dafb2f-40d9-403c-96ba-00336a2bf161 (changes per session).
 - MCP play is solo only.
 
@@ -62,3 +67,5 @@ None
 ## Chain so far
 - Started by session 50c0cdd5-630f-41e5-8e11-edfae50f098f at 2026-11-22 14:00
 - Hand-off #1 saved 2026-11-22 14:16 by session 50c0cdd5-630f-41e5-8e11-edfae50f098f
+- Resumed by session 0ec5f264-f5f3-47e3-b88a-c2ee0f8540d3 at 2026-11-22 14:18
+- Hand-off #2 saved 2026-11-22 14:24 by session 0ec5f264-f5f3-47e3-b88a-c2ee0f8540d3

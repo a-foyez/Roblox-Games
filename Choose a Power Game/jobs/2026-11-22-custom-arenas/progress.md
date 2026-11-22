@@ -7,3 +7,7 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 14:13 — Blender CLI and bridge both unreachable; Studio connected
 - 2026-11-22 14:15 — Hand-off #1 started (50% checkpoint)
 - 2026-11-22 14:16 — Hand-off #1 saved
+- 2026-11-22 14:18 — Resumed by session 0ec5f264-f5f3-47e3-b88a-c2ee0f8540d3; Blender bridge up
+- 2026-11-22 14:20 — Inventoried all 5 .blend files (read only); loaded rbx-import-asset skill
+- 2026-11-22 14:22 — Hand-off #2 started (50% checkpoint)
+- 2026-11-22 14:24 — Hand-off #2 saved

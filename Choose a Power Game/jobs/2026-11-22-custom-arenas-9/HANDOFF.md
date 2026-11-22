@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise, Farm, Colosseum and Moon-base DONE (4 of 5 in ArenaTemplates). Beach not started. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v55.
+Highrise, Farm, Colosseum and Moon-base DONE (4 of 5 in ArenaTemplates). Beach exported and uploaded (asset 71946449887896, F25), not inserted yet. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v55 (no Studio change since).
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -25,21 +25,23 @@ Highrise, Farm, Colosseum and Moon-base DONE (4 of 5 in ArenaTemplates). Beach n
 4. All SlipZones removed; vote screen hides empty cards (F17, D8). Barrier_* walls are kept as invisible solid walls (F18).
 5. Colosseum finished, statue solid (F19, F21, F22, D9).
 6. Moon-base finished (F23, F24).
+7. Beach exported + uploaded (F25).
 
 ## Next action
-Beach (assets/arenas/beach.blend, F8: "Beach" 209 meshes/19.4k polys): methods "Open a map", list scenes and set the active one to the beach scene (F15), check no mesh over 2048 and inventory the name prefixes, export to assets/arenas/export/beach.glb, then "Export and upload" 3-4 as Arena_Beach, insert_asset into ServerStorage, "Fix an imported map" (background = "Deco_" if the prefixes match; drop SlipZone_*, keep Barrier_*; read the floor's real Y after insert, F24), "Test a map solo", save. Then delete ServerStorage._PlaceholderHold (move it if :Destroy() is blocked, F17) and save: job done.
+Beach: insert_asset 71946449887896 (assetName Arena_Beach, parentPath game.ServerStorage), then methods "Fix an imported map" (background = Deco_* AND Water_*, F25; move the 11 SlipZone_* to ServerStorage._RemovedMapBlocks; keep the 32 Barrier_* as invisible solid walls; read Floor_Sand_F4DFA0's real Y after insert, F24), "Test a map solo", save. Then delete ServerStorage._PlaceholderHold (move it if :Destroy() is blocked, F17) and save: job done.
 
 ## Read first
 1. jobs/2026-11-22-custom-arenas-9/findings.md
 2. jobs/2026-11-22-custom-arenas-9/methods.md
 
 ## Leads to re-check
-- F24: ServerStorage.ArenaTemplates holds Arena_Highrise, Arena_Farm, Arena_Colosseum, Arena_MoonBase (execute_luau GetChildren).
+- F24: ServerStorage.ArenaTemplates holds Arena_Highrise, Arena_Farm, Arena_Colosseum, Arena_MoonBase and no Arena_Beach yet (execute_luau GetChildren).
+- F25: asset 71946449887896 is Active/Approved (GET /assets/v1/assets/71946449887896, scope asset:read) or simply insert it.
 
 ## Results to reuse
-- ArenaTemplates: Arena_Highrise (asset 118252970461216), Arena_Farm (117768832918480), Arena_Colosseum (95952731137542), Arena_MoonBase (115321231155234).
+- ArenaTemplates: Arena_Highrise (asset 118252970461216), Arena_Farm (117768832918480), Arena_Colosseum (95952731137542), Arena_MoonBase (115321231155234). Beach uploaded as 71946449887896 (not in Studio yet).
 - ServerScriptService.ArenaZones handles every KillZone-tagged part with no per-map code (F12).
-- assets/arenas/export/highrise.glb, farm.glb, colosseum.glb, moon-base.glb.
+- assets/arenas/export/highrise.glb, farm.glb, colosseum.glb, moon-base.glb, beach.glb.
 - methods.md: Open a map, Export and upload, Fix an imported map, Test a map solo (rewrite scripts from the steps).
 
 ## Waiting on me
@@ -48,6 +50,7 @@ Beach (assets/arenas/beach.blend, F8: "Beach" 209 meshes/19.4k polys): methods "
 ## Don't redo
 - The map vote registry already loops ArenaTemplates:GetChildren() (F3); DraftClient already hides empty vote cards (F17).
 - Everything on highrise, farm, colosseum and moon-base (F10-F24).
+- Beach Blender work, export and upload (F25): go straight to insert_asset.
 - Asking the user about upload, permissions, the highrise trim (D3) or the statue (D9).
 
 ## Gotchas
@@ -69,7 +72,7 @@ Beach (assets/arenas/beach.blend, F8: "Beach" 209 meshes/19.4k polys): methods "
 ## Studio/Blender state
 - Place saved in Studio: yes (v55, Team Create), play stopped.
 - Rojo in sync: not used
-- .blend files: moon-base.blend open in live Blender, unmodified (not saved, no need). Others unmodified. highrise.glb, farm.glb, colosseum.glb, moon-base.glb exported; beach not exported.
+- .blend files: beach.blend open in live Blender, unmodified (only the active scene changed, not saved, no need). Others unmodified. All five .glb files exported (highrise, farm, colosseum, moon-base, beach).
 - Only in Studio (not in this folder): all scripts incl. ArenaZones and DraftClient, ArenaTemplates.Arena_Highrise/Farm/Colosseum/MoonBase, ServerStorage._PlaceholderHold (Arena_Classic/Lava/Sky), ServerStorage._RemovedMapBlocks (24 SlipZone parts)
 
 ## Queue
@@ -78,3 +81,5 @@ None
 ## Chain so far
 - Started by session ceb7cb1c-229d-4ff7-a947-38f2dd392f27 at 2026-11-22 15:44 (continues jobs/2026-11-22-custom-arenas-8/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-22 15:45 by session ceb7cb1c-229d-4ff7-a947-38f2dd392f27
+- Resumed by session 096f429c-d10f-44fc-b058-9e8a41143f25 at 2026-11-22 15:47
+- Hand-off #2 saved 2026-11-22 15:50 by session 096f429c-d10f-44fc-b058-9e8a41143f25

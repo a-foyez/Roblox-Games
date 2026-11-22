@@ -10,3 +10,5 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 14:59 — Arena_Farm built and in ArenaTemplates; solo test all pass (F16); place saved v51
 - 2026-11-22 14:58 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 14:59 — Hand-off #2 saved
+- 2026-11-22 15:01 — Resumed by session 84e92db9-995b-44d2-a86a-565617365ab1 (user request, do now): SlipZones + farm Barriers moved out of maps, vote screen hides empty cards (F17); place saved v52
+- 2026-11-22 15:07 — Hand-off #3 started (50% checkpoint): closed, continued in jobs/2026-11-22-custom-arenas-6/

@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise DONE (F10-F14). Farm DONE (F16). Colosseum, moon-base and beach untouched. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v51.
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-6/
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -77,3 +77,5 @@ None
 - Hand-off #1 saved 2026-11-22 14:54 by session b3c04190-b20e-4167-8d44-b618888592fb
 - Resumed by session 75777247-4391-4616-9192-3936353551a5 at 2026-11-22 14:54
 - Hand-off #2 saved 2026-11-22 14:59 by session 75777247-4391-4616-9192-3936353551a5
+- Resumed by session 84e92db9-995b-44d2-a86a-565617365ab1 at 2026-11-22 15:01
+- Closed, continued in jobs/2026-11-22-custom-arenas-6/

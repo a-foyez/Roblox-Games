@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise, Farm, Colosseum and Moon-base DONE (4 of 5 in ArenaTemplates). Beach exported and uploaded (asset 71946449887896, F25), not inserted yet. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v55 (no Studio change since).
+JOB DONE 2026-11-22 15:52. All 5 maps in ArenaTemplates (Beach F26); placeholders deleted; place saved v56. Not tested: a real 2-player match (MCP play is solo).
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -83,3 +83,4 @@ None
 - Hand-off #1 saved 2026-11-22 15:45 by session ceb7cb1c-229d-4ff7-a947-38f2dd392f27
 - Resumed by session 096f429c-d10f-44fc-b058-9e8a41143f25 at 2026-11-22 15:47
 - Hand-off #2 saved 2026-11-22 15:50 by session 096f429c-d10f-44fc-b058-9e8a41143f25
+- Resumed by session fb05e6a4-7ee1-4ea6-9948-bc08c70e534a at 2026-11-22 15:50

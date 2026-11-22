@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-All 5 maps inventoried read-only (F6, F8). Nothing edited in Blender or Studio. Blocked on user answers for the upload (F5) and SlipZones (F7).
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-2/
 
 ## Route so far
 1. Located the 5 maps in assets/arenas (F1).
@@ -69,3 +69,5 @@ None
 - Hand-off #1 saved 2026-11-22 14:16 by session 50c0cdd5-630f-41e5-8e11-edfae50f098f
 - Resumed by session 0ec5f264-f5f3-47e3-b88a-c2ee0f8540d3 at 2026-11-22 14:18
 - Hand-off #2 saved 2026-11-22 14:24 by session 0ec5f264-f5f3-47e3-b88a-c2ee0f8540d3
+- Resumed by session a752d15a-2ae8-4972-a897-766202590814 at 2026-11-22 14:28
+- Closed, continued in jobs/2026-11-22-custom-arenas-2/

@@ -10,3 +10,6 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 15:43 — moon-base inventoried (F23) and exported to assets/arenas/export/moon-base.glb
 - 2026-11-22 15:43 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 15:44 — Hand-off #2 saved
+- 2026-11-22 15:44 — Resumed by session ceb7cb1c-229d-4ff7-a947-38f2dd392f27; moon-base.glb present (2,471,832 bytes)
+- 2026-11-22 15:44 — Moon-base uploaded (115321231155234), fixed, tested solo, in ArenaTemplates; saved v55
+- 2026-11-22 15:44 — Hand-off #3 would start (50% checkpoint): closed, continued in jobs/2026-11-22-custom-arenas-9/

@@ -16,7 +16,8 @@ None given.
 Source: same message
 
 ## Status
-Highrise, Farm and Colosseum DONE (3 of 5 in ArenaTemplates). Moon-base exported to .glb, not uploaded yet (F23). Beach not started. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v54 (unchanged since).
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-9/
+(At hand-off #2:) Highrise, Farm and Colosseum DONE (3 of 5 in ArenaTemplates). Moon-base exported to .glb, not uploaded yet (F23). Beach not started. Placeholders still parked in ServerStorage._PlaceholderHold. Place saved v54 (unchanged since).
 
 ## Route so far
 1. Located the 5 maps (F1); the Blender bridge works (F2).
@@ -79,3 +80,5 @@ None
 - Hand-off #1 saved 2026-11-22 15:38 by session 6aec579b-b814-401d-b096-686ede6a182c
 - Resumed by session e5d30e45-b79e-4130-b10d-6944ef54cec1 at 2026-11-22 15:38
 - Hand-off #2 saved 2026-11-22 15:44 by session e5d30e45-b79e-4130-b10d-6944ef54cec1
+- Resumed by session ceb7cb1c-229d-4ff7-a947-38f2dd392f27 at 2026-11-22 15:42
+- Closed, continued in jobs/2026-11-22-custom-arenas-9/

@@ -16,7 +16,7 @@ None given.
 Source: same message
 
 ## Status
-Highrise trimmed, saved, exported and uploaded (upload still processing). Other 4 maps untouched. Nothing edited in Studio yet.
+Closed at hand-off #3, continued in jobs/2026-11-22-custom-arenas-3/
 
 ## Route so far
 1. Located the 5 maps (F1); Blender bridge works (F2).
@@ -71,3 +71,5 @@ None
 - Hand-off #1 saved 2026-11-22 14:31 by session a752d15a-2ae8-4972-a897-766202590814
 - Resumed by session 5cd84e01-aecc-4004-9b57-c1448e5c28f7 at 2026-11-22 14:31
 - Hand-off #2 saved 2026-11-22 14:34 by session 5cd84e01-aecc-4004-9b57-c1448e5c28f7
+- Resumed by session 77bb61bc-88c5-4636-bac7-5c7047c0ae64 at 2026-11-22 14:34
+- Closed, continued in jobs/2026-11-22-custom-arenas-3/

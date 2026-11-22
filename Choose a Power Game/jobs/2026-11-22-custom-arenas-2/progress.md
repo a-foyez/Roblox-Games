@@ -10,3 +10,6 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-22 14:33 — Highrise uploaded: operation 7bb823da-7a1d-4486-b7cb-3eb3166e1f7f, still processing (done:false x2)
 - 2026-11-22 14:33 — Hand-off #2 started (50% checkpoint)
 - 2026-11-22 14:34 — Hand-off #2 saved
+- 2026-11-22 14:34 — Resumed by session 77bb61bc-88c5-4636-bac7-5c7047c0ae64
+- 2026-11-22 14:35 — Upload done: asset 118252970461216. Imported; built ServerStorage.Arena_Highrise (anchored, colours, city non-collide, Spawns, KillZone part). Place saved v46
+- 2026-11-22 14:36 — Hand-off #3 started (50% checkpoint): closing, continued in jobs/2026-11-22-custom-arenas-3/

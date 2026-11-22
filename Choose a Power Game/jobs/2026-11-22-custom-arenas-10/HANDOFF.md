@@ -13,41 +13,42 @@ None stated.
 Source: same message. Carried over: keep Barrier_* as invisible walls, drop SlipZone_* (jobs/2026-11-22-custom-arenas-9 F17, F18).
 
 ## Status
-Ghost-town exported and upload sent (operation pending). Nothing changed in Studio yet. Cargo-ship not started.
+Ghost-town done (in ArenaTemplates, test passed, saved v58). Cargo-ship exported and upload sent (operation pending); nothing for it in Studio yet.
 
 ## Route so far
 1. Job folder made; methods.md copied from part 9 (see findings: F1).
-2. Ghost-town inspected, no trim, exported (F2).
-3. Ghost-town upload sent (F3, LEAD).
+2. Ghost-town inspected, exported, uploaded (F2, F3).
+3. Ghost-town inserted, fixed, solo test passed, saved v58 (F5).
+4. Cargo-ship inspected, exported, upload sent (F6, F7 LEAD).
 
 ## Next action
-Poll GET /assets/v1/operations/73bba429-38d4-45f6-aa76-1273176f9b6b (scope asset:read, studio id in F4) until done:true, take response.assetId, then insert_asset into ServerStorage and run methods "Fix an imported map" for Arena_GhostTown (Deco_* = background; drop SlipZone_*; keep Barrier_* invisible walls; read floor top after insert). Then do cargo-ship from methods "Open a map".
+Poll GET /assets/v1/operations/eaeb8ffc-e45d-4b7e-bf2a-2c18d52e2a05 (scope asset:read, studio id in F4) until done:true, take response.assetId, insert_asset into ServerStorage, then methods "Fix an imported map" for Arena_CargoShip (Deco_* background, SlipZone_* out, Barrier_* invisible walls). It has 23 Floor_ parts: scan all of them for spawns (4 spread spots), KillZone below the lowest non-Deco part. Then "Test a map solo", save, and close the job (Status done).
 
 ## Read first
 methods.md, findings.md
 
 ## Leads to re-check
-F3: the upload operation finished and gave an asset id.
+F7: the cargo-ship upload finished and gave an asset id.
 
 ## Results to reuse
-assets/arenas/export/ghost-town.glb (F2); upload operation 73bba429-38d4-45f6-aa76-1273176f9b6b (F3).
+assets/arenas/export/cargo-ship.glb (F6); upload operation eaeb8ffc-e45d-4b7e-bf2a-2c18d52e2a05 (F7). Ghost-town fix used methods steps 1-4 unchanged (F5).
 
 ## Waiting on me
 None
 
 ## Don't redo
-Ghost-town inspection and export (F2). Do not upload ghost-town again unless F3 failed.
+Ghost-town entirely (F5). Cargo-ship inspection, export and upload (F6) unless F7 failed.
 
 ## Gotchas
 - stay-in-project hook blocks Downloads AND the scratchpad; keep every file in the project. Bash from project root with relative paths.
-- Don't put a `python - <<'PY'` heredoc in a long command: an unclosed heredoc swallows the rest.
-- .blend files hold several scenes; set the right scene before export.
+- No python on this machine; the hook also misreads regex strings like "\n## " in inline node scripts as paths. Use Edit/Write for job files.
+- .blend files hold several scenes (cargo-ship.blend also has a GhostTown scene); set CargoShip before any re-export.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, v56, no changes since
+- Place saved in Studio: yes, v58, no changes since
 - Rojo in sync: not used
-- .blend files: ghost-town.blend open in Blender, unmodified (scene switched only), exported to export/ghost-town.glb; cargo-ship.blend untouched
-- Only in Studio (not in this folder): ArenaTemplates (Farm, Highrise, Colosseum, MoonBase, Beach)
+- .blend files: cargo-ship.blend open in Blender, unmodified (scene switched to CargoShip only), exported to export/cargo-ship.glb; ghost-town.blend unmodified
+- Only in Studio (not in this folder): ArenaTemplates (Farm, Highrise, Colosseum, MoonBase, Beach, GhostTown), ServerStorage._RemovedMapBlocks
 
 ## Queue
 None
@@ -55,3 +56,5 @@ None
 ## Chain so far
 - Started by session f7fc6c1a-5ddd-48e2-ab4e-2fdff2149dbd at 2026-11-22 16:01
 - Hand-off #1 saved 2026-11-22 16:05 by session f7fc6c1a-5ddd-48e2-ab4e-2fdff2149dbd
+- Resumed by session d406cd36-babd-42fe-8812-24f3a9dd1460 at 2026-11-22 16:03
+- Hand-off #2 saved 2026-11-22 16:07 by session d406cd36-babd-42fe-8812-24f3a9dd1460

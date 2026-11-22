@@ -16,40 +16,44 @@ None given.
 Source: same message
 
 ## Status
-Investigation done, nothing edited yet. Plan in findings D1-D3.
+Workflow step 1 (offset) done and saved (F6). Steps 2-4 not started; design settled (D3, D4).
 
 ## Route so far
 1. Read TableManager, MatchInstance, Draft, DraftClient and the ServerStorage tree (see findings: F1-F5).
-2. Chose the design (see findings: D1-D3).
+2. Chose the design (see findings: D1-D3), then simplified the vote to live inside Draft (D4, F7).
+3. Offset fix done in TableManager (F6, D2).
 
 ## Next action
-Workflow step 1: in TableManager, replace `ARENA_SPACING` (line 16) and the PivotTo line (~93) with `template:GetPivot() + Vector3.new(0, 10000, slot * 50000)` (D2). Then build the placeholder maps (D3), the MapVote module + remote + client (D1), and call it in startMatch before Draft.Run.
+Build the placeholder maps (D3: rename Arena1 -> Arena_Classic, clone Arena_Lava and Arena_Sky, each with Spawns/Spawn1..4), then `Draft.MapVote` + the two DraftClient branches + the TableManager call (D4). Then a solo playtest for errors, save, and write the step 4 summary for the user.
 
 ## Read first
-1. jobs/2026-11-22-map-voting/request.md
-2. jobs/2026-11-22-map-voting/findings.md
+1. jobs/2026-11-22-map-voting/findings.md (D3, D4, F6, F7)
+2. jobs/2026-11-22-map-voting/request.md (sections 2-4)
 3. jobs/2026-11-22-map-voting/methods.md
 
 ## Leads to re-check
-- F1-F5: re-read TableManager, Draft and DraftClient with script_read before editing (line numbers).
+- F2: ArenaTemplates still holds only Arena1 (search_game_tree ServerStorage) before renaming it.
 
 ## Results to reuse
-- Studio: ServerScriptService.TableManager/MatchInstance/Draft, StarterPlayerScripts.DraftClient (UI pattern), ServerStorage.ArenaTemplates.Arena1.
+- Studio: ServerScriptService.TableManager (offset done), Draft (add MapVote here), StarterPlayerScripts.DraftClient (add the map branches), ServerStorage.ArenaTemplates.Arena1.
 
 ## Waiting on me
 None
 
 ## Don't redo
-- Exploration of the match flow (F1-F5).
+- Exploration of the match flow (F1-F5, F7).
+- The offset change (F6).
 
 ## Gotchas
 - MCP play is solo only; a 2-player vote test needs the user (Test tab, Clients and Servers).
-- Studio id changes per session (list_roblox_studios).
+- Studio id changes per session (list_roblox_studios); the first MCP call can say "not connected", just retry.
 - Scripts exist only in Studio (no Rojo).
 - The stay-in-project hook blocks any Bash command containing `../..`, even inside the project.
+- No Python on this machine; use Edit or node for file edits.
+- The next hand-off would be #3: close this job and continue in a new folder (handoff skill step 3).
 
 ## Studio/Blender state
-- Place saved in Studio: no changes made in this job (last save v20, arena-instancing job)
+- Place saved in Studio: yes, v43 (TeamCreate) after the offset edit
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): all scripts and ArenaTemplates.
@@ -60,3 +64,5 @@ None
 ## Chain so far
 - Started by session c4fdd47f-b057-4566-876a-03c6b84bb2dd at 2026-11-22 13:20
 - Hand-off #1 saved 2026-11-22 13:32 by session c4fdd47f-b057-4566-876a-03c6b84bb2dd
+- Resumed by session 0f410153-5870-4671-add1-f0f5a30d93e5 at 2026-11-22 13:34
+- Hand-off #2 saved 2026-11-22 13:37 by session 0f410153-5870-4671-add1-f0f5a30d93e5

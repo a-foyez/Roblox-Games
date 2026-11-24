@@ -1,4 +1,4 @@
-# Hand-off: auction bid layout
+﻿# Hand-off: auction bid layout
 
 ## Goal
 the bidding screen looks a bit cluttered. make the picture of the players and their cash amount smaller. add a thin grey  line above the 4 buttons. instead of a number timer, add a thick white line where this thin line is placed that reduces to nothing in the centre
@@ -13,7 +13,7 @@ None
 Source: user messages, 2026-11-24 23:00 and 23:12
 
 ## Status
-Done. All three changes built and seen in a solo playtest (F2); place saved v93.
+Closed. All three changes built and seen in a solo playtest (F2); place saved v93. Bottom Cash tile left as is (user, 2026-11-24).
 
 ## Route so far
 1. Shrank the leader face and cash tiles, added the grey divider and the shrinking white timer bar, removed the seconds text (see findings: F1, D1, D2).
@@ -56,3 +56,4 @@ None
 ## Chain so far
 - Started by session 91d539c5-4d30-4e09-be82-3979f7bfb0d3 at 2026-11-24 23:00
 - Hand-off #1 saved 2026-11-24 23:18 by session 91d539c5-4d30-4e09-be82-3979f7bfb0d3
+- Resumed by session 9cd92972-f554-4dfe-ad98-960ccabb2afa at 2026-11-24 23:18

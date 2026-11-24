@@ -7,3 +7,5 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-24 23:15 — Solo playtest passed (F2)
 - 2026-11-24 23:17 — Hand-off #1 started; place saved v93 (F3)
 - 2026-11-24 23:18 — Hand-off #1 saved
+
+- 2026-11-24 23:18 — Job closed (user: bottom Cash tile stays as is)

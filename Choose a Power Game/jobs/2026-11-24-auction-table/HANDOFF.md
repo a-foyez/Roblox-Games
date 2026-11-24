@@ -39,7 +39,7 @@ take it as a vague guide but do what you think is best
 Source: same message (no explicit don'ts; CLAUDE.md rules apply)
 
 ## Status
-Step 1 of 7 done (Table5 is the Auction Table, saved v83). Steps 2-7 not started.
+Closed at hand-off #3, continued in jobs/2026-11-24-auction-table-2/
 
 ## Route so far
 1. Read the table, draft and client scripts and the registry (F2-F7).
@@ -86,3 +86,5 @@ None
 - Hand-off #1 saved 2026-11-24 22:13 by session 289f171d-ee0e-4fc2-a3e1-272d181b0b89
 - Resumed by session c81d7359-4638-437e-ae9f-85507817d7a6 at 2026-11-24 22:14
 - Hand-off #2 saved 2026-11-24 22:27 by session c81d7359-4638-437e-ae9f-85507817d7a6
+- Resumed by session 1740ec75-1b16-404b-a0c2-41c75ff54add at 2026-11-24 22:28
+- Closed, continued in jobs/2026-11-24-auction-table-2/

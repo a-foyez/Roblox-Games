@@ -8,3 +8,5 @@
 - 2026-11-24 22:20 — Step 1 done: Table5 is the Auction Table; place saved v83. Re-read Draft, DraftClient, AbilityService (F9, F10, D5).
 - 2026-11-24 22:21 — Hand-off #2 started (context checkpoint 50%).
 - 2026-11-24 22:27 — Hand-off #2 saved
+- 2026-11-24 22:33 — Resumed by session 1740ec75-1b16-404b-a0c2-41c75ff54add. Step 2 done: Draft.MapVote(players, names, label?, nextText?), DraftClient shows them; place saved v84.
+- 2026-11-24 22:34 — Hand-off #3 started (context checkpoint 50%); closed, continued in jobs/2026-11-24-auction-table-2/.

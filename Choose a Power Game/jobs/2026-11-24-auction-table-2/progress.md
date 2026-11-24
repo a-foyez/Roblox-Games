@@ -7,3 +7,6 @@
 - 2026-11-24 22:39 — Step 3 done: ReplicatedStorage.AuctionPowers created, self-check passes; saved v85.
 - 2026-11-24 22:40 — Hand-off #2 started (context checkpoint 50%).
 - 2026-11-24 22:42 — Hand-off #2 saved
+- 2026-11-24 22:43 — Resumed (session 16acee62-c516-45c3-a28e-572c56671c7c); no leads to re-check. Starting step 4.
+- 2026-11-24 22:50 — Step 4 done: Remotes.Auction + ServerScriptService.Auction (compiles; canBid asserts); saved v86.
+- 2026-11-24 22:51 — Hand-off #3 started (context checkpoint 50%); closing job, continued in jobs/2026-11-24-auction-table-3/.

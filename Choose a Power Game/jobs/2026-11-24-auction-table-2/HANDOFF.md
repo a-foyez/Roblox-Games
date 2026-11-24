@@ -39,7 +39,7 @@ take it as a vague guide but do what you think is best
 Source: same message (no explicit don'ts; CLAUDE.md rules apply)
 
 ## Status
-Steps 1-3 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText; AuctionPowers module), saved v85. Steps 4-7 not started. Carried over from jobs/2026-11-24-auction-table/ (closed at its hand-off #3).
+Closed at hand-off #3, continued in jobs/2026-11-24-auction-table-3/
 
 ## Route so far
 1. Read the table, draft and client scripts and the registry (F2-F7).
@@ -89,3 +89,5 @@ None
 - Hand-off #1 saved 2026-11-24 22:36 by session 1740ec75-1b16-404b-a0c2-41c75ff54add
 - Resumed by session 3f5a8a2e-4e84-4d72-b0e4-81287660dc83 at 2026-11-24 22:37
 - Hand-off #2 saved 2026-11-24 22:42 by session 3f5a8a2e-4e84-4d72-b0e4-81287660dc83
+- Resumed by session 16acee62-c516-45c3-a28e-572c56671c7c at 2026-11-24 22:43
+- Closed, continued in jobs/2026-11-24-auction-table-3/

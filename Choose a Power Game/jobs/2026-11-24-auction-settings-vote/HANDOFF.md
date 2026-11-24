@@ -18,7 +18,7 @@ None stated (CLAUDE.md rules apply).
 Source: same message
 
 ## Status
-Done. Row layout built, solo-playtested and saved as place v89 (F6). Multi-player vote not tested.
+Closed at hand-off #3, continued in jobs/2026-11-24-auction-host-settings/
 
 ## Route so far
 1. Read Draft, TableManager, DraftClient (F1).
@@ -66,3 +66,5 @@ None
 - Hand-off #1 saved 2026-11-24 22:42 by session 12ced1c1-0bd4-4cb8-af4c-d2193121ac16
 - Resumed by session 2616938f-deb7-4930-b822-685c4b3b0a10 at 2026-11-24 22:43
 - Hand-off #2 saved 2026-11-24 22:47 by session 2616938f-deb7-4930-b822-685c4b3b0a10
+- Resumed by session 5aa342d3-47f0-4b56-b999-41fa4514203c at 2026-11-24 22:51
+- Closed, continued in jobs/2026-11-24-auction-host-settings/

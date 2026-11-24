@@ -39,7 +39,7 @@ take it as a vague guide but do what you think is best
 Source: same message (no explicit don'ts; CLAUDE.md rules apply)
 
 ## Status
-Steps 1-4 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText; AuctionPowers module; Remotes.Auction + ServerScriptService.Auction), saved v86. Steps 5-7 not started. Carried over from jobs/2026-11-24-auction-table-2/ (closed at its hand-off #3).
+Steps 1-6 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText; AuctionPowers module; Remotes.Auction + ServerScriptService.Auction; TableManager auction branch; AuctionClient UI), saved v87. Step 7 (solo playtest) not started; nothing has been run in play mode yet. Carried over from jobs/2026-11-24-auction-table-2/ (closed at its hand-off #3).
 
 ## Route so far
 1. Read the table, draft and client scripts and the registry (F2-F7).
@@ -48,24 +48,26 @@ Steps 1-4 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText; 
 4. Built step 2 (F11); re-read TableManager for step 5 (F12).
 5. Built step 3 (F13); read Draft for the step 4 style (F14).
 6. Built step 4, the server auction (F15).
+7. Built step 5, TableManager auction branch (F16).
+8. Built step 6, AuctionClient UI (F17).
 
 ## Next action
-methods.md step 5: in TableManager startMatch, when t.model:GetAttribute("TableType") == "Auction", run Draft.MapVote three times (map; rounds {"1","3","5"} label "Rounds to win"; powers {"4","6","8"} label "Powers on auction"), set RoundsToWin from the vote, then pcall(Auction.Run, players, tonumber(powers)) instead of Draft.Run (F12, F15, D2).
+methods.md step 7: solo playtest at Table5 following the numbered steps; check votes, lots, Bid/Pass, balances, summary, then combat starts; fix any console errors and re-test.
 
 ## Read first
-findings.md (F9, F12, F15, D2, D4), methods.md. Re-read TableManager right before step 5 (Team Create).
+findings.md (F15, F16, F17, D4), methods.md step 7.
 
 ## Leads to re-check
 None (all facts SETTLED; re-read scripts before editing anyway).
 
 ## Results to reuse
-Table5 converted (F8). Draft.MapVote label/nextText params and DraftClient display (F11). AuctionPowers module (F13). Auction module state format for the client (F15).
+Table5 converted (F8). Draft.MapVote label/nextText params and DraftClient display (F11). AuctionPowers module (F13). Auction module state format for the client (F15). TableManager branch (F16). AuctionClient (F17).
 
 ## Waiting on me
 None.
 
 ## Don't redo
-Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/AbilityService (F3-F6, F9, F10, F12, F14). Steps 1-4.
+Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/AbilityService (F3-F6, F9, F10, F12, F14). Steps 1-6.
 
 ## Gotchas
 - TEMP SOLO TEST min-player changes by another person (F7): keep them; Auction uses the same markers.
@@ -78,10 +80,10 @@ Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/Abilit
 - The PC clock (date) reads earlier than the times logged in this job; keep log times increasing.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, v86 (Team Create) after step 4
+- Place saved in Studio: yes, v87 (Team Create) after step 6; no playtest running
 - Rojo in sync: not used
 - .blend files: not used
-- Only in Studio (not in this folder): all game scripts, the Table5 change, the Draft/DraftClient edits, ReplicatedStorage.AuctionPowers, Remotes.Auction and ServerScriptService.Auction
+- Only in Studio (not in this folder): all game scripts, the Table5 change, the Draft/DraftClient edits, ReplicatedStorage.AuctionPowers, Remotes.Auction, ServerScriptService.Auction, the TableManager auction branch and StarterPlayerScripts.AuctionClient
 
 ## Queue
 None
@@ -89,3 +91,5 @@ None
 ## Chain so far
 - Started by session 16acee62-c516-45c3-a28e-572c56671c7c at 2026-11-24 22:52
 - Hand-off #1 saved 2026-11-24 22:53 by session 16acee62-c516-45c3-a28e-572c56671c7c
+- Resumed by session 6bf7138f-d23b-4220-a632-605ac433d683 at 2026-11-24 22:54
+- Hand-off #2 saved 2026-11-24 23:06 by session 6bf7138f-d23b-4220-a632-605ac433d683

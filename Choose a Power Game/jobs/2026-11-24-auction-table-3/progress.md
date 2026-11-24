@@ -10,3 +10,4 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-24 23:03 — Step 6 done: StarterPlayerScripts.AuctionClient; both scripts compile; saved v87
 - 2026-11-24 23:04 — Hand-off #2 started (context checkpoint 50%)
 - 2026-11-24 23:06 — Hand-off #2 saved
+- 2026-11-24 23:15 — Step 7 solo playtest passed (F18), no fixes needed. All 7 steps done.

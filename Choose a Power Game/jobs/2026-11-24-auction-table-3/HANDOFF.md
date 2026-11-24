@@ -39,20 +39,21 @@ take it as a vague guide but do what you think is best
 Source: same message (no explicit don'ts; CLAUDE.md rules apply)
 
 ## Status
-Steps 1-6 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText; AuctionPowers module; Remotes.Auction + ServerScriptService.Auction; TableManager auction branch; AuctionClient UI), saved v87. Step 7 (solo playtest) not started; nothing has been run in play mode yet. Carried over from jobs/2026-11-24-auction-table-2/ (closed at its hand-off #3).
+All 7 steps done; solo playtest passed (F18), place v87 unchanged. Only a multi-player test (2+ clients) is left untested. Carried over from jobs/2026-11-24-auction-table-2/.
 
 ## Route so far
 1. Read the table, draft and client scripts and the registry (F2-F7).
 2. Chose Table5 and the build plan (D1-D4, methods.md).
 3. Built step 1 (F8); found AbilityService needs real ids only (F9) and how to generalise the vote (F10, D5).
-4. Built step 2 (F11); re-read TableManager for step 5 (F12).
-5. Built step 3 (F13); read Draft for the step 4 style (F14).
+4. Built step 2 (F11); re-read TableManager for step 5.
+5. Built step 3 (F13); read Draft for the step 4 style.
 6. Built step 4, the server auction (F15).
 7. Built step 5, TableManager auction branch (F16).
 8. Built step 6, AuctionClient UI (F17).
+9. Solo playtest passed, no fixes needed (F18).
 
 ## Next action
-methods.md step 7: solo playtest at Table5 following the numbered steps; check votes, lots, Bid/Pass, balances, summary, then combat starts; fix any console errors and re-test.
+None in this job. Optional: a 2-4 player test (Studio Test > Clients) to check bid wars between players.
 
 ## Read first
 findings.md (F15, F16, F17, D4), methods.md step 7.
@@ -67,7 +68,7 @@ Table5 converted (F8). Draft.MapVote label/nextText params and DraftClient displ
 None.
 
 ## Don't redo
-Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/AbilityService (F3-F6, F9, F10, F12, F14). Steps 1-6.
+Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/AbilityService (F3-F6, F9, F10). Steps 1-6.
 
 ## Gotchas
 - TEMP SOLO TEST min-player changes by another person (F7): keep them; Auction uses the same markers.
@@ -93,3 +94,4 @@ None
 - Hand-off #1 saved 2026-11-24 22:53 by session 16acee62-c516-45c3-a28e-572c56671c7c
 - Resumed by session 6bf7138f-d23b-4220-a632-605ac433d683 at 2026-11-24 22:54
 - Hand-off #2 saved 2026-11-24 23:06 by session 6bf7138f-d23b-4220-a632-605ac433d683
+- Resumed by session c0733b97-5091-4616-b3f3-e226a39feb5f at 2026-11-24 23:07

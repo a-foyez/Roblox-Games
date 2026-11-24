@@ -39,31 +39,32 @@ take it as a vague guide but do what you think is best
 Source: same message (no explicit don'ts; CLAUDE.md rules apply)
 
 ## Status
-Steps 1-2 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText), saved v84. Steps 3-7 not started. Carried over from jobs/2026-11-24-auction-table/ (closed at its hand-off #3).
+Steps 1-3 of 7 done (Table5 is the Auction Table; MapVote takes label/nextText; AuctionPowers module), saved v85. Steps 4-7 not started. Carried over from jobs/2026-11-24-auction-table/ (closed at its hand-off #3).
 
 ## Route so far
 1. Read the table, draft and client scripts and the registry (F2-F7).
 2. Chose Table5 and the build plan (D1-D4, methods.md).
 3. Built step 1 (F8); found AbilityService needs real ids only (F9) and how to generalise the vote (F10, D5).
 4. Built step 2 (F11); re-read TableManager for step 5 (F12).
+5. Built step 3 (F13); read Draft for the step 4 style (F14).
 
 ## Next action
-methods.md step 3: create ReplicatedStorage.AuctionPowers (ModuleScript, 20 placeholders {Id, Name, Description}, 4 using the real Registry ids from F6) with a self-check of 20 unique ids.
+methods.md step 4: create Remotes.Auction (RemoteEvent) and ServerScriptService.Auction (ModuleScript, Auction.Run(players, total) -> loadouts?) following D4 rules and the Draft style in F14, with a pure canBid(balance, bid, passed, isLeader) check plus asserts.
 
 ## Read first
-findings.md (F6, F9, F11, F12, D2-D5), methods.md. Re-read TableManager before step 5 (Team Create).
+findings.md (F6, F9, F12-F14, D3, D4), methods.md. Re-read TableManager before step 5 (Team Create).
 
 ## Leads to re-check
 None (all facts SETTLED; re-read scripts before editing anyway).
 
 ## Results to reuse
-Table5 converted (F8). Draft.MapVote label/nextText params and DraftClient display (F11).
+Table5 converted (F8). Draft.MapVote label/nextText params and DraftClient display (F11). AuctionPowers module (F13).
 
 ## Waiting on me
 None.
 
 ## Don't redo
-Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/AbilityService (F3-F6, F9, F10, F12). Steps 1-2.
+Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/AbilityService (F3-F6, F9, F10, F12, F14). Steps 1-3.
 
 ## Gotchas
 - TEMP SOLO TEST min-player changes by another person (F7): keep them.
@@ -75,10 +76,10 @@ Exploration of TableManager/Draft/DraftClient/TableClient/AbilityRegistry/Abilit
 - The PC clock (date) reads earlier than the times logged in this job; keep log times increasing.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, v84 (Team Create) after step 2
+- Place saved in Studio: yes, v85 (Team Create) after step 3
 - Rojo in sync: not used
 - .blend files: not used
-- Only in Studio (not in this folder): all game scripts, the Table5 change and the Draft/DraftClient edits
+- Only in Studio (not in this folder): all game scripts, the Table5 change, the Draft/DraftClient edits and ReplicatedStorage.AuctionPowers
 
 ## Queue
 None
@@ -86,3 +87,5 @@ None
 ## Chain so far
 - Started by session 1740ec75-1b16-404b-a0c2-41c75ff54add at 2026-11-24 22:34
 - Hand-off #1 saved 2026-11-24 22:36 by session 1740ec75-1b16-404b-a0c2-41c75ff54add
+- Resumed by session 3f5a8a2e-4e84-4d72-b0e4-81287660dc83 at 2026-11-24 22:37
+- Hand-off #2 saved 2026-11-24 22:42 by session 3f5a8a2e-4e84-4d72-b0e4-81287660dc83

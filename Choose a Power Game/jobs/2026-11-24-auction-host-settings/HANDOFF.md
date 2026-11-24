@@ -19,14 +19,14 @@ None stated (CLAUDE.md rules apply).
 Source: same message
 
 ## Status
-Done. Settings vote screen (v89) and auction host panel with 3/5/10 min round time (v90) both solo-playtested and saved. Multi-player not tested.
+Closed 2026-11-24 22:56. Settings vote screen (v89) and auction host panel with 3/5/10 min round time (v90) both solo-playtested and saved. Multi-player test skipped by the user.
 
 ## Route so far
 1. Settings vote screen built, rows layout, v89: see jobs/2026-11-24-auction-settings-vote/findings.md F1-F6.
 2. Auction host panel: rounds button hidden, round time cycles 3/5/10 min, server validates per table type, v90 (F1).
 
 ## Next action
-Waiting on the user for the optional 2+ player test: they start Test > Clients and Servers > 2 Players > Start in Studio, then the next chat checks the MCP can reach those windows and plays one auction match with a 3 min round.
+None. Job closed; the user skipped the optional 2-player test.
 
 ## Read first
 findings.md, methods.md
@@ -38,7 +38,7 @@ None
 Draft.SettingsVote(players, groups) returns the winner of each group (old job F2). Host panel test steps in methods.md.
 
 ## Waiting on me
-User to start the 2-player local server in Studio (optional test).
+None
 
 ## Don't redo
 Settings vote screen (old job steps 1-6) and host panel change (F1).
@@ -62,3 +62,4 @@ None
 ## Chain so far
 - Started by session 5aa342d3-47f0-4b56-b999-41fa4514203c at 2026-11-24 22:53 (continues jobs/2026-11-24-auction-settings-vote/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-24 22:54 by session 5aa342d3-47f0-4b56-b999-41fa4514203c
+- Resumed by session 0a7f6392-e453-437a-aac3-527e3e25648a at 2026-11-24 22:54

@@ -1,0 +1,201 @@
+<title>Superpower Testing Arena</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Chakra+Petch:wght@600;700&display=swap">
+<style>
+/* Layout: terminal window, left control column (powers, then nerfs), right arena readout + log. Single dark look by choice. */
+:root {
+  --bg: #0b1020; --panel: #121a30; --line: #24304f; --fg: #d7def0; --dim: #7b88a8;
+  --accent: #5ad1ff; --nerf: #ffb347; --bad: #ff6b81; --good: #7ee0a1;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --display: "Chakra Petch", "JetBrains Mono", system-ui, sans-serif;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--mono); font-size: 13px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.term { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); overflow: hidden; }
+.bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--dim); }
+.bar h1 { font-family: var(--display); font-size: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg); margin: 0; }
+.bar .status { margin-left: auto; color: var(--good); }
+.grid { display: grid; grid-template-columns: 260px 1fr; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } .ctrl { border-right: 0; border-bottom: 1px solid var(--line); } }
+.ctrl { border-right: 1px solid var(--line); padding: 14px; display: flex; flex-direction: column; gap: 18px; }
+.label { color: var(--dim); text-transform: uppercase; letter-spacing: .12em; font-size: 11px; margin: 0 0 8px; }
+.powers { display: flex; flex-direction: column; gap: 6px; }
+.power { font: 600 14px var(--display); letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 44px; border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--dim); cursor: pointer; transition: all .15s; }
+.power:hover { border-color: var(--accent); color: var(--fg); }
+.power[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent); }
+.power:focus-visible, .nerf input:focus-visible + span, .run:focus-visible { outline: 2px solid var(--nerf); outline-offset: 2px; }
+.nerfs { display: flex; flex-direction: column; gap: 6px; }
+.nerf { display: flex; gap: 10px; align-items: flex-start; padding: 8px; border: 1px dashed var(--line); border-radius: 4px; cursor: pointer; }
+.nerf:has(input:checked) { border-style: solid; border-color: var(--nerf); background: color-mix(in srgb, var(--nerf) 10%, transparent); }
+.nerf input { accent-color: var(--nerf); margin-top: 2px; }
+.nerf b { color: var(--nerf); display: block; font-weight: 600; }
+.nerf small { color: var(--dim); }
+.arena { padding: 14px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+.head h2 { font: 700 28px var(--display); letter-spacing: .04em; text-transform: uppercase; margin: 0; color: var(--accent); }
+.head .tag { color: var(--nerf); }
+.desc { color: var(--dim); margin: 0; max-width: 65ch; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+.stat { border: 1px solid var(--line); border-radius: 4px; padding: 10px; }
+.stat .k { color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+.stat .v { font-size: 22px; font-variant-numeric: tabular-nums; margin-top: 4px; }
+.stat .meter { height: 4px; background: var(--line); margin-top: 8px; border-radius: 2px; overflow: hidden; }
+.stat .meter i { display: block; height: 100%; background: var(--accent); transition: width .3s; }
+.up { color: var(--good); } .down { color: var(--bad); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.run { font: 600 13px var(--mono); padding: 8px 14px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; cursor: pointer; }
+.run:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); }
+.log { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 10px; height: 240px; overflow-y: auto; margin: 0; white-space: pre-wrap; line-height: 1.6; }
+.log .t { color: var(--dim); } .log .n { color: var(--nerf); } .log .p { color: var(--accent); } .log .x { color: var(--bad); }
+.foot { color: var(--dim); font-size: 11px; padding: 10px 14px; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <div class="term">
+    <div class="bar"><h1>Testing Arena</h1><span>// choose a power, get nerfed</span><span class="status" id="status">● READY</span></div>
+    <div class="grid">
+      <div class="ctrl">
+        <div><p class="label">Superpowers</p><div class="powers" id="powers" role="group" aria-label="Superpowers"></div></div>
+        <div><p class="label" id="nerfLabel">Nerfs</p><div class="nerfs" id="nerfs"></div></div>
+      </div>
+      <div class="arena">
+        <div class="head"><h2 id="pname"></h2><span class="tag" id="ptag"></span></div>
+        <p class="desc" id="pdesc"></p>
+        <div class="stats" id="stats"></div>
+        <div class="row">
+          <button class="run" id="run" type="button">&gt; RUN TEST</button>
+          <button class="run" id="clear" type="button">CLEAR LOG</button>
+        </div>
+        <pre class="log" id="log" aria-live="polite"></pre>
+      </div>
+    </div>
+    <div class="foot">Base fighter: 100 HP · WalkSpeed 16 · JumpPower 50. The first four powers mirror the game's placeholder AbilityRegistry; numbers marked ~ are estimates, not read from the live place.</div>
+  </div>
+</div>
+
+<script>
+const BASE = { hp: 100, ws: 16, jp: 50 };
+// d = stat deltas; line = what the test log says about it
+const POWERS = [
+  { id: "juggernaut", name: "Juggernaut", kind: "Passive", desc: "Bigger, tougher body. +50 max health and 1.15x scale.", d: { hp: 50 },
+    test: "Takes a sword hit and shrugs it off.",
+    nerfs: [
+      { id: "glass", name: "Glass Cannon", desc: "Max health -70", d: { hp: -70 }, line: "Health bar is suspiciously short." },
+      { id: "sluggish", name: "Sluggish", desc: "WalkSpeed -6", d: { ws: -6 }, line: "Lumbers across the arena." },
+      { id: "heavy", name: "Heavy Gravity", desc: "JumpPower -15", d: { jp: -15 }, line: "Jump barely leaves the floor." } ] },
+  { id: "dash", name: "Phase Dash", kind: "Active · Q", desc: "Short directional blink. ~20 studs.", d: {}, dist: 20,
+    test: "Blinks forward past the opponent.",
+    nerfs: [
+      { id: "short", name: "Short Circuit", desc: "Dash distance halved", dist: 0.5, line: "Blink sputters out early." },
+      { id: "blind", name: "Blind Dash", desc: "Screen darkens briefly after dashing", line: "Vision cuts to black for a moment." },
+      { id: "fragile", name: "Fragile", desc: "Take 10 damage per dash", self: 10, line: "Dash costs 10 HP." } ] },
+  { id: "shock", name: "Shockwave", kind: "Active · E", desc: "Area knockback around the user.", d: {},
+    test: "Shockwave sends nearby fighters flying.",
+    nerfs: [
+      { id: "selfkb", name: "Self Knockback", desc: "User is knocked back too", line: "User also goes flying." },
+      { id: "exhaust", name: "Exhaustion", desc: "Slowed for 2 s after use", line: "Gasping for air, slowed 2 s." },
+      { id: "tele", name: "Telegraphed", desc: "3 s visible warning before it fires", line: "Glows for 3 s. Opponent walks away." } ] },
+  { id: "leap", name: "Leap", kind: "Passive", desc: "Much higher jump. ~+25 JumpPower.", d: { jp: 25 },
+    test: "Clears the arena wall in one jump.",
+    nerfs: [
+      { id: "brittle", name: "Brittle", desc: "Max health -20", d: { hp: -20 }, line: "Landing hurts more than it should." },
+      { id: "clumsy", name: "Clumsy", desc: "WalkSpeed -4", d: { ws: -4 }, line: "Trips over own feet." },
+      { id: "tired", name: "Tired", desc: "Jump only slightly higher", d: { jp: -17 }, line: "Leap is more of a hop." } ] },
+  { id: "flight", name: "Flight", kind: "Concept", desc: "Free movement through the air.", d: {},
+    test: "Takes off and circles the arena.",
+    nerfs: [
+      { id: "alt", name: "Low Ceiling", desc: "Max altitude 10 feet", line: "Bonks head at 10 ft." },
+      { id: "runup", name: "Running Start", desc: "Must sprint before takeoff", line: "Sprints three laps before lifting off." } ] },
+  { id: "invis", name: "Invisibility", kind: "Concept", desc: "Body turns fully transparent.", d: {},
+    test: "Fades from view.",
+    nerfs: [
+      { id: "clothes", name: "Visible Clothes", desc: "Clothes stay visible", line: "An empty shirt is sneaking around." },
+      { id: "hiccup", name: "Hiccups", desc: "Hiccups while invisible", line: "*hic* Position revealed." } ] },
+  { id: "tk", name: "Telekinesis", kind: "Concept", desc: "Move objects with the mind.", d: {},
+    test: "Reaches out with the mind...",
+    nerfs: [
+      { id: "cheese", name: "Cheese Only", desc: "Only works on cheese", line: "Sword refuses to move. A cheddar wheel floats." },
+      { id: "migraine", name: "Migraines", desc: "Each use causes a migraine", line: "Clutches head, 1 s stun." } ] },
+];
+
+let sel = POWERS[0];
+const on = new Set();
+const $ = id => document.getElementById(id);
+const log = $("log");
+
+function stats() {
+  const s = { ...BASE };
+  const add = d => { for (const k in d || {}) s[k] += d[k]; };
+  add(sel.d);
+  sel.nerfs.forEach(n => on.has(n.id) && add(n.d));
+  return s;
+}
+
+function write(cls, text) {
+  const t = new Date().toLocaleTimeString([], { hour12: false });
+  log.insertAdjacentHTML("beforeend", `<span class="t">[${t}]</span> <span class="${cls}">${text}</span>\n`);
+  log.scrollTop = log.scrollHeight;
+}
+
+function render() {
+  $("powers").innerHTML = POWERS.map(p =>
+    `<button class="power" type="button" id="pw-${p.id}" aria-pressed="${p === sel}" data-id="${p.id}">${p.name}</button>`).join("");
+  $("nerfLabel").textContent = `Nerfs for ${sel.name}`;
+  $("nerfs").innerHTML = sel.nerfs.map(n =>
+    `<label class="nerf"><input type="checkbox" id="nf-${n.id}" data-id="${n.id}" ${on.has(n.id) ? "checked" : ""}><span><b>${n.name}</b><small>${n.desc}</small></span></label>`).join("");
+  $("pname").textContent = sel.name;
+  $("ptag").textContent = `[${sel.kind}] · ${on.size} nerf${on.size === 1 ? "" : "s"} active`;
+  $("pdesc").textContent = sel.desc;
+  $("status").textContent = on.size ? "● NERFED" : "● READY";
+  $("status").style.color = on.size ? "var(--nerf)" : "var(--good)";
+  const s = stats();
+  const cell = (k, label, v, max) => {
+    const diff = v - BASE[k];
+    const cls = diff > 0 ? "up" : diff < 0 ? "down" : "";
+    return `<div class="stat"><div class="k">${label}</div><div class="v ${cls}">${v}${diff ? ` <small>(${diff > 0 ? "+" : ""}${diff})</small>` : ""}</div><div class="meter"><i style="width:${Math.max(0, Math.min(100, v / max * 100))}%"></i></div></div>`;
+  };
+  let html = cell("hp", "Max Health", s.hp, 150) + cell("ws", "WalkSpeed", s.ws, 24) + cell("jp", "JumpPower", s.jp, 75);
+  if (sel.dist) {
+    const d = sel.nerfs.reduce((x, n) => on.has(n.id) && n.dist ? x * n.dist : x, sel.dist);
+    html += `<div class="stat"><div class="k">Dash distance</div><div class="v ${d < sel.dist ? "down" : ""}">~${d} studs</div><div class="meter"><i style="width:${d / sel.dist * 100}%"></i></div></div>`;
+  }
+  $("stats").innerHTML = html;
+}
+
+function runTest() {
+  const s = stats();
+  write("p", `> test ${sel.id} --nerfs=${[...on].join(",") || "none"}`);
+  write("", `Spawned fighter: ${s.hp} HP, WS ${s.ws}, JP ${s.jp}`);
+  write("p", sel.test);
+  sel.nerfs.forEach(n => on.has(n.id) && write("n", `NERF ${n.name}: ${n.line}`));
+  if (s.hp <= 0) write("x", "Fighter has no health. Instantly KO'd.");
+  write(on.size ? "n" : "p", on.size ? `Result: power works, ${on.size} drawback${on.size === 1 ? "" : "s"} triggered.` : "Result: clean run, no nerfs.");
+}
+
+$("powers").addEventListener("click", e => {
+  const b = e.target.closest(".power");
+  if (!b || b.dataset.id === sel.id) return;
+  sel = POWERS.find(p => p.id === b.dataset.id);
+  on.clear();
+  render();
+  $("pw-" + sel.id).focus();
+  write("t", `selected ${sel.name}`);
+});
+$("nerfs").addEventListener("change", e => {
+  const id = e.target.dataset.id, n = sel.nerfs.find(x => x.id === id);
+  e.target.checked ? on.add(id) : on.delete(id);
+  write("n", `${e.target.checked ? "+" : "-"} nerf ${n.name}`);
+  render();
+  $("nf-" + id).focus();
+});
+$("run").addEventListener("click", runTest);
+$("clear").addEventListener("click", () => { log.textContent = ""; });
+
+// open in a working state: one nerf on and one test already in the log
+on.add("glass");
+render();
+runTest();
+</script>

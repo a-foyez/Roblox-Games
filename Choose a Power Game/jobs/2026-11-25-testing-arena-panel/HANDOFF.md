@@ -5,43 +5,50 @@
 Source: user message, 2026-11-25 22:50
 
 ## Done when
-None given. Proposed (confirm with the user): an in-game ScreenGui in the "Choose a Power, GET NERFED!" place that lists the powers from AbilityRegistry in a column, highlights the selected one, shows that power's nerfs as toggles, and applies the chosen power + nerfs to the player's own character in a playtest, with a stat readout and log.
-Source: user message, 2026-11-25 22:50 (proposal by Claude, not the user's words)
+"Yes, that's it" (answer to: "a ScreenGui listing AbilityRegistry powers in a column, selected one highlighted, its 3 nerfs as toggles, applied to your character in a playtest, with stat readout and log")
+Source: user answer, 2026-11-25 22:55
 
 ## Don'ts
 None given.
 Source: user message, 2026-11-25 22:50
 
 ## Status
-Not started in Studio. Web prototype is done (F1). Job created and handed off at the 50% checkpoint.
+Design inputs settled. Nothing built in Studio yet.
 
 ## Route so far
-1. Built and published the web prototype (see findings: F1).
-2. Created this job folder; no Studio work yet.
+1. Built and published the web prototype (F1).
+2. Re-checked the registry and AbilityService in Studio (F2), then the match state signals (F3).
+3. The user chose: all players can use it, lobby only, and it applies to the real character (D2).
 
 ## Next action
-Ask the user the two open questions in Waiting on me, then inspect ReplicatedStorage.AbilityRegistry and ServerScriptService.AbilityService in Studio (re-check F2) before designing the panel.
+Decide F4 (actives in the lobby). Then build:
+1. A RemoteEvent ReplicatedStorage.Remotes.TestLoadout.
+2. A server Script ServerScriptService.TestArena: validate the power id is in Registry.Powers and each nerf is in that power's NerfPool (max 3). Reject if Fighting ~= nil, Loadout ~= nil, or the humanoid is seated (SeatPart). Rate limit it. LoadCharacter, then AbilityService.Equip(p, char, {powers={id}, nerfs=...}).
+3. A LocalScript StarterPlayerScripts.TestArenaClient: a ScreenGui ported from docs/testing-arena.html, with the stat readout read from the live Humanoid and a log.
+Then playtest it.
 
 ## Read first
 1. jobs/2026-11-25-testing-arena-panel/findings.md
-2. docs/testing-arena.html (the look and behaviour to port)
+2. docs/testing-arena.html (the look to port)
 
 ## Leads to re-check
-- F2: AbilityRegistry / AbilityService structure and API.
+- F4: Do R/E still need Fighting == true? Check AbilityService `standing()`.
 
 ## Results to reuse
 - docs/testing-arena.html, published at https://claude.ai/artifact/KR2omjxN5F6kYZpkdg8WTu (private).
+- The API facts in F2 and F3 (no need to re-read the scripts unless they changed).
 
 ## Waiting on me
-- Who may use the panel: Studio-only dev tool (gated to RunService:IsStudio() / place owner) or open to all players (e.g. a practice area)?
-- Should toggling nerfs apply them to your real character (server-side via AbilityService), or only show the readout?
+- F4: in the lobby, should R/E actives work (a lobby-only TestMode flag in AbilityService), or should the panel mark them "match only"? Ask the user; recommend the TestMode flag.
 
 ## Don't redo
-- The web prototype (F1).
+- The web prototype (F1). The answers on access and effect (D2).
 
 ## Gotchas
-- The panel must not let clients equip arbitrary powers in real matches: validate on the server and gate the remote (CLAUDE.md: server-authoritative).
-- Studio id changes per session: get it with list_roblox_studios; target "Choose a Power, GET NERFED!".
+- Server-authoritative: never take stats from the client, only ids. Check the ids against the registry.
+- Equip has no undo. Always LoadCharacter before Equip, or the stats stack.
+- TEMP SOLO TEST lines are in MatchInstance/TableManager. Leave them alone (not this job).
+- The Studio id changes per session: get it with list_roblox_studios.
 
 ## Studio/Blender state
 - Place saved in Studio: no changes made this job
@@ -55,3 +62,5 @@ None
 ## Chain so far
 - Started by session 49aca0b6-3020-4a6b-a30a-56697fd4a401 at 2026-11-25 22:51
 - Hand-off #1 saved 2026-11-25 22:53 by session 49aca0b6-3020-4a6b-a30a-56697fd4a401
+- Resumed by session fee82101-98c2-41c6-9a72-d64423fabd6f at 2026-11-25 22:52
+- Hand-off #2 saved 2026-11-25 22:56 by session fee82101-98c2-41c6-9a72-d64423fabd6f

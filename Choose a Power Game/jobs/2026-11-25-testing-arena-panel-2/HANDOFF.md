@@ -13,24 +13,25 @@ None given.
 Source: user message, 2026-11-25 22:50 (carried over)
 
 ## Status
-All design inputs settled (D2, D3, D4). Nothing built in Studio yet.
+Step 1 of 4 built and saved (F6). Steps 2-4 and the playtest are left.
 
 ## Route so far
 1. Web prototype built and published (F1).
 2. Registry, AbilityService and match signals read (F2, F3).
 3. User chose: all players, lobby only, real character (D2); TestMode flag for lobby actives (D3).
-4. Confirmed only server `standing()` gates R/E (F4, F5); server rules designed (D4).
+4. Confirmed only server `standing()` gates R/E (F4, F5); server rules designed (D4), refined for deferred signals (D5).
+5. Built standing() TestMode check, place saved v99 (F6).
 
 ## Next action
 Build, in this order:
-1. AbilityService line 60: `standing()` accepts `Fighting == nil and TestMode == true` too (D3).
-2. RemoteEvent ReplicatedStorage.Remotes.TestLoadout.
-3. Script ServerScriptService.TestArena (--!strict) following D4: check power id in Registry.Powers, each nerf in its NerfPool (max 3, no repeats), LoadCharacter, then AbilityService.Equip(p, char, {powers={id}, nerfs=...}), then TestMode = true.
+1. Done (F6).
+2. RemoteEvent ReplicatedStorage.Remotes.TestLoadout (create with execute_luau).
+3. Script ServerScriptService.TestArena (--!strict) following D4 + D5: check power id in Registry.Powers, each nerf in its NerfPool (max 3, no repeats), LoadCharacter, set testChar[player], AbilityService.Equip(p, char, {powers={id}, nerfs=...}), then TestMode = true. powerId nil = reset.
 4. LocalScript StarterPlayerScripts.TestArenaClient: ScreenGui ported from docs/testing-arena.html (colours in its :root vars), toggle button, shown only when Fighting == nil; stats read from the live Humanoid; log lines.
 Then playtest (methods.md) and save the place.
 
 ## Read first
-1. jobs/2026-11-25-testing-arena-panel-2/findings.md
+1. jobs/2026-11-25-testing-arena-panel-2/findings.md (D4, D5, F2, F6 above all)
 2. docs/testing-arena.html lines 1-60 (the CSS look to port)
 
 ## Leads to re-check
@@ -38,27 +39,28 @@ None
 
 ## Results to reuse
 - docs/testing-arena.html, published at https://claude.ai/artifact/KR2omjxN5F6kYZpkdg8WTu (private).
-- API facts in F2, F3, F5 (no need to re-read the scripts unless they changed).
+- API facts in F2, F3, F5, F6 (AbilityRegistry and AbilityService were re-read 2026-11-25 23:09; no need to read them again).
 
 ## Waiting on me
 None
 
 ## Don't redo
-- The web prototype (F1). The answers D2 and D3. Reading DraftClient / MatchInstance (F5).
+- The web prototype (F1). The answers D2 and D3. Reading DraftClient / MatchInstance (F5). The standing() edit (F6).
 
 ## Gotchas
 - Server-authoritative: take only ids from the client; check them against the registry.
 - Equip has no undo. Always LoadCharacter before Equip, or the stats stack.
 - Equip sets the Loadout attribute, so "Loadout ~= nil" alone would block a second test (D4).
+- Never Unequip in a CharacterAdded handler (D5).
 - TEMP SOLO TEST lines are in MatchInstance/TableManager. Leave them alone (not this job).
-- The Studio id changes per session: get it with list_roblox_studios.
+- The Studio id changes per session: get it with list_roblox_studios. The MCP can drop for a moment; call list_roblox_studios again and retry.
 - The stay-in-project hook blocks Bash lines ending in `\` and `../` paths; run commands from the project root.
 
 ## Studio/Blender state
-- Place saved in Studio: no changes made yet in this job
+- Place saved in Studio: yes, v99 (2026-11-25 23:09), includes the standing() edit
 - Rojo in sync: not used
 - .blend files: None
-- Only in Studio (not in this folder): None from this job
+- Only in Studio (not in this folder): the AbilityService standing() edit (F6)
 
 ## Queue
 None
@@ -66,3 +68,5 @@ None
 ## Chain so far
 - Started by session deb900ef-219c-45d1-a366-cf30672627ad at 2026-11-25 22:58 (continues jobs/2026-11-25-testing-arena-panel/, closed at hand-off #3)
 - Hand-off #1 saved 2026-11-25 22:59 by session deb900ef-219c-45d1-a366-cf30672627ad
+- Resumed by session 28f18ed4-0cdf-4268-a205-07a0156c61ad at 2026-11-25 23:08
+- Hand-off #2 saved 2026-11-25 23:11 by session 28f18ed4-0cdf-4268-a205-07a0156c61ad

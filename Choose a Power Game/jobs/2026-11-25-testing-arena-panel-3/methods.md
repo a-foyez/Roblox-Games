@@ -6,3 +6,7 @@
 
 ## Server check without clicking
 1. During a playtest, execute_luau on Client: `game.ReplicatedStorage.Remotes.TestLoadout:FireServer("Juggernaut", {"Sluggish"})`, wait 2 s, read Humanoid MaxHealth/WalkSpeed/JumpPower and the TestMode/Loadout attributes. Wait over 1 s between fires (rate limit). `FireServer(nil)` resets.
+
+## Clicking the panel
+1. In a playtest, execute_luau on Client: list TextButtons under PlayerGui.TestArena with `AbsolutePosition + AbsoluteSize/2` (buttons are unnamed, so instance_path won't work).
+2. user_mouse_input moveTo that x/y (no GuiInset offset), mouseButtonClick left. Read state back with execute_luau or screen_capture.

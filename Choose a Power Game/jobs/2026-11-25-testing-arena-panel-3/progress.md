@@ -10,3 +10,5 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-25 23:17 — Click-through playtest passed; Phase Dash R fired in lobby (F8)
 - 2026-11-25 23:18 — Hand-off #2 started (50% checkpoint)
 - 2026-11-25 23:19 — Hand-off #2 saved
+- 2026-11-25 23:21 — RESET click and bench sit playtested, both pass (F9). Asked user to try it.
+- 2026-11-25 23:22 — User confirmed Done when ("Yes, that's it"). Job closed.

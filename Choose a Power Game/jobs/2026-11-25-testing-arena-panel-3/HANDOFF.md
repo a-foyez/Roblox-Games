@@ -13,7 +13,7 @@ None given.
 Source: user message, 2026-11-25 22:50 (carried over)
 
 ## Status
-Built and saved (v101, F7). Real-click playtest passed and the R dash fires in the lobby (F8). Left: bench-sit check and a RESET click, then ask the user to try it.
+Done. User answered "Yes, that's it" to Done when, 2026-11-25 23:22. Place saved v101 (F7); all playtests passed (F8, F9).
 
 ## Route so far
 1. Web prototype built and published (F1).
@@ -72,3 +72,4 @@ None
 - Hand-off #1 saved 2026-11-25 23:15 by session f0004376-ac6e-4bb4-8c73-967f2efac322
 - Resumed by session 6f3eca61-0949-4d43-b2e6-e8017e02d7ec at 2026-11-25 23:16
 - Hand-off #2 saved 2026-11-25 23:19 by session 6f3eca61-0949-4d43-b2e6-e8017e02d7ec
+- Resumed by session 49d7e8d2-4948-4aaf-adc0-627ceabe6b86 at 2026-11-25 23:19

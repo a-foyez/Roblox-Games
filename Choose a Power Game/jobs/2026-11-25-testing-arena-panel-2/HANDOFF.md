@@ -13,7 +13,7 @@ None given.
 Source: user message, 2026-11-25 22:50 (carried over)
 
 ## Status
-Step 1 of 4 built and saved (F6). Steps 2-4 and the playtest are left.
+Closed at hand-off #3, continued in jobs/2026-11-25-testing-arena-panel-3/
 
 ## Route so far
 1. Web prototype built and published (F1).
@@ -70,3 +70,5 @@ None
 - Hand-off #1 saved 2026-11-25 22:59 by session deb900ef-219c-45d1-a366-cf30672627ad
 - Resumed by session 28f18ed4-0cdf-4268-a205-07a0156c61ad at 2026-11-25 23:08
 - Hand-off #2 saved 2026-11-25 23:11 by session 28f18ed4-0cdf-4268-a205-07a0156c61ad
+- Resumed by session f0004376-ac6e-4bb4-8c73-967f2efac322 at 2026-11-25 23:11
+- Closed, continued in jobs/2026-11-25-testing-arena-panel-3/

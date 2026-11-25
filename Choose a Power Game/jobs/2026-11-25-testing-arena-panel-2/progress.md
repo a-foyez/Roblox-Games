@@ -10,3 +10,7 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-25 23:09 — Built step 1: AbilityService standing() accepts TestMode (lines 60-62), read back OK, place saved (v99)
 - 2026-11-25 23:10 — Hand-off #2 started
 - 2026-11-25 23:11 — Hand-off #2 saved
+- 2026-11-25 23:11 — Resumed by session f0004376-ac6e-4bb4-8c73-967f2efac322
+- 2026-11-25 23:12 — Built steps 2-4: Remotes.TestLoadout, ServerScriptService.TestArena, StarterPlayerScripts.TestArenaClient
+- 2026-11-25 23:13 — Playtest: server equip/reset/dup-reject OK; client parse error fixed and re-checked; panel screenshot OK; place saved v101
+- 2026-11-25 23:14 — Hand-off #3 started; closing this folder, continued in jobs/2026-11-25-testing-arena-panel-3/

@@ -13,7 +13,7 @@ None given.
 Source: user message, 2026-11-25 22:50
 
 ## Status
-Design inputs settled. Nothing built in Studio yet.
+Closed at hand-off #3, continued in jobs/2026-11-25-testing-arena-panel-2/
 
 ## Route so far
 1. Built and published the web prototype (F1).
@@ -64,3 +64,5 @@ None
 - Hand-off #1 saved 2026-11-25 22:53 by session 49aca0b6-3020-4a6b-a30a-56697fd4a401
 - Resumed by session fee82101-98c2-41c6-9a72-d64423fabd6f at 2026-11-25 22:52
 - Hand-off #2 saved 2026-11-25 22:56 by session fee82101-98c2-41c6-9a72-d64423fabd6f
+- Resumed by session deb900ef-219c-45d1-a366-cf30672627ad at 2026-11-25 22:56
+- Closed, continued in jobs/2026-11-25-testing-arena-panel-2/

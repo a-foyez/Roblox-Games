@@ -21,7 +21,7 @@ Done (v109): D1-D4 finished and playtested. Only open item: user to try dash, do
 2. D2: TestArena takes a list of powers, nerfs checked per owning power, own Loadout label (F8, F9); playtest OK, v108.
 
 ## Next action
-None for Claude. User: hand-test dash, double jump, wall reset in the test arena; say if the scrollable nerf area should go back to fixed.
+None for Claude. User: hand-test dash, double jump, wall reset in the test arena.
 
 ## Read first
 1. jobs/2026-11-26-test-arena-terminal/findings.md (F5, F8, D4)

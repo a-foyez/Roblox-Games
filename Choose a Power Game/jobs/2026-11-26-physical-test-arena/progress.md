@@ -8,3 +8,6 @@
 - 2026-11-26 19:00 — D1 built: Workspace.TestArena geometry + 6 dummies; screenshot checked; place saved v103
 - 2026-11-26 19:00 — Hand-off #2 started (50% checkpoint)
 - 2026-11-26 19:01 — Hand-off #2 saved
+- 2026-11-26 19:02 — Resumed by session edfabd78-c8ca-437f-9962-44f6da9b7ad0
+- 2026-11-26 19:08 — Created Remotes.TestTeleport (RemoteEvent); place saved
+- 2026-11-26 19:09 — Hand-off #3 started (50% checkpoint); job closed, continued in jobs/2026-11-26-physical-test-arena-2/

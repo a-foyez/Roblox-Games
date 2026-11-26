@@ -13,7 +13,7 @@ None stated. Project rules in CLAUDE.md apply (server-authoritative, --!strict, 
 Source: user message, 2026-11-26 18:50; CLAUDE.md.
 
 ## Status
-Item 1 (arena geometry) and the dummy rigs are built and saved (v103, F5). No scripts changed yet: items 2, 3 (prompt wiring), 4 (dummy damage, respawn, damage numbers) still to do.
+Closed at hand-off #3, continued in jobs/2026-11-26-physical-test-arena-2/
 
 ## Route so far
 1. Read TestArenaClient, TestArena, AbilityService, workspace layout (see findings: F1-F4).
@@ -62,3 +62,5 @@ None
 - Hand-off #1 saved 2026-11-26 19:00 by session f883aab3-e5ac-4e0b-b81e-2401a950e661
 - Resumed by session fce41ab9-157f-4f86-8260-ac563df24c8a at 2026-11-26 18:59
 - Hand-off #2 saved 2026-11-26 19:01 by session fce41ab9-157f-4f86-8260-ac563df24c8a
+- Resumed by session edfabd78-c8ca-437f-9962-44f6da9b7ad0 at 2026-11-26 19:02
+- Closed, continued in jobs/2026-11-26-physical-test-arena-2/

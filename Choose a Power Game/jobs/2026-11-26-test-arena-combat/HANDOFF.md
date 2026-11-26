@@ -14,40 +14,43 @@ No scrollable nerf section needed ("you dont need to create a scrollable nerf pa
 Source: user message, 2026-11-26 19:20
 
 ## Status
-Read-only so far: all relevant scripts read, no edits made. Plan in findings D1-D4.
+Part 1 (combat/movement in the test arena, D1) done and saved as v107 (F7). Part 2 (multi-power terminal, D2-D4) not started.
 
 ## Route so far
-1. Read job notes of physical-test-arena-2 (findings F1).
-2. Read TestArenaClient, TestArena server, AbilityService, MeleeController, MovementController, MoveFxRelay (findings F2-F6).
+1. Read job notes of physical-test-arena-2 (F1).
+2. Read the gate scripts and TestArena (F2-F6).
+3. Applied D1: CanFight module + gates + TestArena melee handler; punch on a dummy verified (F7).
 
 ## Next action
-Read ServerScriptService.MatchInstance around the MeleeRequest handler (grep "MeleeRemote.OnServerEvent") and SprintController's gate, then apply edit D1 (shared "can fight" check) to MeleeController, MovementController, MoveFxRelay, MatchInstance melee, SprintController.
+Apply D2 in ServerScriptService.TestArena: TestLoadout handler takes (powerIds: {string}, nerfs: {string}); validate unique known ids, nerfs each in some chosen power's NerfPool, max 3 per chosen power; Equip with powers = list. Then D4 in StarterPlayerScripts.TestArenaClient (re-read it first; findings F5 has old line numbers), then D3, then playtest (methods.md).
 
 ## Read first
 1. jobs/2026-11-26-test-arena-combat/findings.md
+2. jobs/2026-11-26-test-arena-combat/methods.md
 
 ## Leads to re-check
-- F6 (MatchInstance melee gate and SprintController gate not yet read).
+None
 
 ## Results to reuse
-None
+- Server-side box query check in methods.md step 3.
 
 ## Waiting on me
 None
 
 ## Don't redo
-Reading the six scripts in F2-F5; line numbers there are current.
+D1 (F7): CanFight module, the four gate edits and TestArena's melee handler are in and tested.
 
 ## Gotchas
-- Studio was in Play mode at start; I stopped it. Edits need Edit mode.
-- AbilityService.Describe pairs nerfs[i] with powers[i]; with many powers + many nerfs that label is wrong (see D3).
-- TestArena.checkNerfs caps nerfs at 3 and requires each in the single power's NerfPool (D2).
+- AbilityService.Describe pairs nerfs[i] with powers[i]; with many powers + many nerfs that label is wrong (D3).
+- TestArena.checkNerfs currently caps nerfs at 3 and requires each in the single power's NerfPool (D2 replaces it).
+- TestArena script line numbers moved: the melee handler was added before onPlayer.
+- Dash/double jump/wall reset were not tried by hand; ask the user to try them in Play.
 
 ## Studio/Blender state
-- Place saved in Studio: no changes made this job (last save v106 from previous job)
+- Place saved in Studio: yes, v107 at 19:32 (TeamCreate)
 - Rojo in sync: not used
 - .blend files: none
-- Only in Studio (not in this folder): all scripts
+- Only in Studio (not in this folder): all scripts, including new ReplicatedStorage.CanFight
 
 ## Queue
 None
@@ -55,3 +58,5 @@ None
 ## Chain so far
 - Started by session b0611ad4-d908-40dc-a5c4-a0cdb679ba80 at 2026-11-26 19:20
 - Hand-off #1 saved 2026-11-26 19:30 by session b0611ad4-d908-40dc-a5c4-a0cdb679ba80
+- Resumed by session 1fc4c070-8068-466c-988c-2842ca23c689 at 2026-11-26 19:30
+- Hand-off #2 saved 2026-11-26 19:34 by session 1fc4c070-8068-466c-988c-2842ca23c689

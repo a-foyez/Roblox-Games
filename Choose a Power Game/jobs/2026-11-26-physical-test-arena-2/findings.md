@@ -14,7 +14,9 @@ Current state only, under 8 KB. Each fact has a source and is SETTLED or LEAD.
 
 - F8 SETTLED: TestArena server and AbilityService edits from the Edit plan are applied and saved (v105). TestArena: toPad, respawnInArena (sets `respawning[p]` during LoadCharacter so CharacterAdded doesn't clear InTestArena), canTest gate, TestTeleport handler. AbilityService: inSafeZone(pos), hitDummies(center, radius, damage), DUMMY_DAMAGE 25, called at end of shockwave. Playtest via client FireServer: TestTeleport(true) put player at (-3000, 2.7, -100) with InTestArena true; TestLoadout("Shockwave") kept them on the pad with TestMode true; TestTeleport(false) put them at lobby (19, 3, 0) with both attributes nil; console clean. Shockwave-vs-dummy damage NOT yet tested (needs a real E press). Source: Studio MCP playtest 2026-11-26 19:12.
 
-## Edit plan (server parts done, F8; rest still to do)
+- F9 SETTLED: ServerScriptService.TestDummies (keeps clones in a Lua table, not ServerStorage) and the TestArenaClient edits are done; Terminal.OpenPanel key is now F (E clashed with Shockwave). Full playtest passed, saved v106. Screen button tested by firing its remote, not a real mouse click. Source: Studio MCP playtest 2026-11-26 19:22.
+
+## Edit plan (all done, F8 + F9)
 - New ServerScriptService.TestDummies: on start clone each dummy into ServerStorage.TestDummyStash; on Died wait 3 s, destroy, re-clone into Dummies; refill Health when 5 s since last drop.
 - TestArenaClient: toggle text "TEST ARENA"/"BACK TO LOBBY" from InTestArena, Activated fires TestTeleport(not inArena); prompt opens panel; panel hides when InTestArena clears; damage numbers per D6.
 

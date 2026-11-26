@@ -8,3 +8,7 @@
 - 2026-11-26 19:12 — Playtest via remotes: teleport to pad OK, Apply keeps player in arena, back to lobby clears InTestArena/TestMode; console clean. Saved v105
 - 2026-11-26 19:12 — Hand-off #2 started (50% checkpoint)
 - 2026-11-26 19:12 — Hand-off #2 saved
+- 2026-11-26 19:13 — Resumed by session c6ff9488-5943-4454-94d0-ca746be0ffc5
+- 2026-11-26 19:20 — TestDummies script created; TestArenaClient: teleport button, terminal prompt opens panel, damage numbers; prompt key E -> F (clashed with Shockwave)
+- 2026-11-26 19:22 — Playtest: button text flips, teleport, real E Shockwave hit Dummy1 for 25 with number, refill 400->500 after 5 s, dead dummy respawned, F at terminal opened panel, lobby closes it; console clean. Saved v106
+- 2026-11-26 19:23 — Job closed: all Done-when items met, structure plan given to user

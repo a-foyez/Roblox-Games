@@ -13,7 +13,7 @@ None stated. Project rules in CLAUDE.md apply (server-authoritative, --!strict, 
 Source: user message, 2026-11-26 18:50; CLAUDE.md.
 
 ## Status
-Arena, dummies, TestTeleport remote built (F5, F7). Server side done and tested via remotes (F8): teleport, arena-respawn on Apply/Reset, safe zone, shockwave dummy damage. Still to do: TestDummies script, TestArenaClient changes (button, prompt, damage numbers), full playtest, plain-English structure plan for the user.
+Closed 2026-11-26 19:23: all four items work in a playtest (F8, F9), saved v106, structure plan given to the user.
 
 ## Route so far
 1. Scouted scripts and layout (see findings: F1-F4); designed D1-D6.
@@ -22,7 +22,7 @@ Arena, dummies, TestTeleport remote built (F5, F7). Server side done and tested 
 4. Applied the TestArena server and AbilityService parts, playtested via FireServer, saved v105 (F8).
 
 ## Next action
-Create ServerScriptService.TestDummies (--!strict) per the "Edit plan" in findings.md: stash clones in ServerStorage.TestDummyStash, respawn 3 s after Died, refill Health 5 s after last drop.
+None (job closed).
 
 ## Read first
 1. jobs/2026-11-26-physical-test-arena-2/findings.md
@@ -50,7 +50,7 @@ Scouting (F1-F4), building the arena and dummies (F5), TestTeleport (F7), the Te
 - The place has a red atmosphere tint; screenshots look red, that is normal.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, v105 at 2026-11-26 19:12, playtest stopped
+- Place saved in Studio: yes, v106 at 2026-11-26 19:22, playtest stopped
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): all game scripts, the TestArena model, Remotes.TestTeleport
@@ -63,3 +63,4 @@ None
 - Hand-off #1 saved 2026-11-26 19:10 by session edfabd78-c8ca-437f-9962-44f6da9b7ad0
 - Resumed by session 272ebbd3-6695-4638-a526-9191e9d57763 at 2026-11-26 19:12
 - Hand-off #2 saved 2026-11-26 19:12 by session 272ebbd3-6695-4638-a526-9191e9d57763
+- Resumed by session c6ff9488-5943-4454-94d0-ca746be0ffc5 at 2026-11-26 19:13

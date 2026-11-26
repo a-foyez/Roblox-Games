@@ -1,0 +1,17 @@
+# Findings: Test arena combat + multi-power terminal
+
+Current state only, under 8 KB. Each fact has a source and is SETTLED or LEAD.
+
+## Facts
+- F1 SETTLED: Test arena (previous job jobs/2026-11-26-physical-test-arena-2/): player attribute InTestArena = true while in the arena; TestMode = true after a loadout is applied; Fighting stays nil. Source: that job's findings F8/F9.
+- F2 SETTLED: Combat/movement gates all require Fighting == true: MeleeController attack() line 181 and dodge() line 193; MovementController ready() line 26; MoveFxRelay server line 28. Source: script_grep "Fighting" 2026-11-26 19:25.
+- F3 SETTLED: AbilityService.Equip(player, char, {powers={...}, nerfs={...}}) already loops all powers and all nerfs (lines 37-54). Describe (27-35) pairs nerfs[i] with powers[i]. standing() (60-66) accepts TestMode with Fighting nil. Source: script_read 19:26.
+- F4 SETTLED: TestArena server (ServerScriptService.TestArena): TestLoadout handler lines 87-120 takes (powerId: string, nerfs); checkNerfs(power, raw) lines 64-85 (max 3, each in power.NerfPool); Equip call line 118 with powers = { powerId }. Source: script_read 19:26.
+- F5 SETTLED: TestArenaClient: left column is one ScrollingFrame `ctrl` (lines 77-83, 230 wide) holding POWERS label, power buttons (209-220, select() 193-207 single-select), NERFS label + nerfBox (221-223). renderNerfs (165-191) shows Registry.Powers[selected].NerfPool. Apply (225-238) fires remote(selected, picked). Panel 620x440. Source: script_read 19:26.
+- F6 LEAD: Server melee is in ServerScriptService.MatchInstance (MeleeRemote line 15); its gate not yet read. SprintController gate not yet read. Source: script_grep "MeleeRequest" 19:28.
+
+## Decisions (mine)
+- D1: "Can fight" = Fighting == true OR (Fighting == nil and InTestArena == true). Apply in MeleeController (both gates), MovementController ready(), MoveFxRelay, SprintController and the MatchInstance melee handler if they gate on Fighting. Why: user wants full combat/movement in the test arena even before applying a loadout. Server melee in the arena must only hit other InTestArena players/dummies, never lobby players. Rejected: setting Fighting = true in the arena (breaks SpectateClient, MatchInstance and TestArena's own Fighting watcher).
+- D2: TestLoadout becomes (powerIds: {string}, nerfs: {string}). Server: 1..#Registry.Powers unique valid ids; nerfs unique, each in the NerfPool of any chosen power, max 3 per chosen power. Keep accepting nil for reset.
+- D3: Describe: keep as is for matches; for test loadouts it may mislabel — acceptable, or set Loadout attribute to a joined list in TestArena after Equip.
+- D4: Client: `chosenPowers` set; clicking a power toggles highlight (same look as nerfs). Left column = two frames: top ScrollingFrame POWERS (height scale ~0.55), bottom plain Frame NERFS listing the NerfPool of every highlighted power (grouped by power name). Apply sends the list of highlighted ids + ticked nerfs. Title/desc show the last clicked power, or "N POWERS" when several.

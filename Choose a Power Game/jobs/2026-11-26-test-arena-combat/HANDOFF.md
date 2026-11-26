@@ -14,7 +14,7 @@ No scrollable nerf section needed ("you dont need to create a scrollable nerf pa
 Source: user message, 2026-11-26 19:20
 
 ## Status
-Part 1 (combat/movement in the test arena, D1) done and saved as v107 (F7). Part 2 (multi-power terminal, D2-D4) not started.
+Closed at hand-off #3, continued in jobs/2026-11-26-test-arena-terminal/
 
 ## Route so far
 1. Read job notes of physical-test-arena-2 (F1).
@@ -60,3 +60,5 @@ None
 - Hand-off #1 saved 2026-11-26 19:30 by session b0611ad4-d908-40dc-a5c4-a0cdb679ba80
 - Resumed by session 1fc4c070-8068-466c-988c-2842ca23c689 at 2026-11-26 19:30
 - Hand-off #2 saved 2026-11-26 19:34 by session 1fc4c070-8068-466c-988c-2842ca23c689
+- Resumed by session 027ded97-e1f3-4dfd-95cb-548a8d680630 at 2026-11-26 19:34
+- Closed, continued in jobs/2026-11-26-test-arena-terminal/

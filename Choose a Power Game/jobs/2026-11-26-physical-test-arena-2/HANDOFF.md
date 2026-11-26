@@ -13,15 +13,16 @@ None stated. Project rules in CLAUDE.md apply (server-authoritative, --!strict, 
 Source: user message, 2026-11-26 18:50; CLAUDE.md.
 
 ## Status
-Arena geometry, dummies and Remotes.TestTeleport exist and are saved (F5, F7). No scripts changed yet: items 2, 3 (prompt wiring), 4 (dummy damage, respawn, damage numbers) still to do.
+Arena, dummies, TestTeleport remote built (F5, F7). Server side done and tested via remotes (F8): teleport, arena-respawn on Apply/Reset, safe zone, shockwave dummy damage. Still to do: TestDummies script, TestArenaClient changes (button, prompt, damage numbers), full playtest, plain-English structure plan for the user.
 
 ## Route so far
 1. Scouted scripts and layout (see findings: F1-F4); designed D1-D6.
-2. Built arena geometry and 6 dummies, saved v103 (see findings: F5); noted script line refs (F6).
-3. Created Remotes.TestTeleport, found StreamingEnabled is on, wrote the concrete edit plan (see findings: F7, Edit plan).
+2. Built arena geometry and 6 dummies, saved v103 (F5); noted script line refs (F6).
+3. Created Remotes.TestTeleport, wrote the edit plan (F7).
+4. Applied the TestArena server and AbilityService parts, playtested via FireServer, saved v105 (F8).
 
 ## Next action
-Apply the TestArena server part of "Edit plan" in findings.md with multi_edit on game.ServerScriptService.TestArena (current code is lines 1-120, F6 line refs still valid).
+Create ServerScriptService.TestDummies (--!strict) per the "Edit plan" in findings.md: stash clones in ServerStorage.TestDummyStash, respawn 3 s after Died, refill Health 5 s after last drop.
 
 ## Read first
 1. jobs/2026-11-26-physical-test-arena-2/findings.md
@@ -31,26 +32,25 @@ Apply the TestArena server part of "Edit plan" in findings.md with multi_edit on
 None
 
 ## Results to reuse
-Built: Workspace.TestArena with SpawnPad, Terminal.OpenPanel prompt, SafeZone, Dummies.Dummy1-6 (F5); ReplicatedStorage.Remotes.TestTeleport (F7). Existing scripts: ServerScriptService.TestArena, StarterPlayerScripts.TestArenaClient, ServerScriptService.AbilityService (line refs F6).
+Built: Workspace.TestArena with SpawnPad, Terminal.OpenPanel prompt, SafeZone, Dummies.Dummy1-6 (F5); ReplicatedStorage.Remotes.TestTeleport (F7). Edited: ServerScriptService.TestArena and AbilityService (F8). TestArenaClient line refs in F6 are still valid (not edited yet).
 
 ## Waiting on me
 None
 
 ## Don't redo
-Scouting (F1-F4), building the arena and dummies (F5), reading the scripts for line refs (F6), creating TestTeleport and planning the edits (F7, Edit plan).
+Scouting (F1-F4), building the arena and dummies (F5), TestTeleport (F7), the TestArena server and AbilityService edits and their remote-level test (F8).
 
 ## Gotchas
-- TestArena calls p:LoadCharacter() on Apply/Reset, which respawns at the lobby SpawnLocation (19, 0.4, 0). Must PivotTo the SpawnPad afterwards (D3).
 - StreamingEnabled is on: client code must not WaitForChild arena parts at startup (F7).
 - script_read with a line range needs end_line_one_indexed_inclusive.
-- Shockwave only hits players in AbilityService's `equipped` table; dummies must be added (D5).
+- multi_edit can fail with "No Roblox Studio instances are connected"; call list_roblox_studios, check the Source with execute_luau (edits are atomic, nothing applied), then retry.
+- In Play, execute_luau with datamodel_type Client can FireServer remotes as the local player: a fast way to test server handlers.
 - Bash heredocs with this content failed to parse, and Python is not installed; use the Write/Edit tools for job files.
 - save_place once returned "Request timeout" but had saved; a second call said NotNeeded.
-- The Studio MCP once briefly reported "No Roblox Studio instances are connected"; calling list_roblox_studios again fixed it.
 - The place has a red atmosphere tint; screenshots look red, that is normal.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, 2026-11-26 19:08 (save_place said NotNeeded after the TestTeleport add)
+- Place saved in Studio: yes, v105 at 2026-11-26 19:12, playtest stopped
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): all game scripts, the TestArena model, Remotes.TestTeleport
@@ -61,3 +61,5 @@ None
 ## Chain so far
 - Started by session edfabd78-c8ca-437f-9962-44f6da9b7ad0 at 2026-11-26 19:09
 - Hand-off #1 saved 2026-11-26 19:10 by session edfabd78-c8ca-437f-9962-44f6da9b7ad0
+- Resumed by session 272ebbd3-6695-4638-a526-9191e9d57763 at 2026-11-26 19:12
+- Hand-off #2 saved 2026-11-26 19:12 by session 272ebbd3-6695-4638-a526-9191e9d57763

@@ -8,3 +8,4 @@ Dated log, newest last. Format: `YYYY-MM-DD HH:MM — what happened`.
 - 2026-11-26 19:38 — Resumed by session 2ee80445-de24-413c-bd1c-784ae1e31ae0
 - 2026-11-26 19:41 — D4 done: terminal multi-select + split column, playtested via mouse clicks, saved v109
 - 2026-11-26 19:45 — User confirmed dash and double jump work in the test arena; wall reset not yet reported
+- 2026-11-26 19:47 — User confirmed wall reset works; all Done when items met, job closed

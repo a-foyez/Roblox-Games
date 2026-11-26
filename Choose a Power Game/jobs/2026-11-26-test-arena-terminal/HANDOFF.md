@@ -14,14 +14,14 @@ No scrollable nerf section needed ("you dont need to create a scrollable nerf pa
 Source: user message, 2026-11-26 19:20 (carried over)
 
 ## Status
-Done (v109): D1-D4 finished and playtested. Only open item: user to try wall reset by hand (dash and double jump confirmed 19:45) in the test arena.
+Closed: done (v109). All Done when items met; dash, double jump and wall reset confirmed by the user 19:47.
 
 ## Route so far
 1. Previous folder: D1 CanFight gates + arena melee (F7), v107.
 2. D2: TestArena takes a list of powers, nerfs checked per owning power, own Loadout label (F8, F9); playtest OK, v108.
 
 ## Next action
-None for Claude. User: hand-test wall reset in the test arena.
+None. Job closed.
 
 ## Read first
 1. jobs/2026-11-26-test-arena-terminal/findings.md (F5, F8, D4)

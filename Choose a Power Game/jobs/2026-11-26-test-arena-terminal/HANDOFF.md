@@ -14,14 +14,14 @@ No scrollable nerf section needed ("you dont need to create a scrollable nerf pa
 Source: user message, 2026-11-26 19:20 (carried over)
 
 ## Status
-Server side done: combat/movement in the arena (D1, F7) and multi-power TestLoadout with correct label (D2+D3, F8), saved v108. Client terminal (D4) not started.
+Done (v109): D1-D4 finished and playtested. Only open item: user to try dash, double jump and wall reset by hand in the test arena.
 
 ## Route so far
 1. Previous folder: D1 CanFight gates + arena melee (F7), v107.
 2. D2: TestArena takes a list of powers, nerfs checked per owning power, own Loadout label (F8, F9); playtest OK, v108.
 
 ## Next action
-D4 in StarterPlayer.StarterPlayerScripts.TestArenaClient (re-read it first; F5 line numbers are still right as of 19:35): replace `selected`/select() with a `chosenPowers` set toggled on click (highlight like a nerf, accent colour); split `ctrl` into a top ScrollingFrame (POWERS, ~55% height) and a bottom plain Frame (NERFS) listing the NerfPool of every highlighted power grouped under its name; un-highlighting a power drops its ticked nerfs; Apply fires remote(listOfIds, tickedNerfs), "Pick a power first." if none; title = last clicked power or "N POWERS". Then playtest (methods.md) and save.
+None for Claude. User: hand-test dash, double jump, wall reset in the test arena; say if the scrollable nerf area should go back to fixed.
 
 ## Read first
 1. jobs/2026-11-26-test-arena-terminal/findings.md (F5, F8, D4)
@@ -46,7 +46,7 @@ D1 (F7) and D2/D3 (F8): server is finished; only the client panel is left.
 - The Bash hook blocks commands with "\" line continuations or "../" paths; use plain one-line commands.
 
 ## Studio/Blender state
-- Place saved in Studio: yes, v108 at 19:36 (TeamCreate)
+- Place saved in Studio: yes, v109 at 19:41 (TeamCreate)
 - Rojo in sync: not used
 - .blend files: none
 - Only in Studio (not in this folder): all scripts, including ReplicatedStorage.CanFight and the edited ServerScriptService.TestArena
@@ -57,3 +57,4 @@ None
 ## Chain so far
 - Started by session 027ded97-e1f3-4dfd-95cb-548a8d680630 at 2026-11-26 19:36 (continues jobs/2026-11-26-test-arena-combat/)
 - Hand-off #1 saved 2026-11-26 19:37 by session 027ded97-e1f3-4dfd-95cb-548a8d680630
+- Resumed by session 2ee80445-de24-413c-bd1c-784ae1e31ae0 at 2026-11-26 19:38
